@@ -1,19 +1,19 @@
-// :root{
-//     --PrimaryColor: hsl(26,93%,50%);
-//     --HoverColor: hsl(26,90%,42%);
-//     --whiteColor: hsl(0,0%,100%); //3
-//     --blackColor: hsl(0,0%,18%); //2
-//     --textColor: hsl(240,1%,48%); //1
-//     --whiteColorDeam: hsl(0,0%,93%);
-//     --greyBg :hsl(0,0%,96%);
-//     --greyText:rgb(190,190,190);
-//     --inputColor:hsl(330,12%,97%);
-//     /* box-shadow: 0 2px 8px 2px rgba(178,178,178,0.45); */
-//   }
+:root{
+    --PrimaryColor: hsl(26,93%,50%);
+    --HoverColor: hsl(26,90%,42%);
+    --whiteColor: hsl(0,0%,100%); //3
+    --blackColor: hsl(0,0%,18%); //2
+    --textColor: hsl(240,1%,48%); //1
+    --whiteColorDeam: hsl(0,0%,93%);
+    --greyBg :hsl(0,0%,96%);
+    --greyText:rgb(190,190,190);
+    --inputColor:hsl(330,12%,97%);
+    /* box-shadow: 0 2px 8px 2px rgba(178,178,178,0.45); */
+  }
   .about{
     .secContainer{
         .title{
-            color: hsl(0,0%,18%);
+            color: var(--blackColor);
             line-height: 1.5rem;
             padding-bottom: 2rem;
             text-align: center;
@@ -32,14 +32,14 @@
                 }
                 h3{
                     font-weight: 700;
-                    color: hsl(0,0%,18%);
+                    color: var(--blackColor);
                     padding: .5rem;
                 }
                 p{
                     font-size: 13px;
                     font-weight: 500;
                     padding-bottom: .5rem;
-                    color: hsl(240,1%,48%);
+                    color: var(--textColor);
                 }
             }
         }
@@ -55,13 +55,13 @@
                 padding: 2rem 1rem;
                 .cardText{
                     h2{
-                        color: hsl(0,0%,100%);
+                        color: var(--whiteColor);
                         font-weight: 600;
                         padding-bottom: 1rem;
 
                     }
                     p{
-                        color: hsl(0,0%,100%);
+                        color: var(--whiteColor);
                         opacity: .7;
                         font-size: 12px;
                         font-weight: 400;
@@ -70,7 +70,7 @@
                 }
             }
             .cardVideo{
-                border: 2px solid hsl(0,0%,100%);
+                border: 2px solid var(--whiteColor);
                 height: 200px;
                 width: 100%;
                 border-radius: 10px;

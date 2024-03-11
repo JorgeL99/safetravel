@@ -25,13 +25,13 @@ const Posts=[
     desc: 'The kingdom of Morocco is a muslim countruy in wester north africa,with coastlines on the atlantic oacean and mediterranean sea.',
   },
   {
-    id:2,
+    id:3,
     postImage:img3,
     title: 'Beutiful SERIO ?=, let us travel!',
     desc: 'The kingdom of Morocco is a muslim countruy in wester north africa,with coastlines on the atlantic oacean and mediterranean sea.',
   },
   {
-    id:3,
+    id:4,
     postImage:img4,
     title: 'Beutiful XD ZZZZ, Tu huevada',
     desc: 'The kingdom of Morocco is a muslim countruy in wester north africa,with coastlines on the atlantic oacean and mediterranean sea.',
