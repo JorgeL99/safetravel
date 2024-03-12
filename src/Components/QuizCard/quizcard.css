@@ -1,3 +1,4 @@
+@charset "UTF-8";
 :root {
   --PrimaryColor: hsl(26, 93%, 50%);
   --HoverColor: hsl(26, 90%, 42%);
@@ -17,7 +18,7 @@
 .card {
   width: 60%;
   height: 45%;
-  opacity: 0.9;
+  opacity: 0.85;
   border-radius: 30px;
   background: #e0e0e0;
   box-shadow: 15px 15px 30px #282b63, -15px -15px 30px #282b63;
@@ -26,14 +27,30 @@
   position: relative;
   gap: 10px;
   color: var(--textColor);
-  grid-template-rows: auto 1fr;
+  grid-template-rows: auto auto 1fr;
+}
+.card .progress-bar {
+  width: 95%;
+  height: 20px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  overflow: hidden;
+}
+.card .progress {
+  height: 100%;
+  border-radius: 10px;
+  background-color: var(--PrimaryColor); /* Cambia el color de la barra de progreso según tu preferencia */
+  transition: width 0.5s ease;
 }
 .card .textin {
-  margin-top: 65px;
+  margin-top: 40px;
+  margin-bottom: 0px;
   justify-content: center;
 }
 .card .result {
-  margin-top: 10%;
+  margin: 10%;
   justify-content: center;
 }
 .card .ctn-inicio {
@@ -72,7 +89,10 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
-  margin: 20px;
+  margin-top: 0px;
+  margin-bottom: 50px;
+  margin-left: 15px;
+  margin-right: 15px;
 }
 .card .ctn-button .btn-prueba {
   padding: 17px 40px;

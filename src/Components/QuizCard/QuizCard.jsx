@@ -100,10 +100,14 @@ const QuizCard = ({ onShowConfetti }) => {
 
   return (
     <div className="card">
-
+              {quizStarted && !showResult && (
+        <div className="progress-bar">
+          <div className="progress" style={{ width: `${((currentQuestion + 1) / questions.length) * 100}%` }}></div>
+        </div>
+        )}
       {!quizStarted ? (
         <>
-        <div className="textin">
+        <div className="result">
           <h2>Bienvenido al Quiz de Personalidad</h2>
           </div>
         <div className="ctn-inicio">
