@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import Confetti from 'react-confetti';
 import "./quizcard.css";
-const QuizCard = () => {
+const QuizCard = ({ onShowConfetti }) => {
   const questions = [
     {
       question: "¿Qué tipo de actividad prefieres en tu tiempo libre?",
@@ -84,6 +85,7 @@ const QuizCard = () => {
       personalityTypes[a] > personalityTypes[b] ? a : b
     );
     setPersonalityResult(maxPersonalityType);
+    onShowConfetti(true);
   };
 
   const handleRestartQuiz = () => {
@@ -92,10 +94,13 @@ const QuizCard = () => {
     setPersonalityTypes({ Intelectual: 0, Sociable: 0, Activo: 0 });
     setShowResult(false);
     setPersonalityResult("");
+    onShowConfetti(false); // Detener el confeti al reiniciar el quiz
+
   };
 
   return (
     <div className="card">
+
       {!quizStarted ? (
         <>
         <div className="textin">
@@ -113,6 +118,7 @@ const QuizCard = () => {
           <p>¡Gracias por completar el quiz!</p>
         </div>
         <div className="ctn-inicio">
+
         <button className="btn-prueba" onClick={handleRestartQuiz}>Reiniciar</button>
         </div>
         </>

@@ -1,16 +1,25 @@
-import React from "react";
+import React,{useState} from "react";
 import "./encuenta.css";
 import Navbar from "../../Components/Navbar/Navbar";
 import QuizCard from "../../Components/QuizCard/QuizCard";
+import Confetti from 'react-confetti';
 
 
 const Encuenta = () => {
+  const [showConfetti, setShowConfetti] = useState(false);
+
+  const handleShowConfetti = (show) => {
+    setShowConfetti(show);
+  };
+
+
   return (
    
     <>
+            {showConfetti && <Confetti width={window.innerWidth} height={window.innerHeight} />}
 
       <Navbar />
-      <QuizCard />
+      
         <ul class="fondillo">
           <li></li>
           <li></li>
@@ -35,7 +44,7 @@ const Encuenta = () => {
           <li></li>
           <li></li>
           <li></li>
-          <QuizCard />
+          <QuizCard onShowConfetti={handleShowConfetti} />
         </ul>
         
       
