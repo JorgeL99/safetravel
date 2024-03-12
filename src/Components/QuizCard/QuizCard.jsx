@@ -50,6 +50,8 @@ const QuizCard = () => {
     },
   ];
 
+  const [quizStarted, setQuizStarted] = useState(false);
+
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [personalityTypes, setPersonalityTypes] = useState({
     Intelectual: 0,
@@ -58,6 +60,10 @@ const QuizCard = () => {
   });
   const [showResult, setShowResult] = useState(false);
   const [personalityResult, setPersonalityResult] = useState("");
+
+  const handleStartQuiz = () => {
+    setQuizStarted(true);
+  };
 
   const handleAnswerButtonClick = (personalityType) => {
     setPersonalityTypes({
@@ -80,16 +86,41 @@ const QuizCard = () => {
     setPersonalityResult(maxPersonalityType);
   };
 
+  const handleRestartQuiz = () => {
+    setQuizStarted(false);
+    setCurrentQuestion(0);
+    setPersonalityTypes({ Intelectual: 0, Sociable: 0, Activo: 0 });
+    setShowResult(false);
+    setPersonalityResult("");
+  };
+
   return (
     <div className="card">
-      {showResult ? (
+      {!quizStarted ? (
+        <>
+        <div className="textin">
+          <h2>Bienvenido al Quiz de Personalidad</h2>
+          </div>
+        <div className="ctn-inicio">
+          
+          <button className="btn-prueba" onClick={handleStartQuiz}>Iniciar</button>
+        </div>
+        </>
+      ) : showResult ? (
+        <>
         <div className="result">
           <h2>Tu tipo de personalidad es: {personalityResult}</h2>
           <p>¡Gracias por completar el quiz!</p>
         </div>
+        <div className="ctn-inicio">
+        <button className="btn-prueba" onClick={handleRestartQuiz}>Reiniciar</button>
+        </div>
+        </>
       ) : (
         <>
+          <div className="textin">
           <h2>{questions[currentQuestion].question}</h2>
+          </div>
           <div className="ctn-button">
             {questions[currentQuestion].options.map((option, index) => (
               <button

@@ -10,17 +10,69 @@
   --inputColor: hsl(330, 12%, 97%);
   --boxShadow: 0 2px 8px 2px rgba(178, 178, 178, 0.334);
   --Fondo: hsl(175, 53%, 57%);
+  --colorcillo:rgb(24, 191, 220);
+  --nose:hsl(24, 191, 220);
 }
 
 .card {
-  width: 550px;
-  height: 320px;
+  width: 60%;
+  height: 45%;
+  opacity: 0.9;
   border-radius: 30px;
   background: #e0e0e0;
-  box-shadow: 15px 15px 30px #bebebe, -15px -15px 30px #ffffff;
+  box-shadow: 15px 15px 30px #282b63, -15px -15px 30px #282b63;
   display: grid;
   place-items: center;
+  position: relative;
+  gap: 10px;
   color: var(--textColor);
+  grid-template-rows: auto 1fr;
+}
+.card .textin {
+  margin-top: 65px;
+  justify-content: center;
+}
+.card .result {
+  margin: 15%;
+  justify-content: center;
+}
+.card .ctn-inicio {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  gap: 10px;
+}
+.card .ctn-inicio .btn-prueba {
+  padding: 17px 40px;
+  border-radius: 50px;
+  cursor: pointer;
+  border: 0;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.05) 0 0 8px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-size: 15px;
+  transition: all 0.5s ease;
+}
+.card .ctn-inicio .btn-prueba:hover {
+  letter-spacing: 4px;
+  background-color: var(--colorcillo);
+  color: hsl(0, 0%, 100%);
+  box-shadow: var(--colorcillo) 0px 7px 29px 0px;
+}
+.card .ctn-inicio .btn-prueba:active {
+  letter-spacing: 3px;
+  background-color: var(--nose);
+  color: hsl(0, 0%, 100%);
+  box-shadow: var(--colorcillo) 0px 0px 0px 0px;
+  transform: translateY(10px);
+  transition: 100ms;
+}
+.card .ctn-button {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 20px;
 }
 .card .ctn-button .btn-prueba {
   padding: 17px 40px;
@@ -36,15 +88,15 @@
 }
 .card .ctn-button .btn-prueba:hover {
   letter-spacing: 4px;
-  background-color: rgb(24, 191, 220);
+  background-color: var(--colorcillo);
   color: hsl(0, 0%, 100%);
-  box-shadow: rgb(24, 191, 220) 0px 7px 29px 0px;
+  box-shadow: var(--colorcillo) 0px 7px 29px 0px;
 }
 .card .ctn-button .btn-prueba:active {
   letter-spacing: 3px;
-  background-color: hsl(24, 100%, 100%);
+  background-color: var(--nose);
   color: hsl(0, 0%, 100%);
-  box-shadow: rgb(24, 191, 220) 0px 0px 0px 0px;
+  box-shadow: var(--colorcillo) 0px 0px 0px 0px;
   transform: translateY(10px);
   transition: 100ms;
 }/*# sourceMappingURL=quizcard.css.map */

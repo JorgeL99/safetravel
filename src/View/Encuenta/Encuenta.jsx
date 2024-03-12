@@ -6,13 +6,12 @@ import QuizCard from "../../Components/QuizCard/QuizCard";
 
 const Encuenta = () => {
   return (
+   
     <>
+
       <Navbar />
-      <>
+      <QuizCard />
         <ul class="fondillo">
-          
-            <QuizCard />
-          
           <li></li>
           <li></li>
           <li></li>
@@ -36,8 +35,10 @@ const Encuenta = () => {
           <li></li>
           <li></li>
           <li></li>
+          <QuizCard />
         </ul>
-      </>
+        
+      
 
     </>
   );
