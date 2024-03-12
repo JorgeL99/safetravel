@@ -5,6 +5,7 @@ import QuizCard from "../../Components/QuizCard/QuizCard";
 import Confetti from 'react-confetti';
 
 
+
 const Encuenta = () => {
   const [showConfetti, setShowConfetti] = useState(false);
 
@@ -19,7 +20,6 @@ const Encuenta = () => {
             {showConfetti && <Confetti width={window.innerWidth} height={window.innerHeight} />}
 
       <Navbar />
-      
         <ul class="fondillo">
           <li></li>
           <li></li>

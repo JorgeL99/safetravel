@@ -3,7 +3,7 @@ import './navbar.css'
 import { SiYourtraveldottv } from "react-icons/si";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { TbGridDots } from "react-icons/tb";
-
+import { Link } from 'react-router-dom'
 const Navbar = () => {
 
   const[active,setActive] = useState('navBar')
@@ -31,18 +31,19 @@ const Navbar = () => {
       <div className={transparent}>
         
         <div className="logoDiv">
-          <a href="#" className="logo">
+          <Link to="/" className="logo">
             <h1 className='flex'>
             <SiYourtraveldottv className="icon"/>SafeTravel
             </h1>
-          </a>
+          </Link>
         </div>
 
         <div className={active}>
           <ul className='navLists flex'>
 
             <li className="navItem">
-              <a href='#' className='navLink'>Home</a>
+              <Link to="/" className='navLink'>Home</Link>
+              
             </li>
 
             <li className="navItem">
