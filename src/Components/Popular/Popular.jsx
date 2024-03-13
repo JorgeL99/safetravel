@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useState , useEffect} from 'react'
 import './popular.css'
 
 import { BsArrowLeftShort } from 'react-icons/bs'
@@ -47,14 +47,28 @@ const Data = [
     grade:'CULTURA RELAX',
   },
   
-]
+];
 
 const Popular = () => {
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+
 
   useEffect(()=>{
     Aos.init({duration:2000})
   },[])
 
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === Data.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? Data.length - 1 : prevIndex - 1
+    );
+  };
 
   return (
     <section className='popular section container' style={ {paddingTop: "15rem"}}>
@@ -68,8 +82,8 @@ const Popular = () => {
             </div>
         
             <div data-aos="fade-left" data-aos-duration="2500"className="iconsDiv flex">
-                <BsArrowLeftShort className="icon leftIcon"/>
-                <BsArrowRightShort className="icon"/>
+                <BsArrowLeftShort className="icon leftIcon" onClick={prevSlide}/>
+                <BsArrowRightShort className="icon"  onClick={nextSlide} />
             </div>
         </div>
 
