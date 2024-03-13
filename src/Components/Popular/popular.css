@@ -125,7 +125,7 @@
   position: absolute;
   background: var(--PrimaryColor);
   top: 45%;
-  right: -150%;
+  right: -180%;
   height: 5px;
   width: 45px;
   border-radius: 1rem;
@@ -172,14 +172,14 @@
     justify-content: flex-end;
   }
 }
-@media screen and (min-width: 720px) {
+@media screen and (min-width: 1720px) {
   .popular {
-    padding-top: 7rem;
+    padding-top: 74rem;
   }
 }
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1080px) {
   .popular {
-    padding-top: 10rem;
+    padding-top: 100rem;
   }
   .popular .secContainer .secHeader .textDiv .secTitle {
     font-size: 2.2rem;

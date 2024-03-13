@@ -13,7 +13,11 @@
 
 .home {
   height: 80vh;
+<<<<<<< HEAD
   background: linear-gradient(rgba(33, 33, 33, 0.522), rgba(33, 33, 33, 0.522));
+=======
+  background: linear-gradient(rgba(33, 33, 33, 0.522), rgba(33, 33, 33, 0.522)), url("../../Assets/bgImage.webp");
+>>>>>>> 4c7412e8337bd957e60e29a0b62e00f5d30361d9
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
