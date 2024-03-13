@@ -6,10 +6,10 @@ import { BsArrowRightShort } from 'react-icons/bs'
 import { BsDot } from "react-icons/bs";
 
 
-import img2 from '../../Assets/image (21).jpg'
-import img3 from '../../Assets/image (41).jpg'
-import img4 from '../../Assets/image (51).jpg'
-import img5 from '../../Assets/image (61).jpg'
+import img2 from '../../Assets/huacachina.webp'
+import img3 from '../../Assets/paracas.webp'
+import img4 from '../../Assets/vuelo.webp'
+import img5 from '../../Assets/hacienda.webp'
 
 import Aos from 'aos'
 import 'aos/dist/aos.css'
@@ -18,32 +18,32 @@ const Data = [
   {
     id:1,
     imgSrc: img2,
-    destTitle:'Machu Picchu',
-    location:'Peru',
+    destTitle:'Huacachina',
+    location:'Ica',
     grade:'CULTURA RELAX',
 
   },
   {
     id:2,
     imgSrc: img3,
-    destTitle:'Machu Picchu',
-    location:'Peru',
+    destTitle:'Paracas',
+    location:'Pisco',
     grade:'CULTURA RELAX',
 
   },
   {
     id:3,
     imgSrc: img4,
-    destTitle:'Machu Picchu',
-    location:'Peru',
+    destTitle:'Lineas de Nazca',
+    location:'Nazca',
     grade:'CULTURA RELAX',
 
   },
   {
     id:4,
     imgSrc: img5,
-    destTitle:'Machu Picchu',
-    location:'Peru',
+    destTitle:'Hacienda San Jose',
+    location:'Chincha',
     grade:'CULTURA RELAX',
 
   },
@@ -52,7 +52,7 @@ const Data = [
 const Popular = () => {
 
   useEffect(()=>{
-    Aos.init({duration:2000})
+    Aos.init({duration:1000})
   },[])
 
 
@@ -63,8 +63,9 @@ const Popular = () => {
         <div className="secHeader flex">
             <div data-aos="fade-right" data-aos-duration="2500" className="textDiv">
               <h2 className="secTitle">
-                Popular Destination</h2>
-              <p>From Historical cities to natural sectaculars, come see the best of the world!</p>
+                Destinos más visitados</h2>
+              <p>Ven y atrévete a visitar los lugares favoritos de nuestros turistas. <br></br>
+                ¡Anímate, hay un destino que espera por ti!.</p>
             </div>
         
             <div data-aos="fade-left" data-aos-duration="2500"className="iconsDiv flex">
