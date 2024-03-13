@@ -45,8 +45,8 @@ const Data = [
     destTitle:'Machu Picchu',
     location:'Peru',
     grade:'CULTURA RELAX',
-
   },
+  
 ]
 
 const Popular = () => {

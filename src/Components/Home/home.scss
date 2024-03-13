@@ -12,7 +12,7 @@
 
 .home{
     height: 80vh;
-    background: linear-gradient(rgba(33,33,33,0.522),rgba(33,33,33,0.522)),url('../../Assets/bgImage.jpg');
+    background: linear-gradient(rgba(33,33,33,0.522),rgba(33,33,33,0.522));
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -21,6 +21,8 @@
     justify-content: center;
     margin: auto;
     position: relative;
+    animation: changeBackground 15s infinite; /* 10s es la duración de cada imagen, puedes ajustarla según tus necesidades */
+
 
     .secContainer{
         .homeText{
@@ -173,5 +175,19 @@
                 width: 70%;
             }
         }
+    }
+  }
+  @keyframes changeBackground {
+    0% {
+      background-image: url('../../Assets/image (41).jpg'); /* Cambiar a la primera imagen */
+    }
+    33.33% {
+      background-image: url('../../Assets/image (21).jpg'); /* Cambiar a la segunda imagen */
+    }
+    66.67% {
+      background-image: url('../../Assets/image (1).jpg'); /* Cambiar a la tercera imagen */
+    }
+    100% {
+      background-image: url('../../Assets/bgImage.jpg'); /* Volver a la primera imagen */
     }
   }
