@@ -124,7 +124,7 @@ const QuizCard = ({ onShowConfetti }) => {
             <button className="btn-prueba" onClick={handleRestartQuiz}>Reiniciar</button>
           </div>
           <div>
-            {/* Renderizar LocationCard según el resultado de la quiz */}
+           
             {destinationResult && <LocationCard location={destinationResult} />}
             </div>
         </>
