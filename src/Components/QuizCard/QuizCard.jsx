@@ -1,142 +1,139 @@
 import React, { useState } from "react";
-import Confetti from 'react-confetti';
 import "./quizcard.css";
+
 const QuizCard = ({ onShowConfetti }) => {
   const questions = [
     {
-      question: "¿Qué tipo de actividad prefieres en tu tiempo libre?",
+      question: "¿Qué tipo de comida prefieres?",
       options: [
-        { answerText: "Leer un libro", personalityType: "Intelectual" },
-        { answerText: "Salir con amigos", personalityType: "Sociable" },
-        { answerText: "Practicar deportes", personalityType: "Activo" },
+        { answerText: "Ceviche fresco y mariscos", destination: "Pisco" },
+        { answerText: "Deliciosos platos típicos peruanos como el cuy al horno", destination: "Nazca" },
+        { answerText: "Vino y comida gourmet en viñedos", destination: "Ica" },
+        { answerText: "Comida criolla con influencias afroperuanas", destination: "Chincha" },
       ],
     },
     {
-      question: "¿Cuál es tu comida favorita?",
+      question: "¿Qué clima te resulta más atractivo?",
       options: [
-        { answerText: "Pizza", personalityType: "Sociable" },
-        { answerText: "Sushi", personalityType: "Intelectual" },
-        { answerText: "Ensalada", personalityType: "Activo" },
+        { answerText: "Cálido y desértico", destination: "Nazca" },
+        { answerText: "Cálido con brisa fresca del mar", destination: "Pisco" },
+        { answerText: "Seco y soleado", destination: "Ica" },
+        { answerText: "Tropical con influencia costera", destination: "Chincha" },
       ],
     },
     {
-      question: "¿Qué tipo de película prefieres?",
+      question: "¿Qué tipo de actividades culturales te interesan más?",
       options: [
-        { answerText: "Drama", personalityType: "Intelectual" },
-        { answerText: "Comedia", personalityType: "Sociable" },
-        { answerText: "Acción", personalityType: "Activo" },
+        { answerText: "Sobrevolar las misteriosas Líneas de Nazca", destination: "Nazca" },
+        { answerText: "Explorar sitios arqueológicos antiguos", destination: "Nazca" },
+        { answerText: "Visitar bodegas y degustar vinos", destination: "Ica" },
+        { answerText: "Disfrutar de música y bailes afroperuanos", destination: "Chincha" },
       ],
     },
     {
-      question: "¿Cuál es tu pasatiempo favorito?",
+      question: "¿Cuál es tu presupuesto aproximado para actividades turísticas?",
       options: [
-        { answerText: "Leyendo", personalityType: "Intelectual" },
-        { answerText: "Bailando", personalityType: "Sociable" },
-        { answerText: "Haciendo ejercicio", personalityType: "Activo" },
+        { answerText: "Económico", destination: "Chincha" },
+        { answerText: "Moderado", destination: "Ica" },
+        { answerText: "Flexible", destination: "Pisco" },
+        { answerText: "Prefiero opciones económicas pero auténticas", destination: "Nazca" },
       ],
     },
     {
-      question: "¿Qué te gusta hacer en tus vacaciones?",
+      question: "¿Qué tipo de lugares turísticos te gustaría visitar?",
       options: [
-        {
-          answerText: "Visitar museos y sitios culturales",
-          personalityType: "Intelectual",
-        },
-        { answerText: "Viajar con amigos", personalityType: "Sociable" },
-        {
-          answerText: "Ir de excursión o practicar deportes extremos",
-          personalityType: "Activo",
-        },
+        { answerText: "Miradores de las Líneas de Nazca", destination: "Nazca" },
+        { answerText: "Antiguos cementerios y sitios arqueológicos", destination: "Nazca" },
+        { answerText: "Bodegas y viñedos", destination: "Ica" },
+        { answerText: "Haciendas y casonas históricas", destination: "Pisco" },
       ],
     },
   ];
 
   const [quizStarted, setQuizStarted] = useState(false);
-
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [personalityTypes, setPersonalityTypes] = useState({
-    Intelectual: 0,
-    Sociable: 0,
-    Activo: 0,
+  const [destinations, setDestinations] = useState({
+    Ica: 0,
+    Nazca: 0,
+    Pisco: 0,
+    Chincha: 0,
   });
   const [showResult, setShowResult] = useState(false);
-  const [personalityResult, setPersonalityResult] = useState("");
+  const [destinationResult, setDestinationResult] = useState("");
 
   const handleStartQuiz = () => {
     setQuizStarted(true);
   };
 
-  const handleAnswerButtonClick = (personalityType) => {
-    setPersonalityTypes({
-      ...personalityTypes,
-      [personalityType]: personalityTypes[personalityType] + 1,
+  const handleAnswerButtonClick = (destination) => {
+    setDestinations({
+      ...destinations,
+      [destination]: destinations[destination] + 1,
     });
     const nextQuestion = currentQuestion + 1;
     if (nextQuestion < questions.length) {
       setCurrentQuestion(nextQuestion);
     } else {
       setShowResult(true);
-      calculatePersonalityResult();
+      calculateDestinationResult();
     }
   };
 
-  const calculatePersonalityResult = () => {
-    const maxPersonalityType = Object.keys(personalityTypes).reduce((a, b) =>
-      personalityTypes[a] > personalityTypes[b] ? a : b
+  const calculateDestinationResult = () => {
+    const maxDestination = Object.keys(destinations).reduce((a, b) =>
+      destinations[a] > destinations[b] ? a : b
     );
-    setPersonalityResult(maxPersonalityType);
+    setDestinationResult(maxDestination);
     onShowConfetti(true);
   };
 
   const handleRestartQuiz = () => {
     setQuizStarted(false);
     setCurrentQuestion(0);
-    setPersonalityTypes({ Intelectual: 0, Sociable: 0, Activo: 0 });
+    setDestinations({ Ica: 0, Nazca: 0, Pisco: 0, Chincha: 0 });
     setShowResult(false);
-    setPersonalityResult("");
+    setDestinationResult("");
     onShowConfetti(false); // Detener el confeti al reiniciar el quiz
-
   };
 
   return (
     <div className="card">
-              {quizStarted && !showResult && (
+      {quizStarted && !showResult && (
         <div className="progress-bar">
           <div className="progress" style={{ width: `${((currentQuestion + 1) / questions.length) * 100}%` }}></div>
         </div>
-        )}
+      )}
       {!quizStarted ? (
         <>
-        <div></div>
-        <div className="result">
-          <h2>Bienvenido al Quiz de Personalidad</h2>
+          <div className="result">
+            <h2>Bienvenido al Quiz de Destino Turístico en Perú</h2>
           </div>
-        <div className="ctn-inicio">
-          <button className="btn-prueba" onClick={handleStartQuiz}>Iniciar</button>
-        </div>
+          <div className="ctn-inicio">
+            <button className="btn-prueba" onClick={handleStartQuiz}>Iniciar</button>
+          </div>
         </>
       ) : showResult ? (
         <>
-        <div className="result">
-          <h2>Tu tipo de personalidad es: {personalityResult}</h2>
-          <p>¡Gracias por completar el quiz!</p>
-        </div>
-        <div className="ctn-inicio">
-        <button className="btn-prueba" onClick={handleRestartQuiz}>Reiniciar</button>
-        </div>
-        <div className="nones">a</div>
+          <div className="result">
+            <h2>Tu destino turístico ideal en Perú es: {destinationResult}</h2>
+            <p>¡Gracias por completar el quiz!</p>
+          </div>
+          <div className="ctn-inicio">
+            <button className="btn-prueba" onClick={handleRestartQuiz}>Reiniciar</button>
+          </div>
+          <div destination={destinationResult} />
         </>
       ) : (
         <>
           <div className="textin">
-          <h2>{questions[currentQuestion].question}</h2>
+            <h2>{questions[currentQuestion].question}</h2>
           </div>
           <div className="ctn-button">
             {questions[currentQuestion].options.map((option, index) => (
               <button
                 className="btn-prueba"
                 key={index}
-                onClick={() => handleAnswerButtonClick(option.personalityType)}
+                onClick={() => handleAnswerButtonClick(option.destination)}
               >
                 {option.answerText}
               </button>
@@ -149,19 +146,3 @@ const QuizCard = ({ onShowConfetti }) => {
 };
 
 export default QuizCard;
-
-// import React, {useState} from "react";
-// import './quizcard.css'
-// const QuizCard = () => {
-//   return (
-//     <div className="card">
-//       <h1>Pregunta</h1>
-//       <div className="ctn-button">
-//         <button className="btn-prueba">QueOnda</button>
-
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default QuizCard;
