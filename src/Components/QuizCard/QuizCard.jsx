@@ -1,5 +1,7 @@
+
 import React, { useState } from "react";
 import "./quizcard.css";
+import LocationCard from "../Popular/LocationCard.jsx";
 
 const QuizCard = ({ onShowConfetti }) => {
   const questions = [
@@ -121,7 +123,10 @@ const QuizCard = ({ onShowConfetti }) => {
           <div className="ctn-inicio">
             <button className="btn-prueba" onClick={handleRestartQuiz}>Reiniciar</button>
           </div>
-          <div destination={destinationResult} />
+          
+            {/* Renderizar LocationCard según el resultado de la quiz */}
+            {destinationResult && <LocationCard location={destinationResult} />}
+          
         </>
       ) : (
         <>
