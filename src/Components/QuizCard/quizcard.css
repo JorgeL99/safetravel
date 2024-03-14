@@ -16,8 +16,8 @@
 }
 
 .card {
-  width: 60%;
-  height: 45%;
+  width: 55%;
+  height: 40%;
   opacity: 0.85;
   border-radius: 30px;
   background: #e0e0e0;
@@ -27,7 +27,7 @@
   position: relative;
   gap: 10px;
   color: var(--textColor);
-  grid-template-rows: auto auto 1fr;
+  grid-template-rows: auto auto auto;
 }
 .card .progress-bar {
   width: 95%;

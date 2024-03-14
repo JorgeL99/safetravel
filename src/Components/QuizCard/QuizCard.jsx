@@ -107,11 +107,11 @@ const QuizCard = ({ onShowConfetti }) => {
         )}
       {!quizStarted ? (
         <>
+        <div></div>
         <div className="result">
           <h2>Bienvenido al Quiz de Personalidad</h2>
           </div>
         <div className="ctn-inicio">
-          
           <button className="btn-prueba" onClick={handleStartQuiz}>Iniciar</button>
         </div>
         </>
@@ -122,9 +122,9 @@ const QuizCard = ({ onShowConfetti }) => {
           <p>¡Gracias por completar el quiz!</p>
         </div>
         <div className="ctn-inicio">
-
         <button className="btn-prueba" onClick={handleRestartQuiz}>Reiniciar</button>
         </div>
+        <div className="nones">a</div>
         </>
       ) : (
         <>

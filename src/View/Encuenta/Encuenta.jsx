@@ -13,7 +13,6 @@ const Encuenta = () => {
     setShowConfetti(show);
   };
 
-
   return (
    
     <>
