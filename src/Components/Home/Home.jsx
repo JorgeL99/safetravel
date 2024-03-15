@@ -33,17 +33,17 @@ const Home = () => {
 
           <div data-aos="fade-right" data-aos-duration="2000" className="locationDiv">
             <label htmlFor="location">Destino</label>
-            <input type="text" placeholder='DreamDestination'/>
+            <input type="text" placeholder='¿Pa donde mi king?'/>
           </div>
 
           <div data-aos="fade-right" data-aos-duration="2500" className="distDiv">
             <label htmlFor="distance">Localidad Actual</label>
-            <input type="text" placeholder='11/Meters'/>
+            <input type="text" placeholder='Ica'/>
           </div>
 
           <div  data-aos="fade-right" data-aos-duration="3000" className="priceDiv">
             <label htmlFor="price">Monto</label>
-            <input type="text" placeholder='$1400 la hora xd'/>
+            <input type="text" placeholder='$120'/>
           </div>
           <button data-aos="fade-left" data-aos-duration="3000" className='btn'>
             Buscar
