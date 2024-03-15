@@ -3,6 +3,20 @@ import Slider from "../../Components/Slider/Slider";
 import { singlePostData, userData } from "../../lib/dummydata";
 import Navbar from "../../Components/Navbar/Navbar";
 
+
+import pinImage from "../../Assets/pin.png";
+import utilityImage from "../../Assets/utility.png";
+import petImage from "../../Assets/pet.png";
+import feeImage from "../../Assets/fee.png";
+// import sizeImage from "../../Assets/size.png";
+// import bedImage from "../../Assets/bed.png";
+// import bathImage from "../../Assets/bath.png";
+// import schoolImage from "../../Assets/school.png";
+// import busStopImage from "../../Assets/busStop.png";
+// import restaurantImage from "../../Assets/restaurant.png";
+// import chatImage from "../../Assets/chat.png";
+// import saveImage from "../../Assets/save.png";
+
 function SinglePage() {
   return (
     <>
@@ -17,7 +31,7 @@ function SinglePage() {
               <div className="post">
                 <h1>{singlePostData.title}</h1>
                 <div className="address">
-                  <img src="/pin.png" alt="" />
+                  <img src={pinImage} alt="" />
                   <span>{singlePostData.address}</span>
                 </div>
                 <div className="price">$ {singlePostData.price}</div>
@@ -36,21 +50,21 @@ function SinglePage() {
           <p className="title">General</p>
           <div className="listVertical">
             <div className="feature">
-              <img src="/utility.png" alt="" />
+              <img src={utilityImage} alt="" />
               <div className="featureText">
                 <span>Utilities</span>
                 <p>Renter is responsible</p>
               </div>
             </div>
             <div className="feature">
-              <img src="/pet.png" alt="" />
+              <img src={petImage} alt="" />
               <div className="featureText">
                 <span>Pet Policy</span>
                 <p>Pets Allowed</p>
               </div>
             </div>
             <div className="feature">
-              <img src="/fee.png" alt="" />
+              <img src={feeImage} alt="" />
               <div className="featureText">
                 <span>Property Fees</span>
                 <p>Must have 3x the rent in total household income</p>

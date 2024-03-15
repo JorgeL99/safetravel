@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import "./quizcard.css";
 import LocationCard from "../Popular/LocationCard";
@@ -34,7 +33,7 @@ const QuizCard = ({ onShowConfetti }) => {
       ],
     },
     {
-      question: "¿Cuál es tu presupuesto aproximado para actividades turísticas?", /*SUSTITUTA*/
+      question: "¿Cuál es tu presupuesto aproximado para actividades turísticas?",
       options: [
         { answerText: "Económico", destination: "Chincha" },
         { answerText: "Moderado", destination: "Ica" },
@@ -96,7 +95,7 @@ const QuizCard = ({ onShowConfetti }) => {
     setDestinations({ Ica: 0, Nazca: 0, Pisco: 0, Chincha: 0 });
     setShowResult(false);
     setDestinationResult("");
-    onShowConfetti(false); // Detener el confeti al reiniciar el quiz
+    onShowConfetti(false); 
   };
 
   return (

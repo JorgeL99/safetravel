@@ -1,3 +1,4 @@
+import Experta from "../Assets/Experta.jpeg";
 export const listData = [
     {
       id: 1,
@@ -92,8 +93,8 @@ export const listData = [
   export const singlePostData = 
     {
     id: 1,
-    title: "Beautiful Apartment",
-    price: 1200,
+    title: "PISCO TOUR",
+    price: 250,
     images: [
       "https://images.pexels.com/photos/1918291/pexels-photo-1918291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       "https://images.pexels.com/photos/1428348/pexels-photo-1428348.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
@@ -110,12 +111,48 @@ export const listData = [
     school: "250m away",
     bus: "100m away",
     restaurant: "50m away",
-    description:
-      "Future alike hill pull picture swim magic chain seed engineer nest outer raise bound easy poetry gain loud weigh me recognize farmer bare danger. actually put square leg vessels earth engine matter key cup indeed body film century shut place environment were stage vertical roof bottom lady function breeze darkness beside tin view local breathe carbon swam declared magnet escape has from pile apart route coffee storm someone hold space use ahead sheep jungle closely natural attached part top grain your grade trade corn salmon trouble new bend most teacher range anybody every seat fifteen eventually",
+    description: `¡Descubre Chincha! \n
+
+    Bienvenido a Chincha, una ciudad rica en historia, cultura y tradiciones en el corazón de la costa peruana. Sumérgete en la vibrante atmósfera de esta encantadora localidad mientras exploras sus principales lugares turísticos y disfrutas de su exquisita gastronomía.
+    
+    Lugares Turísticos:
+    
+    - Plaza de Armas Principal: El corazón de Chincha, donde convergen la historia y la vida cotidiana de sus habitantes.
+    - Casa y Santuario de la Beatita Melchorita: Un lugar de devoción y espiritualidad dedicado a la venerada Beatita Melchorita, un símbolo de fe para la comunidad.
+    - Grocio Prado: Conocido por su artesanía elaborada con totora y junco, donde podrás admirar y adquirir hermosas creaciones locales.
+    - Huaca de la Centinela: Un vestigio prehispánico que te transportará a la antigua Chincha Baja y te maravillará con su misterio y esplendor.
+    - Hacienda San José: Testigo de la época de la esclavitud en Perú, esta hacienda ofrece un vistazo a la historia colonial del país.
+    - Bodega Tabernero: Sumérgete en el mundo de la producción de licores y descubre los secretos de la famosa bodega Tabernero.
+    
+    Playas:
+    
+    Chincha también te invita a disfrutar de sus hermosas playas, donde podrás relajarte bajo el cálido sol y refrescarte en las aguas del océano Pacífico.
+    
+    Clima:
+    
+    Disfruta de un clima húmedo y fresco que te brinda una experiencia agradable durante todo el año.
+    
+    Comida:
+    
+    Deléitate con la deliciosa gastronomía local, que incluye platos tradicionales como el Manchapecho, el Tamal, el Chupe de mejillones, el Cuy y el Picadillo de pavo.
+    
+    Actividades Culturales/Tradicionales:
+    
+    No te pierdas la Fiesta Provincial (30 de octubre) y la Fiesta de la Vendimia Chinchana, donde podrás sumergirte en la cultura y las tradiciones locales. Además, durante febrero, disfruta del emocionante Festival del Verano Negro, una celebración única llena de música, baile y folclore.
+    
+    Tours:
+    
+    Embárcate en un tour grupal o privado para descubrir lo mejor de Chincha. Con grupos de 18 a 20 personas o tours privados de 2 a 6 personas, encontrarás la opción perfecta para explorar la ciudad. El precio por persona es aproximadamente de 50 soles.
+    
+    Recomendaciones:
+    
+    Para una experiencia inolvidable, te recomendamos buscar fuentes confiables y recomendaciones locales, utilizar transporte formal y contratar los servicios de un guía profesional que te brinde información detallada sobre los lugares que visitarás.
+    
+    ¡Ven y descubre Chincha, un destino lleno de historia, sabor y cultura que te cautivará desde el primer momento!`
   };
   
   export const userData = {
     id: 1,
-    name: "John Doe",
-    img: "https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    name: "MARLENE ARCOS SOTOMAYOR",
+    img: {Experta},
   };
