@@ -124,10 +124,10 @@ const QuizCard = ({ onShowConfetti }) => {
           <div className="ctn-inicio">
             <button className="btn-prueba" onClick={handleRestartQuiz}>Reiniciar</button>
           </div>
-          <div>
+          {/* <div>
            
             {destinationResult && <LocationCard location={destinationResult} />}
-            </div>
+            </div> */}
         </>
       ) : (
         <>
