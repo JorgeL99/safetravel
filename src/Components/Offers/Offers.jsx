@@ -11,8 +11,7 @@ import { BsArrowRightShort } from "react-icons/bs";
 import { GiPathDistance } from "react-icons/gi";
 import { IoWine } from "react-icons/io5";
 
-import img from '../../Assets/cityica.webp'
-
+import img from '../../Assets/citynazca.webp'
 import img1 from '../../Assets/cityparacas.webp'
 import img2 from '../../Assets/citynazca.webp'
 
@@ -57,7 +56,7 @@ const Offers = () => {
         
         <div data-aos="fade-up" data-aos-duration="1000" className="secIntro">
           <h2 className="secTitle">
-            Ofertas Espaciales
+            Ofertas Especiales
           </h2>
           <p>
           Desde ciudades históricas hasta espectáculos naturales, ¡ven a ver lo mejor de la Región Ica!

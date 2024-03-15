@@ -3,10 +3,10 @@ import './blog.css'
 
 import { BsArrowRightShort } from "react-icons/bs";
 
-import img from '../../Assets/image (2).jpg'
-import img2 from '../../Assets/image (3).jpg'
-import img3 from '../../Assets/image (4).jpg'
-import img4 from '../../Assets/image (5).jpg'
+import img from '../../Assets/gringos.webp'
+import img2 from '../../Assets/embarcacion.webp'
+import img3 from '../../Assets/catador.webp'
+import img4 from '../../Assets/casahaci.webp'
 
 import Aos from 'aos'
 import 'aos/dist/aos.css'
@@ -15,26 +15,26 @@ const Posts=[
   {
     id:1,
     postImage:img,
-    title: 'Beutiful Morocco, let us travel!',
-    desc: 'The kingdom of Morocco is a muslim countruy in wester north africa,with coastlines on the atlantic oacean and mediterranean sea.',
+    title: '¡Increíble experiencia!',
+    desc: 'Ver los antiguos acueductos de Nazca fue como retroceder en el tiempo. La habilidad de los antiguos nazcas para construir estas estructuras aún me deja asombrado.',
   },
   {
     id:2,
-    postImage:img2,
-    title: 'Beutiful ÑOOOOO, let us travel!',
-    desc: 'The kingdom of Morocco is a muslim countruy in wester north africa,with coastlines on the atlantic oacean and mediterranean sea.',
+    postImage:img3,
+    title: '¡Una experiencia deliciosa!',
+    desc: 'La visita a la Bodega Catador en Ica fue una experiencia sensorial completa. Degustar los diferentes vinos y piscos fue una delicia para el paladar.',
   },
   {
     id:3,
-    postImage:img3,
-    title: 'Beutiful SERIO ?=, let us travel!',
-    desc: 'The kingdom of Morocco is a muslim countruy in wester north africa,with coastlines on the atlantic oacean and mediterranean sea.',
+    postImage:img2,
+    title: 'Las Islas Ballestas en Paracas son un paraíso natural!',
+    desc: 'Ver leones marinos, pingüinos y aves exóticas en su hábitat natural fue simplemente impresionante.',
   },
   {
     id:4,
     postImage:img4,
-    title: 'Beutiful XD ZZZZ, Tu huevada',
-    desc: 'The kingdom of Morocco is a muslim countruy in wester north africa,with coastlines on the atlantic oacean and mediterranean sea.',
+    title: 'La Casa Hacienda San José en Chincha es un verdadero tesoro histórico!.',
+    desc: 'Explorar los pasillos y jardines de esta antigua hacienda fue como viajar en el tiempo.',
   },
 
 ]
@@ -52,10 +52,10 @@ const Blog = () => {
 
         <div className="secIntro">
           <h2 data-aos="fade-up" data-aos-duration="2000" className='secTitle'>
-            Our Best Blog?
+          ¡Comparte tu experiencia y déjanos tu huella!
           </h2>
           <p data-aos="fade-up" data-aos-duration="2500" >
-            An insight to the incredible experince in the word.
+            Únete a esta pequeña comunidad y ayuda a mas viajeros!
           </p>
         </div>
 
