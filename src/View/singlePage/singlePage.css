@@ -1,0 +1,72 @@
+.singlePage {
+  display: flex;
+  height: 100%;
+}
+.singlePage .details {
+  flex: 3;
+}
+.singlePage .details .wrapper {
+  padding-right: 50px;
+}
+.singlePage .details .wrapper .info .top {
+  display: flex;
+  justify-content: space-between;
+}
+.singlePage .details .wrapper .info .top .post {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.singlePage .details .wrapper .info .top .post h1 {
+  font-weight: 400;
+}
+.singlePage .details .wrapper .info .top .post .address {
+  display: flex;
+  gap: 50px;
+  align-items: center;
+  color: #888;
+  font-size: 14px;
+}
+.singlePage .details .wrapper .info .top .post .address img {
+  width: 16px;
+  height: 16px;
+}
+.singlePage .details .wrapper .info .top .post .price {
+  padding: 5px;
+  background-color: rgba(254, 205, 81, 0.438);
+  border-radius: 5px;
+  width: -moz-max-content;
+  width: max-content;
+  font-size: 20px;
+  font-weight: 300;
+}
+.singlePage .details .wrapper .info .top .user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 0px 50px;
+  border-radius: 10px;
+  background-color: rgba(254, 205, 81, 0.209);
+  font-weight: 600;
+}
+.singlePage .details .wrapper .info .top .user img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.singlePage .details .wrapper .info .bottom {
+  margin-top: 50px;
+  color: #555;
+  line-height: 20px;
+}
+.singlePage .features {
+  flex: 2;
+  background-color: #fcf5f3;
+}
+.singlePage .features .wrapper {
+  padding: 0px 20px;
+}/*# sourceMappingURL=singlePage.css.map */

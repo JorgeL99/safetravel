@@ -1,5 +1,6 @@
 import React from 'react';
 import './popular.css';
+
 import { BsArrowRightShort } from "react-icons/bs";
 import { BsDot } from "react-icons/bs";
 
