@@ -7,6 +7,7 @@ import Offers from '../../Components/Offers/Offers';
 import About from '../../Components/About/About';
 import Footer from '../../Components/Footer/Footer';
 import Blog from '../../Components/Blog/Blog';
+import LocationCard from '../../Components/Popular/LocationCard';
 
 const Principal = () => {
   return (
@@ -18,6 +19,7 @@ const Principal = () => {
         <About/>
         <Blog/>
         <Footer/>
+        <LocationCard></LocationCard>
         </>
   )
 }

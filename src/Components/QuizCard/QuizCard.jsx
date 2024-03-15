@@ -19,21 +19,22 @@ const QuizCard = ({ onShowConfetti }) => {
       options: [
         { answerText: "Cálido y desértico", destination: "Nazca" },
         { answerText: "Cálido con brisa fresca del mar", destination: "Pisco" },
-        { answerText: "Seco y soleado", destination: "Ica" },
+        { answerText: "Soleado y Baja Humedad", destination: "Ica" },
         { answerText: "Tropical con influencia costera", destination: "Chincha" },
       ],
     },
     {
       question: "¿Qué tipo de actividades culturales te interesan más?",
       options: [
-        { answerText: "Sobrevolar las misteriosas Líneas de Nazca", destination: "Nazca" },
-        { answerText: "Explorar sitios arqueológicos antiguos", destination: "Nazca" },
+        { answerText: "Sobrevolar en Avioneta", destination: "Nazca" },
+        { answerText: "Explorar sitios arqueológicos antiguos", destination: "Nazca" }, /**/
         { answerText: "Visitar bodegas y degustar vinos", destination: "Ica" },
         { answerText: "Disfrutar de música y bailes afroperuanos", destination: "Chincha" },
+        { answerText: "Visitar una reserva nacional", destination: "Pisco" },
       ],
     },
     {
-      question: "¿Cuál es tu presupuesto aproximado para actividades turísticas?",
+      question: "¿Cuál es tu presupuesto aproximado para actividades turísticas?", /*SUSTITUTA*/
       options: [
         { answerText: "Económico", destination: "Chincha" },
         { answerText: "Moderado", destination: "Ica" },
@@ -44,9 +45,9 @@ const QuizCard = ({ onShowConfetti }) => {
     {
       question: "¿Qué tipo de lugares turísticos te gustaría visitar?",
       options: [
-        { answerText: "Miradores de las Líneas de Nazca", destination: "Nazca" },
-        { answerText: "Antiguos cementerios y sitios arqueológicos", destination: "Nazca" },
-        { answerText: "Bodegas y viñedos", destination: "Ica" },
+        { answerText: "Vistas Aereas o Miradores", destination: "Nazca" },
+        { answerText: "Bodega Tabernero", destination: "Chincha" },/*-P-*/
+        { answerText: "Fundos y viñedos", destination: "Ica" },
         { answerText: "Haciendas y casonas históricas", destination: "Pisco" },
       ],
     },
