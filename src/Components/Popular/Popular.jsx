@@ -3,7 +3,7 @@ import './popular.css';
 import { BsArrowLeftShort, BsArrowRightShort, BsDot } from 'react-icons/bs';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
-import LocationCard from './LocationCard'; // Importa el componente LocationCard
+import LocationCard from './LocationCard.jsx'; // Importa el componente LocationCard
 
 import img2 from '../../Assets/huacachina.webp';
 import img3 from '../../Assets/paracas.webp';
@@ -86,6 +86,7 @@ const Popular = () => {
               imgSrc={imgSrc}
               destTitle={destTitle}
               location={location}
+              grade={grade}
             />
           ))}
         </div>

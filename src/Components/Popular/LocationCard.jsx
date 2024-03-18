@@ -1,5 +1,5 @@
 import React from 'react';
-import './popular.css';
+import './locationcard.css'; // Importa los estilos de popular.scss
 
 import { BsArrowRightShort } from "react-icons/bs";
 import { BsDot } from "react-icons/bs";

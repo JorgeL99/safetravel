@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./quizcard.css";
-import LocationCard from "../Popular/LocationCard";
+import LocationCard from "../Popular/LocationCard.jsx";
 
 const QuizCard = ({ onShowConfetti }) => {
   const questions = [
