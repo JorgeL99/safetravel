@@ -19,7 +19,7 @@ const Principal = () => {
         <About/>
         <Blog/>
         <Footer/>
-        <LocationCard></LocationCard>
+        
         </>
   )
 }
