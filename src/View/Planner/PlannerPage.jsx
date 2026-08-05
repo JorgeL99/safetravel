@@ -5,14 +5,17 @@ import Footer from '../../Components/Footer/Footer';
 import { destinations } from '../../data/destinations';
 import { useFavorites } from '../../hooks/useFavorites';
 import { usePlanner } from '../../hooks/usePlanner';
+import { useTripPreferences } from '../../hooks/useTripPreferences';
 import '../Principal/principal.css';
 import '../Principal/modern.css';
 
 const PlannerPage = () => {
   const { favorites } = useFavorites();
   const { itinerary, toggleItinerary, moveItem, clearItinerary } = usePlanner();
+  const { preferences, updatePreference } = useTripPreferences();
   const planned = itinerary.map((id) => destinations.find((item) => item.id === id)).filter(Boolean);
-  const total = planned.reduce((sum, item) => sum + item.price, 0);
+  const subtotal = planned.reduce((sum, item) => sum + item.price, 0);
+  const total = subtotal * preferences.travelers;
 
   return <>
     <Navbar favoriteCount={favorites.length} plannerCount={itinerary.length} />
@@ -21,7 +24,11 @@ const PlannerPage = () => {
       <h1>Mi itinerario</h1>
       <p>Ordena tus actividades y obtén una referencia inmediata de presupuesto.</p>
       {planned.length ? <div className="plannerLayout">
-        <ol className="plannerList">{planned.map((destination, index) => <li key={destination.id}>
+        <div><section className="tripPreferences" aria-label="Datos del viaje">
+          <label>Fecha de inicio<input type="date" name="startDate" value={preferences.startDate} onChange={updatePreference} /></label>
+          <label>Viajeros<input type="number" name="travelers" min="1" max="20" value={preferences.travelers} onChange={updatePreference} /></label>
+          <label className="notesField">Notas<textarea name="notes" rows="3" maxLength="300" value={preferences.notes} onChange={updatePreference} placeholder="Horarios, necesidades o recordatorios…" /></label>
+        </section><ol className="plannerList">{planned.map((destination, index) => <li key={destination.id}>
           <span className="dayNumber">{index + 1}</span><img src={destination.image} alt="" />
           <div><small>{destination.province} · {destination.duration}</small><h2>{destination.name}</h2><strong>S/ {destination.price}</strong></div>
           <div className="plannerControls">
@@ -29,8 +36,8 @@ const PlannerPage = () => {
             <button type="button" onClick={() => moveItem(index, 1)} disabled={index === planned.length - 1} aria-label="Mover abajo"><FiArrowDown /></button>
             <button type="button" onClick={() => toggleItinerary(destination.id)} aria-label="Eliminar del itinerario"><FiTrash2 /></button>
           </div>
-        </li>)}</ol>
-        <aside className="budgetCard"><span>Presupuesto estimado</span><strong>S/ {total}</strong><p>{planned.length} {planned.length === 1 ? 'experiencia' : 'experiencias'} · precio por persona</p><button type="button" onClick={() => window.print()} className="primaryAction">Imprimir itinerario</button><button type="button" className="clearButton" onClick={clearItinerary}>Vaciar itinerario</button></aside>
+        </li>)}</ol></div>
+        <aside className="budgetCard"><span>Presupuesto estimado</span><strong>S/ {total}</strong><p>{planned.length} {planned.length === 1 ? 'experiencia' : 'experiencias'} · {preferences.travelers} {preferences.travelers === 1 ? 'viajero' : 'viajeros'}</p><small>Subtotal por persona: S/ {subtotal}</small>{preferences.startDate && <small>Inicio: {preferences.startDate}</small>}<button type="button" onClick={() => window.print()} className="primaryAction">Imprimir itinerario</button><button type="button" className="clearButton" onClick={clearItinerary}>Vaciar itinerario</button></aside>
       </div> : <div className="emptyState large"><FiMap /><h2>Tu itinerario está vacío</h2><p>Agrega experiencias desde favoritos o desde la ficha de un destino.</p><Link className="primaryAction" to="/#destinos">Descubrir experiencias</Link></div>}
     </main>
     <Footer />

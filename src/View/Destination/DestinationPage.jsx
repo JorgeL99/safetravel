@@ -1,10 +1,11 @@
 import { Navigate, Link, useParams } from 'react-router-dom';
-import { FiArrowLeft, FiCheckCircle, FiClock, FiMapPin, FiStar } from 'react-icons/fi';
+import { FiArrowLeft, FiCheckCircle, FiClock, FiCompass, FiMapPin, FiShield, FiStar, FiSun, FiUsers } from 'react-icons/fi';
 import Navbar from '../../Components/Navbar/Navbar';
 import Footer from '../../Components/Footer/Footer';
 import { findDestination } from '../../data/destinations';
 import { useFavorites } from '../../hooks/useFavorites';
 import { usePlanner } from '../../hooks/usePlanner';
+import DestinationMap from '../../Components/Map/DestinationMap';
 import '../Principal/principal.css';
 import '../Principal/modern.css';
 
@@ -44,6 +45,21 @@ const DestinationPage = () => {
             <button type="button" className="planAction" onClick={() => toggleItinerary(destination.id)}>{itinerary.includes(destination.id) ? 'Quitar del itinerario' : 'Agregar al itinerario'}</button>
             <small>SafeTravel no procesa pagos en esta versión.</small>
           </aside>
+        </section>
+        <section className="practicalSection container section">
+          <div className="sectionHeading"><div><span className="eyebrow dark">Información para planificar</span><h2>Antes de visitar</h2><p>Datos referenciales que te ayudarán a preparar una experiencia más segura.</p></div></div>
+          <div className="practicalGrid">
+            <article><FiSun /><h3>Clima y temporada</h3><p>{destination.climate}</p><strong>{destination.bestSeason}</strong></article>
+            <article><FiClock /><h3>Horario recomendado</h3><p>{destination.schedule}</p></article>
+            <article><FiCompass /><h3>Cómo llegar</h3><p>{destination.access}</p></article>
+            <article><FiShield /><h3>Seguridad</h3><p>{destination.safety}</p></article>
+            <article><FiUsers /><h3>Accesibilidad</h3><p>{destination.accessibility}</p></article>
+          </div>
+          <div className="packingCard"><h3>Qué llevar</h3><ul>{destination.whatToBring.map((item) => <li key={item}><FiCheckCircle /> {item}</li>)}</ul></div>
+        </section>
+        <section className="mapSection container section">
+          <div><span className="eyebrow dark">Ubicación referencial</span><h2>Encuentra {destination.name}</h2><p>Usa el mapa para reconocer la zona. Confirma siempre tu ruta con operadores locales formales.</p></div>
+          <DestinationMap destination={destination} />
         </section>
       </main>
       <Footer />

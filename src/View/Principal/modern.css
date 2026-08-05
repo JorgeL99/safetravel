@@ -122,9 +122,36 @@ button, input, select { font: inherit; }
 .plannerControls button:disabled { opacity: .3; cursor: not-allowed; }
 .budgetCard { position: sticky; top: 105px; display: grid; padding: 28px; border-radius: var(--radius); background: var(--ink); color: #fff; }
 .budgetCard > span, .budgetCard p { color: rgba(255,255,255,.65); }
+.budgetCard > small { margin-top: 6px; color: rgba(255,255,255,.62); }
 .budgetCard > strong { margin: 5px 0; font-size: 3rem; }
 .budgetCard .primaryAction { margin-top: 20px; border: 0; cursor: pointer; }
 .clearButton { margin-top: 10px; padding: 10px; color: rgba(255,255,255,.7); background: transparent; border: 0; cursor: pointer; }
+.tripPreferences { display: grid; grid-template-columns: .8fr .6fr 1.6fr; gap: 12px; margin-bottom: 22px; padding: 18px; border-radius: 18px; background: var(--surface); }
+.tripPreferences label { display: flex; flex-direction: column; gap: 6px; color: var(--ink); font-size: .76rem; font-weight: 800; }
+.tripPreferences input, .tripPreferences textarea { width: 100%; padding: 11px 12px; color: var(--ink); background: #fff; border: 1px solid #dbe7e5; border-radius: 10px; outline: 0; resize: vertical; }
+.tripPreferences input:focus, .tripPreferences textarea:focus { border-color: var(--brand); box-shadow: 0 0 0 3px rgba(10,166,166,.12); }
+.practicalSection { padding-top: 20px; }
+.practicalGrid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+.practicalGrid article { min-height: 190px; padding: 24px; border-radius: 18px; background: var(--surface); }
+.practicalGrid article > svg { color: var(--brand); font-size: 1.7rem; }
+.practicalGrid h3 { margin: 13px 0 8px; }
+.practicalGrid p { color: var(--muted); line-height: 1.6; }
+.practicalGrid strong { display: block; margin-top: 9px; color: var(--brand-dark); font-size: .85rem; }
+.packingCard { display: flex; align-items: center; justify-content: space-between; gap: 25px; margin-top: 16px; padding: 24px; border-radius: 18px; color: #fff; background: var(--ink); }
+.packingCard ul { display: flex; flex-wrap: wrap; gap: 12px 20px; }
+.packingCard li { display: flex; align-items: center; gap: 6px; font-size: .85rem; }
+.packingCard svg { color: #61ded4; }
+.mapSection { display: grid; grid-template-columns: .7fr 1.3fr; align-items: center; gap: 55px; }
+.mapSection h2 { margin: 9px 0; font-size: clamp(2rem,4vw,3rem); }
+.mapSection p { color: var(--muted); line-height: 1.7; }
+
+@media print {
+  .modernHeader, .modernFooter, .plannerControls, .clearButton { display: none !important; }
+  .collectionPage { padding-top: 20px; }
+  .plannerLayout { grid-template-columns: 1fr; }
+  .budgetCard { color: #000; background: #fff; border: 2px solid #102d35; }
+  .budgetCard > span, .budgetCard p, .budgetCard > small { color: #333; }
+}
 
 /* Unificación visual de las secciones originales */
 .offer, .about, .blog { scroll-margin-top: 90px; }
@@ -180,6 +207,8 @@ button, input, select { font: inherit; }
   .plannerList li { grid-template-columns: 36px 82px 1fr; gap: 10px; }
   .plannerList img { width: 82px; height: 76px; }
   .plannerControls { grid-column: 2 / -1; justify-content: flex-end; }
+  .tripPreferences, .practicalGrid, .mapSection { grid-template-columns: 1fr; }
+  .packingCard { align-items: flex-start; flex-direction: column; }
   .footerGrid { grid-template-columns: 1fr 1fr; }
   .footerBrand { grid-column: 1 / -1; }
   .footerBottom { align-items: flex-start; flex-direction: column; gap: 6px; }
