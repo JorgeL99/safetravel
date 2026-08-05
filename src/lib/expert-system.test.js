@@ -36,5 +36,8 @@ describe("expert recommendation engine", () => {
     expect(result.recommendation.destination.id).toBe("paracas");
     expect(result.alternatives).toHaveLength(2);
     expect(result.recommendation.activations.every(({ explanation }) => explanation.length > 0)).toBe(true);
+    expect(result.ruleEvaluations).toHaveLength(expertRules.length);
+    expect(result.ruleEvaluations.some(({ status }) => status === "complete")).toBe(true);
+    expect(result.ruleEvaluations.some(({ status }) => status === "discarded")).toBe(true);
   });
 });

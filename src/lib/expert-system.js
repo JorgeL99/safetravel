@@ -6,13 +6,22 @@ export function buildFacts(answers) {
 
 export function inferDestination(facts, rules, destinations) {
   const evidence = Object.fromEntries(destinations.map(({ id }) => [id, []]));
+  const ruleEvaluations = [];
 
   rules.forEach((rule) => {
     const entries = Object.entries(rule.conditions);
     const matched = entries.filter(([key, accepted]) => matchesCondition(facts[key], accepted));
-    if (!matched.length) return;
     const coverage = matched.length / entries.length;
     const certainty = rule.weight * coverage;
+    ruleEvaluations.push({
+      ...rule,
+      matchedConditions: matched.map(([key]) => key),
+      missingConditions: entries.filter(([key]) => !matched.some(([matchedKey]) => matchedKey === key)).map(([key]) => key),
+      coverage,
+      certainty,
+      status: coverage === 1 ? "complete" : coverage > 0 ? "partial" : "discarded",
+    });
+    if (!matched.length) return;
     evidence[rule.destination].push({
       ruleId: rule.id,
       certainty,
@@ -34,5 +43,6 @@ export function inferDestination(facts, rules, destinations) {
     alternatives: ranking.slice(1, 3),
     ranking,
     facts,
+    ruleEvaluations,
   };
 }

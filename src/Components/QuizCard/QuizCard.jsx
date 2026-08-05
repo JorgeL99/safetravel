@@ -7,6 +7,7 @@ import { useFavorites } from "../../hooks/useFavorites";
 import { usePlanner } from "../../hooks/usePlanner";
 import { expertDestinations, expertQuestions, expertRules } from "../../data/expert-knowledge";
 import { buildFacts, inferDestination } from "../../lib/expert-system";
+import { Link } from "react-router-dom";
 
 const QuizCard = ({ onShowConfetti }) => {
   const [quizStarted, setQuizStarted] = useState(false);
@@ -34,7 +35,9 @@ const QuizCard = ({ onShowConfetti }) => {
   };
 
   const showQuizResult = () => {
-    setInference(inferDestination(buildFacts(answers), expertRules, expertDestinations));
+    const result = inferDestination(buildFacts(answers), expertRules, expertDestinations);
+    setInference(result);
+    sessionStorage.setItem("safetravel-expert-result", JSON.stringify(result));
     setShowResult(true);
     onShowConfetti(true);
   };
@@ -107,6 +110,7 @@ const QuizCard = ({ onShowConfetti }) => {
             </div>
             <p className="expertAlternatives"><strong>También podrías considerar:</strong> {inference.alternatives.map(({ destination }) => destination.name).join(" y ")}.</p>
             <a className="expertSource" href={destinationResult.sourceUrl} target="_blank" rel="noreferrer">Fuente: {destinationResult.sourceName}</a>
+            <Link className="expertPanelLink" to="/sistema-experto">Ver análisis técnico completo</Link>
           </div>
           <div className="ctn-inicio">
             <button className="btn-prueba btn-secondary" onClick={handleRestartQuiz}>Reiniciar</button>
