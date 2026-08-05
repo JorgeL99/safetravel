@@ -7,8 +7,8 @@ const Popular = ({ destinations, categories, activeCategory, onCategoryChange, f
     <div className="sectionHeading">
       <div>
         <span className="eyebrow dark">Experiencias seleccionadas</span>
-        <h2>Descubre Ica a tu manera</h2>
-        <p>Compara actividades y encuentra una experiencia que encaje contigo.</p>
+        <h2>Descubre el Perú a tu manera</h2>
+        <p>Compara experiencias de Costa, Sierra y Selva para encontrar la que encaje contigo.</p>
       </div>
       <div className="categoryFilters" aria-label="Filtrar por categoría">
         {categories.map((category) => (

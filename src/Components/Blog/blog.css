@@ -1,67 +1,34 @@
-:root {
-  --PrimaryColor: hsl(180, 96%, 38%);
-  --HoverColor: hsl(186, 96%, 38%);
-  --whiteColor: hsl(0,0%,100%);
-  --blackColor: hsl(0,0%,18%);
-  --textColor: hsl(240,1%,48%);
-  --whiteColorDeam: hsl(0,0%,93%);
-  --greyBg:hsl(0,0%,96%);
-  --greyText:rgb(190,190,190);
-  --inputColor:hsl(330,12%,97%);
-  /* box-shadow: 0 2px 8px 2px rgba(178,178,178,0.45); */
-}
-
-.blog .mainContainer {
-  gap: 1rem;
-}
-.blog .mainContainer .singlePost {
-  gap: 2rem;
-}
-.blog .mainContainer .singlePost .imgDiv {
-  height: 200px;
-  width: 100%;
-  border-radius: 1rem;
-  border: 5px solid hsl(0, 0%, 96%);
-  box-shadow: 0 2px 8px 2px rgba(178, 178, 178, 0.406);
-  overflow: hidden;
-}
-.blog .mainContainer .singlePost .imgDiv:hover img {
-  transform: scale(1.1);
-  transition: 3s ease;
-}
-.blog .mainContainer .singlePost .imgDiv img {
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-.blog .mainContainer .singlePost .postDetails h3 {
-  color: var(--blackColor);
-  font-weight: 600;
-  padding-bottom: 10px;
-}
-.blog .mainContainer .singlePost .postDetails p {
-  font-size: 13px;
-  color: var(--textColor);
-  font-weight: 500;
-}
-.blog .mainContainer .singlePost a {
-  font-size: 15px;
-  color: var(--PrimaryColor);
-  font-weight: 600;
-  padding-top: 0.5rem;
-  width: -moz-max-content;
-  width: max-content;
-}
-.blog .mainContainer .singlePost a:hover {
-  color: var(--HoverColor);
-  font-weight: 600;
-}
-.blog .mainContainer .singlePost a:hover .icon {
-  transform: translateX(10px);
-}
-
-@media screen and (min-width: 884px) {
-  .blog .mainContainer {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}/*# sourceMappingURL=blog.css.map */
+.communityLayout { display: grid; grid-template-columns: 1.5fr .7fr; align-items: start; gap: 22px; margin-bottom: 34px; }
+.experienceForm { display: grid; gap: 15px; padding: 28px; background: #fff; border: 1px solid #e1ebe9; border-radius: 22px; box-shadow: 0 14px 38px rgba(16,45,53,.07); }
+.formTitle { display: flex; align-items: flex-start; gap: 12px; }
+.formTitle > svg { padding: 9px; box-sizing: content-box; color: #087c80; background: #e4f6f3; border-radius: 12px; font-size: 1.25rem; }
+.formTitle h3 { color: #102d35; }
+.formTitle p { color: #60777d; font-size: .78rem; }
+.formRow { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+.experienceForm label { display: grid; gap: 6px; color: #29484f; font-size: .75rem; font-weight: 800; }
+.experienceForm input, .experienceForm select, .experienceForm textarea { width: 100%; padding: 11px 12px; color: #102d35; background: #f7faf9; border: 1px solid #dce8e6; border-radius: 10px; outline: 0; resize: vertical; }
+.experienceForm input:focus, .experienceForm select:focus, .experienceForm textarea:focus { border-color: #0aa6a6; box-shadow: 0 0 0 3px rgba(10,166,166,.12); }
+.formFooter { display: flex; align-items: center; justify-content: space-between; gap: 15px; }
+.formFooter small { color: #71868b; }
+.formFooter button { padding: 11px 18px; color: #fff; background: #087c80; border: 0; border-radius: 999px; font-weight: 800; cursor: pointer; }
+.formFeedback { padding: 10px 12px; color: #075f65; background: #e5f6f3; border-radius: 9px; font-size: .78rem; }
+.communityPromise { padding: 26px; color: #fff; background: #102d35; border-radius: 22px; }
+.communityPromise > svg { color: #61ded4; font-size: 2rem; }
+.communityPromise h3 { margin: 14px 0 8px; }
+.communityPromise p { color: rgba(255,255,255,.67); font-size: .8rem; line-height: 1.7; }
+.postsGrid { align-items: stretch !important; grid-template-columns: repeat(2, 1fr); gap: 20px !important; }
+.blog .singlePost { display: grid; grid-template-columns: 155px 1fr; gap: 0 !important; overflow: hidden; background: #fff; border: 1px solid #e4ecea; }
+.blog .singlePost:not(:has(.imgDiv)) { grid-template-columns: 1fr; }
+.blog .singlePost .imgDiv { width: 100%; height: 100%; min-height: 210px; border: 0; border-radius: 0; box-shadow: none; overflow: hidden; }
+.blog .singlePost .imgDiv img { width: 100%; height: 100%; object-fit: cover; transition: .35s ease; }
+.blog .singlePost:hover .imgDiv img { transform: scale(1.04); }
+.blog .postDetails { display: flex; flex-direction: column; padding: 20px; }
+.postMeta { display: flex; flex-wrap: wrap; gap: 12px; color: #087c80; font-size: .7rem; font-weight: 800; }
+.postMeta span { display: flex; align-items: center; gap: 4px; }
+.blog .postDetails h3 { margin: 10px 0 7px; color: #102d35; font-size: 1rem; }
+.blog .postDetails > p { flex: 1; color: #60777d; font-size: .78rem; line-height: 1.6; }
+.blog .postDetails footer { display: flex; justify-content: space-between; gap: 10px; margin-top: 15px; padding-top: 12px; color: #71868b; border-top: 1px solid #e8efed; font-size: .7rem; }
+.blog .postDetails footer strong { color: #29484f; }
+.blog .postDetails footer button { margin-left: auto; padding: 0; color: #9a4b4b; background: transparent; border: 0; cursor: pointer; font-size: .7rem; font-weight: 800; }
+@media (max-width: 900px) { .communityLayout { grid-template-columns: 1fr; } .postsGrid { grid-template-columns: 1fr; } }
+@media (max-width: 620px) { .formRow { grid-template-columns: 1fr; } .experienceForm { padding: 20px 16px; } .formFooter { align-items: stretch; flex-direction: column; } .blog .singlePost { grid-template-columns: 1fr; } .blog .singlePost .imgDiv { height: 200px; min-height: 0; } }

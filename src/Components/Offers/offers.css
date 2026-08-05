@@ -98,3 +98,23 @@
 .offer .secContainer .mainContent .singleOffer:hover {
   transform: translateY(-7px);
 }/*# sourceMappingURL=offers.css.map */
+
+.offerGrid { align-items: stretch !important; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px !important; }
+.offersNotice { width: max-content; max-width: 100%; display: flex; align-items: center; gap: 8px; margin: -10px auto 28px; padding: 9px 13px; color: #60777d; background: #f4f8f7; border-radius: 999px; font-size: .75rem; }
+.offer .singleOffer { display: flex; flex-direction: column; padding: 0 !important; background: #fff; border: 1px solid #e5eceb; transition: .25s ease; }
+.offer .singleOffer .destImage { height: 210px !important; border-radius: 0 !important; }
+.offer .singleOffer .destImage img { object-fit: cover; }
+.offer .singleOffer .destImage .discount { left: 14px; right: auto; top: 14px; padding: 7px 11px; background: rgba(16,45,53,.88); font-weight: 800; }
+.offer .singleOffer .offerBody { flex: 1; display: flex; flex-direction: column; padding: 20px !important; }
+.offerHeading { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.offerHeading > div { display: grid; }
+.offerHeading h3 { color: #102d35; font-size: 1.25rem; }
+.offerHeading .status { padding: 6px 9px; color: #8a5d18; background: #fff2d9; border-radius: 999px; font-size: .65rem; font-weight: 800; }
+.offerBody > h4 { margin-top: 13px; color: #102d35; font-size: 1.1rem; }
+.offer .amenities { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 7px; padding: 14px 0 !important; }
+.offer .singleAmenity { display: inline-flex; align-items: center; gap: 5px; padding: 6px 8px !important; color: #506a70; background: #f2f7f6 !important; border-radius: 8px !important; font-size: .68rem; font-weight: 700; }
+.offer .singleAmenity svg { color: #087c80; font-size: .9rem; }
+.offer .location { display: flex; align-items: center; gap: 5px; margin-top: auto; color: #60777d; }
+.offerAction { width: 100% !important; min-height: 42px; display: flex; align-items: center; justify-content: center; margin-top: 15px !important; color: #fff; font-size: .8rem; }
+@media (max-width: 900px) { .offerGrid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 620px) { .offerGrid { grid-template-columns: 1fr; } .offersNotice { border-radius: 14px; } }

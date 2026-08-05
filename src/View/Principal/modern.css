@@ -162,6 +162,10 @@ button, input, select { font: inherit; }
 
 /* Unificación visual de las secciones originales */
 .offer, .about, .blog { scroll-margin-top: 90px; }
+.offer.section, .about.section, .blog.section { padding-top: 88px; padding-bottom: 40px; }
+.offer .secIntro, .about .secIntro, .blog .secIntro { max-width: 720px; margin-bottom: 38px; }
+.offer .secIntro .secTitle, .blog .secIntro .secTitle { margin: 8px 0 10px; padding: 0; color: var(--ink); font-size: clamp(2rem,4vw,3rem); line-height: 1.15; letter-spacing: -.035em; }
+.offer .secIntro p, .about .secIntro p, .blog .secIntro p { color: var(--muted); font-size: .9rem; line-height: 1.65; }
 .offer .singleOffer, .blog .singlePost { border-radius: var(--radius) !important; box-shadow: 0 12px 35px rgba(19,53,61,.08) !important; overflow: hidden; }
 .offer .singleOffer .destImage { height: 230px; }
 .offer .singleOffer .offerBody { padding: 20px; }
