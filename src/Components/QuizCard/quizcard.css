@@ -388,6 +388,14 @@
 .resultCard .cardMeta { padding: 8px 0; }
 .resultCard .cardFooter { padding-top: 8px; }
 .resultCard .inlinePlan { margin-top: 10px; padding: 9px 12px; }
+.expertBadge { display: inline-flex; padding: 6px 11px; color: #076f77; background: #dff4f2; border-radius: 999px; font-size: .72rem; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; }
+.expertExplanation, .expertAttractions { width: 100%; padding: 12px 15px; color: #29484f; background: rgba(255,255,255,.68); border: 1px solid #d9e7e5; border-radius: 16px; text-align: left; }
+.expertExplanation h2, .expertAttractions h2 { margin: 0 0 7px; font-size: .93rem; }
+.expertExplanation ul, .expertAttractions ul { margin: 0; padding-left: 19px; }
+.expertExplanation li, .expertAttractions li { margin: 4px 0; font-size: .78rem; line-height: 1.4; }
+.expertExplanation strong { color: #078790; }
+.expertAlternatives { font-size: .8rem !important; }
+.expertSource { color: #067a83; font-size: .76rem; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
 
 @media (max-width: 700px) {
   .card {
