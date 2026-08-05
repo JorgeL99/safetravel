@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { analyzeItinerary, buildItinerarySchedule, calculateQuizResult, calculateTripBudget, filterDestinations, moveId, toggleId } from './travel-utils';
+import { analyzeItinerary, buildItinerarySchedule, calculateDistanceKm, calculateQuizResult, calculateTripBudget, filterDestinations, moveId, optimizeItineraryRoute, toggleId } from './travel-utils';
 
 const catalog = [
   { id: 1, name: 'Huacachina', province: 'Ica', category: 'Aventura', summary: 'Dunas', price: 45 },
@@ -15,6 +15,13 @@ describe('filterDestinations', () => {
   it('devuelve todo cuando no hay filtros restrictivos', () => {
     expect(filterDestinations(catalog, { query: '', province: 'Todos', budget: '200' })).toHaveLength(3);
   });
+  it('combina región, duración, actividad y orden', () => {
+    const national = [
+      { id: 1, name: 'Cusco', province: 'Cusco', category: 'Historia', summary: '', price: 180, rating: 4.9, duration: '4 días', naturalRegion: 'Sierra', activityLevel: 'Baja' },
+      { id: 2, name: 'Huaraz', province: 'Huaraz', category: 'Aventura', summary: '', price: 100, rating: 4.8, duration: '4 días', naturalRegion: 'Sierra', activityLevel: 'Alta' },
+    ];
+    expect(filterDestinations(national, { query: '', province: 'Todos', budget: '200', region: 'Sierra', duration: 'Larga', activity: 'Alta', sort: 'priceAsc' }).map(({ id }) => id)).toEqual([2]);
+  });
 });
 
 describe('itinerary intelligence', () => {
@@ -24,6 +31,20 @@ describe('itinerary intelligence', () => {
   it('advierte sobre distancias, altura y conexiones amazónicas', () => {
     const analysis = analyzeItinerary([{ province: 'Cusco', department: 'Cusco', naturalRegion: 'Sierra' }, { province: 'Maynas', department: 'Loreto', naturalRegion: 'Selva' }]);
     expect(analysis.warnings.map(({ type }) => type)).toEqual(['distance', 'altitude', 'connection']);
+  });
+  it('calcula conexiones y reserva un día entre regiones lejanas', () => {
+    const route = buildItinerarySchedule([
+      { id: 1, duration: '1 día', coordinates: [-12.04, -77.03], department: 'Lima' },
+      { id: 2, duration: '2 días', coordinates: [-13.53, -71.97], department: 'Cusco' },
+    ]);
+    expect(calculateDistanceKm(route[0], route[1])).toBeGreaterThan(500);
+    expect(route[1]).toMatchObject({ startDay: 3, endDay: 4, transfer: { transferDays: 1 } });
+  });
+  it('sugiere el vecino más cercano sin cambiar el punto de partida', () => {
+    const route = optimizeItineraryRoute([
+      { id: 1, coordinates: [0, 0] }, { id: 2, coordinates: [0, 10] }, { id: 3, coordinates: [0, 1] },
+    ]);
+    expect(route.map(({ id }) => id)).toEqual([1, 3, 2]);
   });
 });
 

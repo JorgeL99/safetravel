@@ -129,6 +129,26 @@ button, input, select { font: inherit; }
 .routeWarnings { display: grid; gap: 8px; margin-bottom: 16px; padding: 18px; color: #6f5311; background: #fff5d9; border: 1px solid #eedb9d; border-radius: 16px; }
 .routeWarnings h2 { display: flex; align-items: center; gap: 7px; font-size: .95rem; }
 .routeWarnings p { font-size: .76rem; line-height: 1.5; }
+.routeOptimizer { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 16px; padding: 16px 18px; border: 1px solid #bfe4df; border-radius: 16px; background: #f2fbf9; }
+.routeOptimizer > div { display: flex; align-items: center; gap: 11px; }
+.routeOptimizer svg { color: #087c80; font-size: 1.25rem; }
+.routeOptimizer span { display: grid; gap: 2px; }
+.routeOptimizer small { color: var(--muted); }
+.routeOptimizer button { padding: 10px 14px; border: 0; border-radius: 999px; color: #fff; background: #087c80; font-weight: 700; cursor: pointer; }
+.routeOptimizer button:disabled { color: #427371; background: #dcefed; cursor: default; }
+.transferDetail { display: flex; align-items: center; gap: 5px; margin-bottom: 5px; color: #087c80; font-size: .7rem; font-weight: 700; }
+.advancedFilters { display: grid; grid-template-columns: 1.25fr repeat(4, minmax(130px, 1fr)) auto; align-items: end; gap: 12px; margin: 22px 0 12px; padding: 16px; border: 1px solid #dfebe9; border-radius: 18px; background: #f8fbfa; }
+.advancedFilterTitle { display: flex; align-items: center; gap: 9px; align-self: center; }
+.advancedFilterTitle > svg { color: #087c80; font-size: 1.25rem; }
+.advancedFilterTitle span { display: grid; }
+.advancedFilterTitle small, .advancedFilters label { color: var(--muted); font-size: .68rem; }
+.advancedFilters label { display: grid; gap: 5px; font-weight: 700; }
+.advancedFilters select { min-width: 0; padding: 10px 11px; border: 1px solid #d7e4e2; border-radius: 10px; color: var(--ink); background: #fff; }
+.resetFilters { display: flex; align-items: center; gap: 5px; min-height: 40px; padding: 8px 12px; border: 0; border-radius: 10px; color: #087c80; background: #e6f5f3; font-weight: 700; cursor: pointer; }
+.resultsCount { margin-bottom: 14px; color: var(--muted); font-size: .75rem; }
+.pageLoader { min-height: 100vh; display: flex; align-items: center; justify-content: center; gap: 10px; color: #17464d; font-weight: 700; background: #f7fbfa; }
+.pageLoader span { width: 20px; height: 20px; border: 3px solid #bfe5e1; border-top-color: #087c80; border-radius: 50%; animation: loaderSpin .7s linear infinite; }
+@keyframes loaderSpin { to { transform: rotate(360deg); } }
 .scheduleSummary { display: grid; grid-template-columns: 30px 1fr auto; align-items: center; gap: 4px 10px; margin-top: 16px; padding: 18px; color: #fff; background: #087c80; border-radius: 16px; }
 .scheduleSummary > svg { grid-row: 1 / 3; font-size: 1.4rem; }
 .scheduleSummary strong { font-size: 1.05rem; }
@@ -227,6 +247,9 @@ button, input, select { font: inherit; }
   .plannerList li { grid-template-columns: 36px 82px 1fr; gap: 10px; }
   .plannerList img { width: 82px; height: 76px; }
   .plannerControls { grid-column: 2 / -1; justify-content: flex-end; }
+  .routeOptimizer { align-items: stretch; flex-direction: column; }
+  .advancedFilters { grid-template-columns: 1fr 1fr; }
+  .advancedFilterTitle, .resetFilters { grid-column: 1 / -1; }
   .tripPreferences, .practicalGrid, .mapSection { grid-template-columns: 1fr; }
   .packingCard { align-items: flex-start; flex-direction: column; }
   .footerGrid { grid-template-columns: 1fr 1fr; }

@@ -13,7 +13,7 @@ import { useFavorites } from '../../hooks/useFavorites';
 import { usePlanner } from '../../hooks/usePlanner';
 import { filterDestinations } from '../../lib/travel-utils';
 
-const initialFilters = { query: '', province: 'Todos', budget: '200' };
+const initialFilters = { query: '', province: 'Todos', budget: '200', region: 'Todos', duration: 'Todas', activity: 'Todos', sort: 'recommended' };
 
 const Principal = () => {
   const [filters, setFilters] = useState(initialFilters);
@@ -42,6 +42,9 @@ const Principal = () => {
           categories={categories}
           activeCategory={activeCategory}
           onCategoryChange={setActiveCategory}
+          filters={filters}
+          onFilterChange={handleFilterChange}
+          onResetFilters={() => { setFilters(initialFilters); setActiveCategory('Todos'); }}
           favorites={favorites}
           onFavorite={toggleFavorite}
           itinerary={itinerary}

@@ -16,6 +16,7 @@ export function usePlanner() {
   const moveItem = (index, direction) => setItinerary((current) => moveId(current, index, direction));
 
   const clearItinerary = () => setItinerary([]);
+  const replaceItinerary = (ids) => setItinerary([...new Set(ids)]);
 
-  return { itinerary, toggleItinerary, moveItem, clearItinerary };
+  return { itinerary, toggleItinerary, moveItem, clearItinerary, replaceItinerary };
 }

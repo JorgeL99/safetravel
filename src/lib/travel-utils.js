@@ -1,11 +1,28 @@
 export function filterDestinations(catalog, filters, activeCategory = 'Todos') {
-  const query = filters.query.trim().toLocaleLowerCase('es');
-  return catalog.filter((destination) => {
+  const query = (filters.query ?? '').trim().toLocaleLowerCase('es');
+  const activityLevel = (destination) => destination.activityLevel ?? ({ Aventura: 'Alta', Naturaleza: 'Media' }[destination.category] ?? 'Baja');
+  const durationGroup = (destination) => {
+    const days = getDurationDays(destination.duration);
+    if (days >= 4) return 'Larga';
+    if (days >= 2) return 'Media';
+    return 'Corta';
+  };
+  const region = (destination) => destination.naturalRegion ?? 'Costa';
+  const filtered = catalog.filter((destination) => {
     const searchable = `${destination.name} ${destination.province} ${destination.category} ${destination.summary}`.toLocaleLowerCase('es');
     return (!query || searchable.includes(query))
-      && (filters.province === 'Todos' || destination.province === filters.province)
-      && destination.price <= Number(filters.budget)
+      && (!filters.province || filters.province === 'Todos' || destination.province === filters.province)
+      && destination.price <= Number(filters.budget ?? Infinity)
+      && (!filters.region || filters.region === 'Todos' || region(destination) === filters.region)
+      && (!filters.duration || filters.duration === 'Todas' || durationGroup(destination) === filters.duration)
+      && (!filters.activity || filters.activity === 'Todos' || activityLevel(destination) === filters.activity)
       && (activeCategory === 'Todos' || destination.category === activeCategory);
+  });
+  return filtered.sort((a, b) => {
+    if (filters.sort === 'priceAsc') return a.price - b.price;
+    if (filters.sort === 'ratingDesc') return b.rating - a.rating;
+    if (filters.sort === 'durationAsc') return getDurationDays(a.duration) - getDurationDays(b.duration);
+    return 0;
   });
 }
 
@@ -39,14 +56,56 @@ export function getDurationDays(duration = '') {
   return match ? Number(match[1]) : 1;
 }
 
+export function calculateDistanceKm(origin, destination) {
+  if (!Array.isArray(origin?.coordinates) || !Array.isArray(destination?.coordinates)) return 0;
+  const [lat1, lon1] = origin.coordinates.map(Number);
+  const [lat2, lon2] = destination.coordinates.map(Number);
+  if (![lat1, lon1, lat2, lon2].every(Number.isFinite)) return 0;
+  const radians = (degrees) => degrees * (Math.PI / 180);
+  const deltaLat = radians(lat2 - lat1);
+  const deltaLon = radians(lon2 - lon1);
+  const a = Math.sin(deltaLat / 2) ** 2
+    + Math.cos(radians(lat1)) * Math.cos(radians(lat2)) * Math.sin(deltaLon / 2) ** 2;
+  return Math.round(6371 * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)));
+}
+
+export function getTransferEstimate(origin, destination) {
+  if (!origin) return null;
+  const distanceKm = calculateDistanceKm(origin, destination);
+  const amazonConnection = [origin, destination].some(({ naturalRegion, province }) => naturalRegion === 'Selva' || ['Maynas', 'Tambopata'].includes(province));
+  const sameDepartment = origin.department && destination.department && origin.department === destination.department;
+  const transferDays = distanceKm > 80 || amazonConnection ? 1 : 0;
+  const mode = amazonConnection
+    ? 'Conexión aérea, terrestre o fluvial'
+    : sameDepartment || distanceKm <= 80 ? 'Traslado local o terrestre' : 'Traslado interregional';
+  return { distanceKm, transferDays, mode };
+}
+
 export function buildItinerarySchedule(destinations) {
   let nextDay = 1;
-  return destinations.map((destination) => {
+  return destinations.map((destination, index) => {
+    const transfer = getTransferEstimate(destinations[index - 1], destination);
+    nextDay += transfer?.transferDays ?? 0;
     const days = getDurationDays(destination.duration);
-    const item = { ...destination, startDay: nextDay, endDay: nextDay + days - 1, days };
+    const item = { ...destination, startDay: nextDay, endDay: nextDay + days - 1, days, transfer };
     nextDay += days;
     return item;
   });
+}
+
+export function optimizeItineraryRoute(destinations) {
+  if (destinations.length < 3) return [...destinations];
+  const remaining = destinations.slice(1);
+  const ordered = [destinations[0]];
+  while (remaining.length) {
+    const current = ordered.at(-1);
+    let nearestIndex = 0;
+    remaining.forEach((candidate, index) => {
+      if (calculateDistanceKm(current, candidate) < calculateDistanceKm(current, remaining[nearestIndex])) nearestIndex = index;
+    });
+    ordered.push(remaining.splice(nearestIndex, 1)[0]);
+  }
+  return ordered;
 }
 
 export function analyzeItinerary(destinations) {

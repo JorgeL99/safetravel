@@ -23,6 +23,13 @@ const QuizCard = ({ onShowConfetti }) => {
   const expertResult = inference?.recommendation;
   const destinationResult = expertResult?.destination;
   const recommendedDestination = destinationCatalog.find(({ province }) => province === destinationResult?.catalogProvince);
+  const confidenceGap = expertResult && inference?.alternatives?.[0] ? expertResult.certainty - inference.alternatives[0].certainty : 0;
+  const factLabels = { region: 'Región', interest: 'Interés', climate: 'Clima', activity: 'Ritmo', altitude: 'Altitud', duration: 'Duración', budget: 'Presupuesto' };
+  const travelNotice = destinationResult?.naturalRegion === 'Sierra'
+    ? 'La altura puede exigir aclimatación; reserva un inicio tranquilo y consulta a un profesional si tienes una condición médica.'
+    : destinationResult?.naturalRegion === 'Selva'
+      ? 'Verifica clima, accesos, repelente y orientación sanitaria antes de contratar excursiones amazónicas.'
+      : 'Confirma tiempos terrestres, protección solar y condiciones del operador antes de reservar.';
 
   useEffect(() => {
     if (quizStarted && !showResult) questionHeadingRef.current?.focus();
@@ -96,6 +103,10 @@ const QuizCard = ({ onShowConfetti }) => {
             <h1>Tu destino recomendado es: {destinationResult.name}</h1>
             <p className="compatibility"><strong>{expertResult.certainty}% de confianza del sistema</strong></p>
             <p>{destinationResult.summary}</p>
+            <div className="expertProfile" aria-label="Perfil de viaje detectado">
+              <h2>Tu perfil detectado</h2>
+              <dl>{Object.entries(inference.facts).map(([key, value]) => <div key={key}><dt>{factLabels[key] ?? key}</dt><dd>{value}</dd></div>)}</dl>
+            </div>
             <div className="expertExplanation">
               <h2>¿Cómo llegó a esta conclusión?</h2>
               <ul>
@@ -109,6 +120,8 @@ const QuizCard = ({ onShowConfetti }) => {
               <ul>{destinationResult.attractions.map((attraction) => <li key={attraction}>{attraction}</li>)}</ul>
             </div>
             <p className="expertAlternatives"><strong>También podrías considerar:</strong> {inference.alternatives.map(({ destination }) => destination.name).join(" y ")}.</p>
+            <div className="expertDecisionNote"><strong>Qué significa el resultado</strong><p>La recomendación supera a la siguiente alternativa por {confidenceGap} puntos de confianza interna. Es compatibilidad con las reglas registradas, no una garantía estadística.</p></div>
+            <div className="expertTravelNotice"><strong>Antes de decidir</strong><p>{travelNotice}</p></div>
           </div>
           <div className="resultRecommendationLayout">
             {recommendedDestination && (
