@@ -11,14 +11,14 @@ const DestinationMap = ({ destination }) => (
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       <CircleMarker center={destination.coordinates} radius={11} pathOptions={{ color: '#087c80', fillColor: '#0aa6a6', fillOpacity: 0.9 }}>
-        <Popup><strong>{destination.name}</strong><br />{destination.province}, Ica</Popup>
+        <Popup><strong>{destination.name}</strong><br />{destination.province}, {destination.department ?? 'Ica'}</Popup>
       </CircleMarker>
     </MapContainer>
   </div>
 );
 
 DestinationMap.propTypes = {
-  destination: PropTypes.shape({ name: PropTypes.string, province: PropTypes.string, coordinates: PropTypes.arrayOf(PropTypes.number) }).isRequired,
+  destination: PropTypes.shape({ name: PropTypes.string, province: PropTypes.string, department: PropTypes.string, coordinates: PropTypes.arrayOf(PropTypes.number) }).isRequired,
 };
 
 export default DestinationMap;

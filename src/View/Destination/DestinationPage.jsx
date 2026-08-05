@@ -57,6 +57,7 @@ const DestinationPage = () => {
           </div>
           <div className="packingCard"><h3>Qué llevar</h3><ul>{destination.whatToBring.map((item) => <li key={item}><FiCheckCircle /> {item}</li>)}</ul></div>
           <p className="sourceNote">Fuente de referencia: <a href={destination.sourceUrl} target="_blank" rel="noreferrer">{destination.sourceName}</a>. Verifica horarios y tarifas antes de viajar.</p>
+          {destination.imageSourceUrl && <p className="sourceNote">Fotografía: <a href={destination.imageSourceUrl} target="_blank" rel="noreferrer">{destination.imageCredit}</a>.</p>}
         </section>
         <section className="mapSection container section">
           <div><span className="eyebrow dark">Ubicación referencial</span><h2>Encuentra {destination.name}</h2><p>Usa el mapa para reconocer la zona. Confirma siempre tu ruta con operadores locales formales.</p></div>

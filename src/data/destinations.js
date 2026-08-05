@@ -4,6 +4,7 @@ import nazca from '../assets/vuelo.webp';
 import chincha from '../assets/hacienda.webp';
 import cityIca from '../assets/cityica.webp';
 import cityParacas from '../assets/cityparacas.webp';
+import { nationalDestinations } from './national-destinations';
 
 export const destinations = [
   {
@@ -144,8 +145,10 @@ export const destinations = [
     sourceName: 'SERNANP · Reserva Nacional de Paracas',
     sourceUrl: 'https://visitaareasnaturales.sernanp.gob.pe/anps/reserva-nacional-de-paracas/',
   },
+  ...nationalDestinations,
 ];
 
 export const categories = ['Todos', ...new Set(destinations.map(({ category }) => category))];
+export const provinces = ['Todos', ...new Set(destinations.map(({ province }) => province))];
 
 export const findDestination = (slug) => destinations.find((destination) => destination.slug === slug);
