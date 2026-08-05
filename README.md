@@ -1,154 +1,191 @@
-# SafeTravel
+# SafeTravel Perú
 
-SafeTravel es una aplicación web universitaria orientada a descubrir y planificar experiencias turísticas en la región Ica, Perú. Combina un catálogo filtrable, un recomendador basado en preferencias, favoritos persistentes, un itinerario con presupuesto y mapas interactivos.
+Sistema experto web para orientar a viajeros en la elección de destinos turísticos del Perú y convertir la recomendación en un itinerario explicable.
 
-## Objetivo
+> Proyecto académico. Las recomendaciones, presupuestos, horarios y distancias son referenciales; antes de viajar deben verificarse con entidades y operadores formales.
 
-Ayudar al viajero a elegir experiencias de acuerdo con sus intereses, provincia y presupuesto, ofreciendo información práctica para una visita más organizada y responsable.
+## 1. Problema y objetivo
 
-## Funcionalidades
+La oferta turística peruana es extensa y el visitante puede desconocer qué destino se adapta a sus intereses, condición física, tolerancia a la altura, tiempo y presupuesto. SafeTravel transforma esas preferencias en hechos y aplica reglas ponderadas para producir una recomendación trazable, alternativas y precauciones.
 
-- Buscador por nombre, descripción o tipo de experiencia.
-- Filtros por provincia, presupuesto y categoría.
-- Recomendador turístico de cinco preguntas.
-- Resultado con compatibilidad y segunda alternativa.
-- Favoritos persistentes mediante `localStorage`.
-- Itinerario ordenable con fecha, viajeros y notas.
-- Cálculo de presupuesto por persona y grupo.
-- Fichas individuales con clima, horarios, acceso, seguridad y accesibilidad.
-- Mapas interactivos con Leaflet y OpenStreetMap.
-- Diseño responsive y página 404 personalizada.
-- Pruebas automatizadas de la lógica principal.
+El objetivo no es reemplazar a una agencia, autoridad turística o profesional de salud. El sistema funciona como apoyo inicial a la decisión.
 
-## Tecnologías
+## 2. Alcance actual
+
+- Catálogo de 16 experiencias de Costa, Sierra y Selva.
+- 13 destinos representados en la base de conocimiento experta.
+- 7 preguntas que construyen la memoria de trabajo.
+- 26 reglas ponderadas y explicables.
+- Ranking, alternativas y factores de certeza interna.
+- Filtros por texto, provincia, región, presupuesto, duración, actividad y categoría.
+- Favoritos e itinerario persistentes en el navegador.
+- Distancias geográficas, días de conexión y orden sugerido por cercanía.
+- Fechas, detección de tiempo insuficiente y presupuesto desglosado.
+- Fichas con mapa, recomendaciones prácticas, fuentes y créditos de imagen.
+- Publicación local de experiencias con fotografía.
+
+## 3. Tecnologías
 
 | Tecnología | Uso |
-| --- | --- |
-| React 18 | Interfaz y estado de la aplicación |
+|---|---|
+| React 18 | Componentes y estado de interfaz |
+| React Router 6 | Navegación entre páginas |
 | Vite 5 | Desarrollo y compilación |
-| React Router 6 | Navegación y rutas dinámicas |
-| Leaflet / React Leaflet | Mapas interactivos |
-| AOS | Animaciones al desplazarse |
-| React Icons | Iconografía |
-| Vitest | Pruebas automatizadas |
-| CSS / SCSS | Estilos y diseño responsive |
+| Leaflet / React Leaflet | Mapas de destinos |
+| Vitest | Pruebas unitarias y de consistencia |
+| Playwright | Pruebas de recorridos completos |
+| ESLint | Análisis estático |
+| localStorage / sessionStorage | Persistencia del prototipo |
 
-## Requisitos
+## 4. Instalación
 
-- Node.js 20 o superior recomendado.
-- npm 10 o superior.
-- Conexión a internet para descargar dependencias y mostrar los mosaicos de OpenStreetMap.
-
-## Instalación
+Requisitos: Node.js 20 o superior y npm.
 
 ```bash
-git clone <URL_DEL_REPOSITORIO>
-cd safetravel
 npm install
 npm run dev
 ```
 
-Vite mostrará una dirección local, normalmente `http://localhost:5173`.
+Abrir la dirección indicada por Vite, normalmente `http://localhost:5173`.
 
-## Comandos
+El error `"vite" no se reconoce` aparece cuando no están instaladas las dependencias. Se corrige ejecutando `npm install` dentro de la carpeta del proyecto.
+
+## 5. Comandos
 
 ```bash
-npm run dev        # servidor de desarrollo
-npm run build      # versión optimizada en dist/
-npm run preview    # previsualizar la compilación
-npm run lint       # validar calidad de JavaScript y JSX
-npm run test       # ejecutar todas las pruebas una vez
-npm run test:watch # ejecutar pruebas mientras se programa
+npm run dev          # servidor de desarrollo
+npm run build        # compilación de producción
+npm run preview      # vista previa de la compilación
+npm run lint         # análisis estático
+npm test             # pruebas unitarias
+npm run test:e2e     # pruebas de interfaz en Chromium
 ```
 
-## Arquitectura
+La primera ejecución de Playwright puede requerir:
 
-```mermaid
-flowchart TD
-    UI[Páginas y componentes React] --> DATA[Catálogo de destinos]
-    UI --> HOOKS[Hooks de favoritos, itinerario y preferencias]
-    UI --> UTILS[Lógica de filtros, quiz y presupuesto]
-    HOOKS --> STORAGE[(localStorage)]
-    UI --> MAP[Leaflet]
-    MAP --> OSM[OpenStreetMap]
-    TESTS[Vitest] --> UTILS
+```bash
+npx playwright install chromium
 ```
 
-## Flujo del usuario
-
-```mermaid
-flowchart LR
-    A[Explorar] --> B[Buscar y filtrar]
-    B --> C[Consultar destino]
-    A --> D[Completar quiz]
-    D --> C
-    C --> E[Guardar favorito]
-    C --> F[Agregar al itinerario]
-    E --> F
-    F --> G[Ordenar y calcular presupuesto]
-    G --> H[Imprimir o guardar como PDF]
-```
-
-## Estructura principal
+## 6. Arquitectura
 
 ```text
 src/
-├── Components/     Componentes reutilizables
-├── View/           Páginas de la aplicación
-├── assets/         Imágenes, vídeo e iconos
-├── data/           Catálogo turístico centralizado
-├── hooks/          Persistencia y estado reutilizable
-├── lib/            Datos antiguos, utilidades y pruebas
-├── App.jsx
-└── AppRoutes.jsx
+├── Components/       componentes reutilizables
+├── View/             páginas y rutas
+├── data/
+│   ├── destinations.js           catálogo canónico
+│   ├── national-destinations.js  extensión nacional del catálogo
+│   └── expert-knowledge.js       preguntas y reglas
+├── hooks/            persistencia y estado reutilizable
+├── lib/
+│   ├── expert-system.js          motor de inferencia
+│   └── travel-utils.js           filtros, rutas y presupuesto
+└── assets/           recursos visuales locales
+tests/e2e/            recorridos completos de interfaz
 ```
 
-## Modelo turístico
+### Fuente única de información
 
-Cada destino contiene:
+`destinations` es el catálogo canónico. El sistema experto deriva de allí el nombre, región, resumen, atractivos y fuente de cada hipótesis mediante `expertId`. `expert-knowledge.js` conserva únicamente preguntas y reglas. Esta separación evita que la información turística se copie y termine siendo diferente entre catálogo, quiz e itinerario.
 
-- Identidad, slug y provincia.
-- Categoría, precio, duración y valoración.
-- Descripción y actividades destacadas.
-- Coordenadas.
-- Clima y temporada recomendada.
-- Horario y forma de acceso.
-- Seguridad, accesibilidad y elementos sugeridos.
-- Fuente institucional de referencia.
+## 7. Funcionamiento del sistema experto
 
-## Fuentes de referencia
+### Base de hechos
 
-- [PROMPERÚ — Destino Ica](https://meetings.peru.travel/es/destinos/ica)
-- [SERNANP — Reserva Nacional de Paracas](https://visitaareasnaturales.sernanp.gob.pe/anps/reserva-nacional-de-paracas/)
-- [UNESCO — Líneas y Geoglifos de Nasca y Palpa](https://whc.unesco.org/en/list/700)
-- [MINCETUR — Casa Hacienda San José](https://consultasenlinea.mincetur.gob.pe/fichaInventario/index.aspx?cod_Ficha=242)
-- [OpenStreetMap](https://www.openstreetmap.org/copyright)
+Las respuestas producen siete hechos:
 
-Los precios y horarios mostrados son referenciales. Deben confirmarse con las instituciones u operadores formales antes de viajar.
+```js
+{
+  region: 'selva',
+  interest: 'naturaleza',
+  climate: 'tropical',
+  activity: 'alta',
+  altitude: 'baja',
+  duration: 'larga',
+  budget: 'flexible'
+}
+```
 
-## Persistencia
+### Reglas
 
-Esta versión no utiliza backend. Favoritos, itinerario y preferencias se almacenan en el navegador mediante `localStorage`. Los datos no se sincronizan entre dispositivos ni representan una reserva comercial.
+Cada regla contiene:
 
-## Pruebas
+- Identificador trazable (`R01`–`R26`).
+- Destino asociado.
+- Condiciones aceptadas.
+- Peso entre 0 y 1.
+- Explicación en lenguaje natural.
 
-Las pruebas unitarias cubren:
+Una regla obtiene cobertura según la proporción de condiciones satisfechas:
 
-- Combinación de filtros.
-- Resultado y compatibilidad del quiz.
-- Agregar y eliminar identificadores.
-- Reordenar actividades.
-- Presupuesto por cantidad de viajeros.
+```text
+certeza de evidencia = peso de la regla × cobertura
+```
 
-## Próximos pasos
+Las evidencias de un destino se combinan incrementalmente:
 
-- Pruebas de componentes y navegación.
-- Integración con Supabase o API propia.
-- Autenticación y sincronización entre dispositivos.
-- Panel de administración de destinos.
-- Revisión periódica de precios, horarios y fuentes.
-- Despliegue público en Vercel o Netlify.
+```text
+CF combinado = CF actual + CF nuevo × (1 − CF actual)
+```
 
-## Alcance académico
+El resultado se limita naturalmente a 100 %. Los porcentajes expresan confianza interna del modelo, no probabilidad estadística, disponibilidad ni garantía de satisfacción.
 
-SafeTravel nació como proyecto universitario y actualmente funciona como prototipo frontend. No procesa pagos, reservas ni datos personales sensibles.
+### Trazabilidad
+
+El resultado conserva reglas activadas, condiciones coincidentes, condiciones ausentes, cobertura y certeza. El panel `/sistema-experto` permite auditar el razonamiento.
+
+## 8. Cobertura turística
+
+La muestra cubre destinos de Ica, Cusco, Arequipa, Puno, Áncash, Loreto, Madre de Dios, Lima, La Libertad, Amazonas y San Martín. Se priorizaron fuentes como UNESCO, SERNANP, PROMPERÚ, Ministerio de Cultura y gobiernos regionales.
+
+Cada ficha registra coordenadas, clima, temporada referencial, acceso, seguridad, accesibilidad, elementos recomendados, fuente turística y crédito visual. Los enlaces deben revisarse periódicamente porque horarios, tarifas y condiciones de acceso cambian.
+
+## 9. Pruebas
+
+### Unitarias y de conocimiento
+
+- Construcción de hechos y recomendaciones esperadas.
+- Ranking, explicaciones y evaluación de reglas.
+- Identificadores y slugs únicos.
+- Campos turísticos obligatorios.
+- Correspondencia entre catálogo e hipótesis expertas.
+- Dos reglas trazables por cada hipótesis.
+- Filtros, distancias, orden de ruta, fechas y presupuesto.
+
+### Interfaz
+
+Playwright recorre escritorio y móvil para comprobar:
+
+1. Filtro nacional por región.
+2. Cuestionario completo y explicación del resultado.
+3. Itinerario con conexiones y presupuesto.
+4. Publicación local con fotografía.
+
+## 10. Persistencia y privacidad
+
+Favoritos, itinerario, preferencias y publicaciones se guardan localmente en el navegador. No existen cuentas ni servidor, por lo que los datos no se sincronizan entre dispositivos. Las fotografías tienen límite de tamaño para reducir el riesgo de agotar el almacenamiento.
+
+No deben ingresarse documentos, teléfonos, datos bancarios ni información sensible.
+
+## 11. Fuentes principales
+
+- [UNESCO World Heritage Centre](https://whc.unesco.org/)
+- [SERNANP – visita áreas naturales](https://visitaareasnaturales.sernanp.gob.pe/)
+- [PROMPERÚ – Perú Travel](https://www.peru.travel/)
+- [Plataforma del Estado Peruano](https://www.gob.pe/)
+- [Wikimedia Commons](https://commons.wikimedia.org/) para imágenes con crédito y licencia indicados en cada ficha.
+
+## 12. Limitaciones y trabajo futuro
+
+- Validar los pesos con especialistas en turismo y documentar entrevistas.
+- Incorporar un umbral formal de baja confianza.
+- Verificar periódicamente fuentes y estados de acceso.
+- Sustituir imágenes remotas por copias optimizadas locales cuando el servidor de imágenes lo permita.
+- Incorporar rutas viales mediante un proveedor opcional, conservando el cálculo local como respaldo.
+- Usar un backend si se requieren usuarios, sincronización y moderación comunitaria.
+- Ampliar cobertura únicamente con información revisada y nuevas reglas comprobables.
+
+## 13. Naturaleza académica
+
+SafeTravel demuestra adquisición y representación de conocimiento, inferencia ponderada, explicación de decisiones, persistencia del prototipo, diseño centrado en el usuario y verificación automatizada. No constituye un sistema de reservas ni reemplaza información oficial actualizada.

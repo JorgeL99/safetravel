@@ -9,6 +9,7 @@ import { nationalDestinations } from './national-destinations';
 export const destinations = [
   {
     id: 1,
+    expertId: 'ica', expertName: 'Ica y Huacachina',
     slug: 'huacachina',
     name: 'Huacachina',
     province: 'Ica',
@@ -32,6 +33,7 @@ export const destinations = [
   },
   {
     id: 2,
+    expertId: 'paracas', expertName: 'Paracas',
     slug: 'paracas',
     name: 'Reserva de Paracas',
     province: 'Pisco',
@@ -55,6 +57,7 @@ export const destinations = [
   },
   {
     id: 3,
+    expertId: 'nazca', expertName: 'Nazca',
     slug: 'lineas-de-nazca',
     name: 'Líneas de Nazca',
     province: 'Nazca',
