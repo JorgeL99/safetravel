@@ -368,7 +368,7 @@
 .card .result { margin: 20px 0; padding-inline: 15px; text-align: center; }
 .card .destinationCard { width: min(390px, 100%); margin: 0 auto; text-align: left; }
 .card.resultCard {
-  width: min(680px, calc(100% - 40px));
+  width: min(790px, calc(100% - 40px));
   min-height: auto;
   margin-top: 8px;
   margin-bottom: 32px;
@@ -380,7 +380,7 @@
 .resultCard .result h1 { font-size: clamp(1.35rem, 2.4vw, 1.8rem); line-height: 1.2; }
 .resultCard .result p { max-width: 590px; margin: 6px auto; font-size: .9rem; line-height: 1.45; }
 .resultCard .ctn-inicio .btn-prueba { padding: 10px 25px; }
-.resultCard .destinationCard { width: min(330px, 100%); }
+.resultCard .destinationCard { width: min(350px, 100%); margin: 0; }
 .resultCard .destinationImage { height: 140px; }
 .resultCard .destinationBody { padding: 13px; }
 .resultCard .destinationBody h3 { font-size: 1.2rem; }
@@ -395,8 +395,12 @@
 .expertExplanation li, .expertAttractions li { margin: 4px 0; font-size: .78rem; line-height: 1.4; }
 .expertExplanation strong { color: #078790; }
 .expertAlternatives { font-size: .8rem !important; }
-.expertSource { color: #067a83; font-size: .76rem; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
-.expertPanelLink { display: inline-flex; justify-content: center; margin-top: 7px; padding: 10px 16px; color: #fff; background: #123e46; border-radius: 999px; font-size: .78rem; font-weight: 800; }
+.resultRecommendationLayout { width: 100%; display: flex; align-items: flex-start; justify-content: center; gap: 18px; margin-top: 8px; }
+.resultActions { width: 205px; display: grid; gap: 10px; position: sticky; top: 98px; }
+.expertPanelLink, .restartResultButton { min-height: 48px; display: flex; align-items: center; justify-content: center; padding: 9px 13px; border-radius: 14px; font-size: .75rem; font-weight: 800; text-align: center; transition: .2s ease; }
+.expertPanelLink { color: #fff; background: #123e46; }
+.restartResultButton { color: #076f77; background: #fff; border: 1px solid #cfe1de; cursor: pointer; }
+.expertPanelLink:hover, .restartResultButton:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(16,45,53,.12); }
 
 @media (max-width: 700px) {
   .card {
@@ -412,7 +416,11 @@
   .navButton { flex: 1; min-width: 115px; padding-inline: 16px; }
   .card.resultCard { width: calc(100% - 24px); margin-top: 90px; padding: 20px 14px 24px; }
   .resultCard .destinationCard { width: 100%; }
+  .resultRecommendationLayout { align-items: stretch; flex-direction: column; }
+  .resultActions { width: 100%; position: static; grid-template-columns: 1fr 1fr; }
 }
+
+@media (max-width: 430px) { .resultActions { grid-template-columns: 1fr; } }
 
 @media (prefers-reduced-motion: reduce) {
   .card *, .quiz-background span { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }

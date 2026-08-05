@@ -33,3 +33,27 @@ export function calculateTripBudget(catalog, itinerary, travelers = 1) {
   const subtotal = itinerary.reduce((sum, id) => sum + (catalog.find((item) => item.id === id)?.price ?? 0), 0);
   return { subtotal, total: subtotal * Math.max(1, Number(travelers) || 1) };
 }
+
+export function getDurationDays(duration = '') {
+  const match = String(duration).match(/(\d+)\s*d[ií]a/i);
+  return match ? Number(match[1]) : 1;
+}
+
+export function buildItinerarySchedule(destinations) {
+  let nextDay = 1;
+  return destinations.map((destination) => {
+    const days = getDurationDays(destination.duration);
+    const item = { ...destination, startDay: nextDay, endDay: nextDay + days - 1, days };
+    nextDay += days;
+    return item;
+  });
+}
+
+export function analyzeItinerary(destinations) {
+  const departments = [...new Set(destinations.map(({ department, province }) => department ?? (['Ica', 'Pisco', 'Nazca', 'Chincha'].includes(province) ? 'Ica' : province)))];
+  const warnings = [];
+  if (departments.length > 1) warnings.push({ type: 'distance', text: `Tu ruta combina ${departments.length} departamentos. Reserva días adicionales para los traslados entre regiones.` });
+  if (destinations.some(({ naturalRegion, province }) => naturalRegion === 'Sierra' || ['Cusco', 'Arequipa', 'Puno', 'Huaraz'].includes(province))) warnings.push({ type: 'altitude', text: 'La ruta incluye destinos de altura. Considera aclimatación y evita actividades intensas al llegar.' });
+  if (destinations.some(({ province }) => ['Maynas', 'Tambopata'].includes(province))) warnings.push({ type: 'connection', text: 'La Amazonía puede requerir conexiones aéreas, terrestres o fluviales y operadores autorizados.' });
+  return { departments, warnings };
+}

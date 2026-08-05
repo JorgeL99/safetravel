@@ -109,21 +109,22 @@ const QuizCard = ({ onShowConfetti }) => {
               <ul>{destinationResult.attractions.map((attraction) => <li key={attraction}>{attraction}</li>)}</ul>
             </div>
             <p className="expertAlternatives"><strong>También podrías considerar:</strong> {inference.alternatives.map(({ destination }) => destination.name).join(" y ")}.</p>
-            <a className="expertSource" href={destinationResult.sourceUrl} target="_blank" rel="noreferrer">Fuente: {destinationResult.sourceName}</a>
-            <Link className="expertPanelLink" to="/sistema-experto">Ver análisis técnico completo</Link>
           </div>
-          <div className="ctn-inicio">
-            <button className="btn-prueba btn-secondary" onClick={handleRestartQuiz}>Reiniciar</button>
+          <div className="resultRecommendationLayout">
+            {recommendedDestination && (
+              <LocationCard
+                destination={recommendedDestination}
+                isFavorite={favorites.includes(recommendedDestination.id)}
+                onFavorite={toggleFavorite}
+                isPlanned={itinerary.includes(recommendedDestination.id)}
+                onPlan={toggleItinerary}
+              />
+            )}
+            <div className="resultActions" aria-label="Acciones del resultado">
+              <Link className="expertPanelLink" to="/sistema-experto">Ver análisis técnico</Link>
+              <button className="restartResultButton" onClick={handleRestartQuiz}>Reiniciar quiz</button>
+            </div>
           </div>
-          {recommendedDestination && (
-            <LocationCard
-              destination={recommendedDestination}
-              isFavorite={favorites.includes(recommendedDestination.id)}
-              onFavorite={toggleFavorite}
-              isPlanned={itinerary.includes(recommendedDestination.id)}
-              onPlan={toggleItinerary}
-            />
-          )}
         </>
       ) : (
         <>

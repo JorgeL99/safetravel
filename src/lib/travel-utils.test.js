@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { calculateQuizResult, calculateTripBudget, filterDestinations, moveId, toggleId } from './travel-utils';
+import { analyzeItinerary, buildItinerarySchedule, calculateQuizResult, calculateTripBudget, filterDestinations, moveId, toggleId } from './travel-utils';
 
 const catalog = [
   { id: 1, name: 'Huacachina', province: 'Ica', category: 'Aventura', summary: 'Dunas', price: 45 },
@@ -14,6 +14,16 @@ describe('filterDestinations', () => {
   });
   it('devuelve todo cuando no hay filtros restrictivos', () => {
     expect(filterDestinations(catalog, { query: '', province: 'Todos', budget: '200' })).toHaveLength(3);
+  });
+});
+
+describe('itinerary intelligence', () => {
+  it('distribuye experiencias según su duración', () => {
+    expect(buildItinerarySchedule([{ id: 1, duration: '3 días' }, { id: 2, duration: 'Medio día' }]).map(({ startDay, endDay }) => [startDay, endDay])).toEqual([[1, 3], [4, 4]]);
+  });
+  it('advierte sobre distancias, altura y conexiones amazónicas', () => {
+    const analysis = analyzeItinerary([{ province: 'Cusco', department: 'Cusco', naturalRegion: 'Sierra' }, { province: 'Maynas', department: 'Loreto', naturalRegion: 'Selva' }]);
+    expect(analysis.warnings.map(({ type }) => type)).toEqual(['distance', 'altitude', 'connection']);
   });
 });
 
