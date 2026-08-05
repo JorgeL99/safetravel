@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { FiHeart, FiMap, FiMenu, FiX } from 'react-icons/fi';
-import { GiPlanetConquest } from 'react-icons/gi';
 import { Link, useLocation } from 'react-router-dom';
 import './navbar.css';
 
@@ -23,7 +22,7 @@ const Navbar = ({ favoriteCount = 0, plannerCount = 0 }) => {
   return (
     <header className={`modernHeader ${isScrolled || needsSolidHeader ? 'scrolled' : ''}`}>
       <nav className="modernNav container" aria-label="Navegación principal">
-        <Link to="/" className="brand"><GiPlanetConquest /><span>Safe<strong>Travel</strong></span></Link>
+        <Link to="/" className="brand"><img src="/safetravel-icon.svg" alt="" /><span>Safe<strong>Travel</strong></span></Link>
         <button type="button" className="menuToggle" onClick={() => setIsOpen(!isOpen)} aria-expanded={isOpen} aria-label="Abrir menú">
           {isOpen ? <FiX /> : <FiMenu />}
         </button>

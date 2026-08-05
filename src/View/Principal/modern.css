@@ -20,6 +20,7 @@ button, input, select { font: inherit; }
 .modernNav { height: 78px; display: flex; align-items: center; justify-content: space-between; }
 .brand { color: #fff; display: flex; align-items: center; gap: 9px; font-size: 1.25rem; font-weight: 700; }
 .brand svg { color: #61ded4; font-size: 1.8rem; }
+.brand img { width: 31px; height: 31px; object-fit: contain; }
 .brand strong { color: #61ded4; }
 .scrolled .brand { color: var(--ink); }
 .navContent { display: flex; align-items: center; gap: 28px; }

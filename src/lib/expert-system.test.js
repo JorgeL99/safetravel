@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { expertDestinations, expertQuestions, expertRules } from "../data/expert-knowledge";
-import { buildFacts, inferDestination } from "./expert-system";
+import { assessInferenceConfidence, buildFacts, inferDestination, validateKnowledgeBase } from "./expert-system";
 
 const answer = (questionId, factValue) => {
   const question = expertQuestions.find(({ id }) => id === questionId);
@@ -39,5 +39,20 @@ describe("expert recommendation engine", () => {
     expect(result.ruleEvaluations).toHaveLength(expertRules.length);
     expect(result.ruleEvaluations.some(({ status }) => status === "complete")).toBe(true);
     expect(result.ruleEvaluations.some(({ status }) => status === "discarded")).toBe(true);
+  });
+
+  it("declara evidencia insuficiente cuando dos hipótesis están demasiado próximas", () => {
+    const assessment = assessInferenceConfidence([{ certainty: 80 }, { certainty: 78 }], {
+      region: 'costa', interest: 'historia', climate: 'seco', activity: 'media', altitude: 'baja', duration: 'corta', budget: 'moderado',
+    });
+    expect(assessment).toMatchObject({ status: 'insufficient', isSufficient: false, gap: 2 });
+    expect(assessment.reasons[0]).toContain('diferencia');
+  });
+
+  it("valida referencias y cobertura estructural de la base de conocimiento", () => {
+    const validation = validateKnowledgeBase(expertRules, expertDestinations, expertQuestions.map(({ id }) => id));
+    expect(validation.isValid).toBe(true);
+    expect(validation.rows.every(({ ruleCount }) => ruleCount === 2)).toBe(true);
+    expect(validation.orphanRules).toEqual([]);
   });
 });

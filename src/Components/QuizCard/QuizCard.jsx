@@ -22,6 +22,7 @@ const QuizCard = ({ onShowConfetti }) => {
   const selectedAnswer = answers[currentQuestion];
   const expertResult = inference?.recommendation;
   const destinationResult = expertResult?.destination;
+  const confidenceAssessment = inference?.assessment;
   const recommendedDestination = destinationCatalog.find(({ province }) => province === destinationResult?.catalogProvince);
   const confidenceGap = expertResult && inference?.alternatives?.[0] ? expertResult.certainty - inference.alternatives[0].certainty : 0;
   const factLabels = { region: 'Región', interest: 'Interés', climate: 'Clima', activity: 'Ritmo', altitude: 'Altitud', duration: 'Duración', budget: 'Presupuesto' };
@@ -99,9 +100,10 @@ const QuizCard = ({ onShowConfetti }) => {
       ) : showResult ? (
         <>
           <div className="result" aria-live="polite">
-            <span className="expertBadge">Sistema experto · {destinationResult.naturalRegion}</span>
-            <h1>Tu destino recomendado es: {destinationResult.name}</h1>
-            <p className="compatibility"><strong>{expertResult.certainty}% de confianza del sistema</strong></p>
+            <span className={`expertBadge ${confidenceAssessment?.status === 'insufficient' ? 'isUncertain' : ''}`}>Sistema experto · {destinationResult.naturalRegion}</span>
+            <h1>{confidenceAssessment?.isSufficient ? `Tu destino recomendado es: ${destinationResult.name}` : `Mejor coincidencia provisional: ${destinationResult.name}`}</h1>
+            <p className="compatibility"><strong>{expertResult.certainty}% de compatibilidad interna</strong></p>
+            {confidenceAssessment?.status === 'insufficient' && <div className="insufficientEvidence" role="status"><strong>No existe evidencia suficiente para una recomendación única.</strong><ul>{confidenceAssessment.reasons.map((reason) => <li key={reason}>{reason}</li>)}</ul><p>Compara las alternativas y revisa el análisis antes de decidir.</p></div>}
             <p>{destinationResult.summary}</p>
             <div className="expertProfile" aria-label="Perfil de viaje detectado">
               <h2>Tu perfil detectado</h2>
@@ -120,7 +122,7 @@ const QuizCard = ({ onShowConfetti }) => {
               <ul>{destinationResult.attractions.map((attraction) => <li key={attraction}>{attraction}</li>)}</ul>
             </div>
             <p className="expertAlternatives"><strong>También podrías considerar:</strong> {inference.alternatives.map(({ destination }) => destination.name).join(" y ")}.</p>
-            <div className="expertDecisionNote"><strong>Qué significa el resultado</strong><p>La recomendación supera a la siguiente alternativa por {confidenceGap} puntos de confianza interna. Es compatibilidad con las reglas registradas, no una garantía estadística.</p></div>
+            <div className="expertDecisionNote"><strong>Qué significa el resultado</strong><p>La primera opción supera a la siguiente por {confidenceGap} puntos. El mínimo definido es {confidenceAssessment?.thresholds.minimumGap ?? 4}; esta cifra expresa compatibilidad con las reglas, no una garantía estadística.</p></div>
             <div className="expertTravelNotice"><strong>Antes de decidir</strong><p>{travelNotice}</p></div>
           </div>
           <div className="resultRecommendationLayout">

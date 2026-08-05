@@ -39,6 +39,11 @@
 .ruleStatus.complete { color: #08724f; background: #dcf6e9; }
 .ruleStatus.partial { color: #80600b; background: #fff1c9; }
 .ruleStatus.discarded { color: #8b4545; background: #f9e2e2; }
+.knowledgeSummary { display: flex; align-items: flex-start; gap: 11px; margin-bottom: 18px; padding: 14px 16px; color: #315c62; background: #edf8f6; border-radius: 13px; }
+.knowledgeSummary svg { flex: 0 0 auto; margin-top: 2px; color: #087c80; }
+.knowledgeSummary p { margin: 0; font-size: .78rem; line-height: 1.5; }
+.validationTable td:nth-child(3) { min-width: 300px; }
+.validationTable .condition { display: inline-flex; margin: 2px 4px 2px 0; padding: 4px 7px; background: #f1f6f5; border-radius: 7px; white-space: normal; }
 .formulaSection { display: grid; grid-template-columns: 52px 1fr; gap: 18px; color: #fff; background: #102d35; }
 .formulaSection > svg { color: #61ded4; font-size: 2rem; }
 .formulaSection h2 { color: #fff; }

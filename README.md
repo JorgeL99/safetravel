@@ -131,6 +131,10 @@ CF combinado = CF actual + CF nuevo × (1 − CF actual)
 
 El resultado se limita naturalmente a 100 %. Los porcentajes expresan confianza interna del modelo, no probabilidad estadística, disponibilidad ni garantía de satisfacción.
 
+### Umbral de evidencia suficiente
+
+El sistema no fuerza una recomendación única cuando la evidencia es ambigua. Declara un resultado provisional si falta alguno de los siete hechos, la mejor hipótesis no alcanza 60 % o existe una diferencia menor de cuatro puntos frente a la segunda. Una confianza alta requiere al menos 85 % y diez puntos de diferencia. Estos umbrales son parámetros académicos explícitos y deben validarse posteriormente con especialistas.
+
 ### Trazabilidad
 
 El resultado conserva reglas activadas, condiciones coincidentes, condiciones ausentes, cobertura y certeza. El panel `/sistema-experto` permite auditar el razonamiento.
@@ -186,6 +190,22 @@ No deben ingresarse documentos, teléfonos, datos bancarios ni información sens
 - Usar un backend si se requieren usuarios, sincronización y moderación comunitaria.
 - Ampliar cobertura únicamente con información revisada y nuevas reglas comprobables.
 
-## 13. Naturaleza académica
+## 13. Publicación en Netlify
+
+El archivo `netlify.toml` configura `npm run build`, publica `dist`, conserva las rutas de React Router y agrega cabeceras de seguridad.
+
+Flujo recomendado:
+
+1. Subir el repositorio a GitHub.
+2. En Netlify seleccionar **Add new project → Import an existing project**.
+3. Autorizar GitHub y elegir el repositorio.
+4. Confirmar `npm run build` como comando y `dist` como directorio publicado.
+5. Seleccionar **Deploy**. Los siguientes `push` desplegarán automáticamente.
+
+Como alternativa manual, ejecutar `npm run build` y publicar la carpeta `dist`; ese método no ejecuta el proceso de construcción en Netlify.
+
+No deben guardarse claves privadas en variables `VITE_*`, porque Vite las incorpora al JavaScript visible para el navegador.
+
+## 14. Naturaleza académica
 
 SafeTravel demuestra adquisición y representación de conocimiento, inferencia ponderada, explicación de decisiones, persistencia del prototipo, diseño centrado en el usuario y verificación automatizada. No constituye un sistema de reservas ni reemplaza información oficial actualizada.

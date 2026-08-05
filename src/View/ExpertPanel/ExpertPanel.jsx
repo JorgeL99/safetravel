@@ -1,10 +1,10 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { FiArrowLeft, FiBookOpen, FiCheckCircle, FiCpu, FiInfo, FiXCircle } from "react-icons/fi";
+import { FiArrowLeft, FiBookOpen, FiCheckCircle, FiCpu, FiInfo, FiShield, FiXCircle } from "react-icons/fi";
 import Navbar from "../../Components/Navbar/Navbar";
 import Footer from "../../Components/Footer/Footer";
 import { expertDestinations, expertQuestions, expertRules } from "../../data/expert-knowledge";
-import { inferDestination } from "../../lib/expert-system";
+import { inferDestination, validateKnowledgeBase } from "../../lib/expert-system";
 import "./expert-panel.css";
 
 const factLabels = Object.fromEntries(expertQuestions.map(({ id, question }) => [id, question]));
@@ -25,6 +25,7 @@ const ExpertPanel = () => {
   const evaluations = inference.ruleEvaluations ?? inferDestination(inference.facts ?? {}, expertRules, expertDestinations).ruleEvaluations;
   const visibleRules = filter === "all" ? evaluations : evaluations.filter(({ status }) => status === filter);
   const destinationById = Object.fromEntries(expertDestinations.map((destination) => [destination.id, destination]));
+  const knowledgeValidation = validateKnowledgeBase(expertRules, expertDestinations, expertQuestions.map(({ id }) => id));
 
   return (
     <>
@@ -79,9 +80,21 @@ const ExpertPanel = () => {
             </table></div>
           </section>
 
+          <section className="panelSection">
+            <div className="panelHeading"><div><span>04 · Validación académica</span><h2>Matriz de cobertura del conocimiento</h2></div><small>{knowledgeValidation.isValid ? 'Base estructuralmente consistente' : 'Revisión requerida'}</small></div>
+            <div className="knowledgeSummary"><FiShield /><p>La matriz comprueba referencias, pesos, explicaciones y un mínimo de dos reglas por hipótesis. No sustituye la validación de los pesos mediante especialistas.</p></div>
+            <div className="rulesTableWrap"><table className="rulesTable validationTable">
+              <thead><tr><th>Hipótesis</th><th>Reglas</th><th>Variables cubiertas</th><th>Validación</th></tr></thead>
+              <tbody>{knowledgeValidation.rows.map(({ destination, ruleCount, coveredFacts, status, issues }) => <tr key={destination.id}>
+                <td><strong>{destination.name}</strong></td><td>{ruleCount}</td><td>{coveredFacts.map((fact) => <span className="condition" key={fact}>{factLabels[fact] ?? fact}</span>)}</td>
+                <td><span className={`ruleStatus ${status === 'valid' ? 'complete' : 'partial'}`}>{status === 'valid' ? <FiCheckCircle /> : <FiInfo />}{status === 'valid' ? 'Consistente' : issues.join('. ')}</span></td>
+              </tr>)}</tbody>
+            </table></div>
+          </section>
+
           <section className="panelSection formulaSection">
             <FiBookOpen />
-            <div><span>04 · Método de cálculo</span><h2>Factor de certeza</h2>
+            <div><span>05 · Método de cálculo</span><h2>Factor de certeza</h2>
               <p>Cada regla calcula <code>FC regla = peso × condiciones coincidentes / condiciones totales</code>. Cuando varias reglas respaldan un destino se combinan mediante <code>FC combinado = FC anterior + FC nuevo × (1 − FC anterior)</code>.</p>
               <p>Este método evita superar el 100% y conserva la contribución incremental de cada evidencia. Los porcentajes representan confianza interna del modelo, no una probabilidad estadística ni una garantía de viaje.</p>
             </div>

@@ -7,6 +7,8 @@ test.beforeEach(async ({ page }) => {
 
 test('filtra el catálogo nacional por región', async ({ page }) => {
   await page.goto('/');
+  await expect(page).toHaveTitle('SafeTravel Perú | Sistema experto de viajes');
+  await expect(page.locator('link[rel="icon"]')).toHaveAttribute('href', '/safetravel-icon.svg');
   await expect(page.getByText('16 experiencias encontradas')).toBeVisible();
   await page.getByLabel('Región natural').selectOption('Selva');
   await expect(page.getByText('3 experiencias encontradas')).toBeVisible();
@@ -25,9 +27,11 @@ test('completa el sistema experto y muestra una explicación', async ({ page }) 
     await page.getByRole('radio', { name: answer }).click();
     await page.getByRole('button', { name: index === answers.length - 1 ? 'Ver resultado' : 'Continuar' }).click();
   }
-  await expect(page.getByRole('heading', { name: /Tu destino recomendado es:/ })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /(Tu destino recomendado es|Mejor coincidencia provisional):/ })).toBeVisible();
   await expect(page.getByRole('heading', { name: '¿Cómo llegó a esta conclusión?' })).toBeVisible();
   await expect(page.getByText('Qué significa el resultado')).toBeVisible();
+  await page.getByRole('link', { name: 'Ver análisis técnico' }).click();
+  await expect(page.getByRole('heading', { name: 'Matriz de cobertura del conocimiento' })).toBeVisible();
 });
 
 test('calcula conexiones y presupuesto del itinerario', async ({ page }) => {
