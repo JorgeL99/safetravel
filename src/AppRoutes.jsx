@@ -1,8 +1,8 @@
-import React from 'react'
-import { Navigate, Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Principal from './View/Principal/Principal';
 import Encuenta from './View/Encuenta/Encuenta';
 import SinglePage from './View/singlePage/singlePage';
+import DestinationPage from './View/Destination/DestinationPage';
 
 const AppRoutes = () => {
   return (
@@ -11,6 +11,8 @@ const AppRoutes = () => {
       <Route path='/' element={<Principal/>} />
       <Route path='/quiz' element={<Encuenta/>} />
       <Route path='/page' element={<SinglePage/>} />
+      <Route path='/destinos/:slug' element={<DestinationPage/>} />
+      <Route path='*' element={<Principal/>} />
       
     </Routes>
     </>

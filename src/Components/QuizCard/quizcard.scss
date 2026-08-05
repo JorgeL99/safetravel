@@ -16,6 +16,57 @@
     --nose:hsl(24, 191, 220);
 }
 
+// Layout estable y responsive. Mantener sincronizado con quizcard.css.
+.card {
+  width: min(900px, calc(100% - 40px));
+  height: auto;
+  min-height: 460px;
+  padding: 24px 28px 32px;
+  gap: 22px;
+  align-content: center;
+  opacity: .96;
+  .progress-bar { width: 100%; height: 14px; margin: 0; }
+  .textin {
+    margin: 12px 0 0;
+    padding-inline: 20px;
+    text-align: center;
+    h2 { font-size: clamp(1.35rem, 2.5vw, 2rem); line-height: 1.25; }
+  }
+  .ctn-button {
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin: 0;
+    .btn-prueba {
+      min-width: 0;
+      min-height: 92px;
+      padding: 18px 24px;
+      border-radius: 24px;
+      line-height: 1.45;
+      overflow-wrap: anywhere;
+      letter-spacing: 1px;
+      &:hover { letter-spacing: 1.5px; transform: translateY(-4px) scale(1.01); }
+      &:active { transform: translateY(2px) scale(.99); }
+    }
+  }
+  .result { margin: 20px 0; padding-inline: 15px; text-align: center; }
+  .destinationCard { width: min(390px, 100%); margin: 0 auto; text-align: left; }
+}
+
+@media (max-width: 700px) {
+  .card {
+    width: calc(100% - 24px);
+    min-height: auto;
+    margin-block: 100px 30px;
+    padding: 20px 16px 24px;
+    border-radius: 24px;
+    .ctn-button {
+      grid-template-columns: 1fr;
+      .btn-prueba { min-height: 72px; padding: 15px 18px; font-size: 13px; }
+    }
+  }
+}
+  
 .card {
     width: 55%;
     height: 40%;

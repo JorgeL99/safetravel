@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./encuenta.css";
 import Navbar from "../../Components/Navbar/Navbar";
 import QuizCard from "../../Components/QuizCard/QuizCard";
@@ -18,7 +18,7 @@ const Encuenta = () => {
       )}
 
       <Navbar />
-      <ul class="fondillo">
+      <ul className="fondillo">
         <li></li>
         <li></li>
         <li></li>

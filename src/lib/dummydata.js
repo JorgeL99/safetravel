@@ -1,4 +1,4 @@
-import Experta from "../Assets/Experta.jpeg";
+import Experta from "../assets/Experta.jpeg";
 export const listData = [
     {
       id: 1,

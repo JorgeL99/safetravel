@@ -1,94 +1,44 @@
-import React, {useState} from 'react'
-import './navbar.css'
-// import { SiYourtraveldottv } from "react-icons/si";
-import { AiFillCloseCircle } from "react-icons/ai";
-import { TbGridDots } from "react-icons/tb";
-import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import { FiHeart, FiMenu, FiX } from 'react-icons/fi';
+import { GiPlanetConquest } from 'react-icons/gi';
+import { Link, useLocation } from 'react-router-dom';
+import './navbar.css';
 
-import { GiPlanetConquest } from "react-icons/gi";
-const Navbar = () => {
+const Navbar = ({ favoriteCount = 0 }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation();
 
-  const[active,setActive] = useState('navBar')
-  const showNav =() =>{
-    setActive('navBar activeNavbar') 
-  }
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 20);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
-  const removeNav =() =>{
-    setActive('navBar') 
-  }
-
-  const [transparent,setTransparent]= useState('header')
-  const addBg = ()=>{
-    if(window.scrollY >= 10){
-      setTransparent('header activeHeader')
-    }
-    else{
-      setTransparent('header')
-    }
-  }
-  window.addEventListener('scroll',addBg)
+  useEffect(() => setIsOpen(false), [location.pathname]);
 
   return (
-    <section className='navBarSection'>
-      <div className={transparent}>
-        
-        <div className="logoDiv">
-          <Link to="/" className="logo">
-            <h1 className='flex'>
-            <GiPlanetConquest className="icon"/>SafeTravel
-            </h1>
-          </Link>
+    <header className={`modernHeader ${isScrolled ? 'scrolled' : ''}`}>
+      <nav className="modernNav container" aria-label="Navegación principal">
+        <Link to="/" className="brand"><GiPlanetConquest /><span>Safe<strong>Travel</strong></span></Link>
+        <button type="button" className="menuToggle" onClick={() => setIsOpen(!isOpen)} aria-expanded={isOpen} aria-label="Abrir menú">
+          {isOpen ? <FiX /> : <FiMenu />}
+        </button>
+        <div className={`navContent ${isOpen ? 'open' : ''}`}>
+          <a href="/#inicio">Inicio</a>
+          <a href="/#destinos">Destinos</a>
+          <a href="/#experiencias">Experiencias</a>
+          <a href="/#consejos">Consejos</a>
+          <Link to="/quiz" className="quizLink">Recomendador</Link>
+          <a href="/#destinos" className="favoritesLink" aria-label={`${favoriteCount} favoritos`}><FiHeart /><span>{favoriteCount}</span></a>
         </div>
+      </nav>
+    </header>
+  );
+};
 
-        <div className={active}>
-          <ul className='navLists flex'>
-
-            <li className="navItem">
-              <Link to="/" className='navLink'>Home</Link>
-              
-            </li>
-
-            <li className="navItem">
-              <a href='#' className='navLink'>Products</a>
-            </li>
-
-            <li className="navItem">
-              <a href='#' className='navLink'>Resources</a>
-            </li>
-
-            <li className="navItem">
-              <a href='#' className='navLink'>Contacts</a>
-            </li>
-
-            <li className="navItem">
-              <a href='#' className='navLink'>Blog</a>
-            </li>
-
-            <div className="headerBtns flex">
-              <button className='btn loginBtn'>
-                <a href='#'>Login</a>
-              </button>
-
-              <button className='btn'>
-                <a href='#'>Sign Up</a>
-              </button>
-
-            </div>
-          
-          </ul>
-
-          <div onClick={removeNav}className="closeNavbar">
-          <AiFillCloseCircle className="icon" />
-          </div>
-
-        </div>
-
-        <div onClick={showNav} className="toggleNavbar">
-        <TbGridDots className="icon"/>
-        </div>      
-      </div>
-    </section>
-  )
-}
+Navbar.propTypes = { favoriteCount: PropTypes.number };
 
 export default Navbar;

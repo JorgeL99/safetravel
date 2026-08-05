@@ -1,12 +1,12 @@
-import React, {useEffect} from 'react'
+import {useEffect} from 'react'
 import './about.css'
 
 
-import img from '../../Assets/seguridad.webp'
-import img2 from '../../Assets/salud.webp'
-import img3 from '../../Assets/organiza.webp'
+import img from '../../assets/seguridad.webp'
+import img2 from '../../assets/salud.webp'
+import img3 from '../../assets/organiza.webp'
 
-import video from '../../Assets/gifvi.mp4'
+import video from '../../assets/gifvi.mp4'
 
 import Aos from 'aos'
 import 'aos/dist/aos.css'
@@ -20,7 +20,7 @@ const About = () => {
 
 
   return (
-    <section className='about section'>
+    <section className='about section' id="consejos">
       <div className="secContainer">
         <h1 className="title">
           ¡TIPS VIAJEROS!
@@ -64,7 +64,7 @@ const About = () => {
                 </p>
               </div>
               <div data-aos="fade-left" data-aos-duration="2000" className="cardVideo">
-                <video src={video} autoPlay loop muted typeof="video/mp4"></video>
+                <video src={video} autoPlay loop muted playsInline></video>
               </div>
           </div>
         </div>

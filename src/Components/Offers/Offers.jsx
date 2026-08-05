@@ -1,4 +1,4 @@
-import React, {useEffect}  from 'react'
+import {useEffect}  from 'react'
 import './offers.css'
 
 // import { MdKingBed } from "react-icons/md";
@@ -7,13 +7,14 @@ import { FaWifi } from "react-icons/fa";
 import { MdAirportShuttle } from "react-icons/md";
 import { MdLocationOn } from "react-icons/md";
 import { BsArrowRightShort } from "react-icons/bs";
+import { Link } from 'react-router-dom';
 
 import { GiPathDistance } from "react-icons/gi";
 import { IoWine } from "react-icons/io5";
 
-import img from '../../Assets/citynazca.webp'
-import img1 from '../../Assets/cityparacas.webp'
-import img2 from '../../Assets/citynazca.webp'
+import img from '../../assets/citynazca.webp'
+import img1 from '../../assets/cityparacas.webp'
+import img2 from '../../assets/citynazca.webp'
 
 import Aos from 'aos'
 import 'aos/dist/aos.css'
@@ -25,6 +26,7 @@ const Offer=[
     destTitle: 'City Tours Ica',
     location: 'Ica',
     price: 's/28.00',
+    slug: 'ruta-del-pisco',
   },
   {
     id:2,
@@ -32,6 +34,7 @@ const Offer=[
     destTitle: 'Islas ballestas + Reserva Nacional',
     location: 'Paracas',
     price: 's/112.00',
+    slug: 'paracas',
   },
   {
     id:3,
@@ -39,6 +42,7 @@ const Offer=[
     destTitle: 'City Tours Nazca',
     location: 'Nazca',
     price: 's/126.00',
+    slug: 'lineas-de-nazca',
   },
   
 ]
@@ -51,7 +55,7 @@ const Offers = () => {
 
 
   return (
-    <section className='offer container section' >
+    <section className='offer container section' id="experiencias">
       <div className="secContainer">
         
         <div data-aos="fade-up" data-aos-duration="1000" className="secIntro">
@@ -65,9 +69,9 @@ const Offers = () => {
 
         <div className="mainContent grid">
           {
-            Offer.map(({id,imgSrc,destTitle,location,price})=>{
+            Offer.map(({id,imgSrc,destTitle,location,price,slug})=>{
               return(
-                <div data-aos="fade-up" data-aos-duration="1500" className="singleOffer">
+                <div key={id} data-aos="fade-up" data-aos-duration="1500" className="singleOffer">
                 <div className="destImage">
                   <img src={imgSrc} alt={destTitle} />
                   <span className="discount">
@@ -81,7 +85,7 @@ const Offers = () => {
                       {price}
                     </h4>
                     <span className="status">
-                      vence: 30/02
+                      cupos limitados
                     </span>
                   </div>
     
@@ -109,10 +113,10 @@ const Offers = () => {
                     <small>Ica, {location} </small>
                   </div>
     
-                  <button className='btn flex'>
-                    Mas información
+                  <Link to={`/destinos/${slug}`} className='btn flex'>
+                    Más información
                     <BsArrowRightShort className="icon"/>
-                  </button>
+                  </Link>
                 </div>
               </div>
               )

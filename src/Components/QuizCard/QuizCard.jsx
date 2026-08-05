@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import PropTypes from "prop-types";
 import "./quizcard.css";
 import LocationCard from "../Popular/LocationCard.jsx";
+import { destinations as destinationCatalog } from "../../data/destinations";
 
 const QuizCard = ({ onShowConfetti }) => {
   const questions = [
@@ -62,28 +64,30 @@ const QuizCard = ({ onShowConfetti }) => {
   });
   const [showResult, setShowResult] = useState(false);
   const [destinationResult, setDestinationResult] = useState("");
+  const recommendedDestination = destinationCatalog.find(({ province }) => province === destinationResult);
 
   const handleStartQuiz = () => {
     setQuizStarted(true);
   };
 
   const handleAnswerButtonClick = (destination) => {
-    setDestinations({
+    const updatedDestinations = {
       ...destinations,
       [destination]: destinations[destination] + 1,
-    });
+    };
+    setDestinations(updatedDestinations);
     const nextQuestion = currentQuestion + 1;
     if (nextQuestion < questions.length) {
       setCurrentQuestion(nextQuestion);
     } else {
       setShowResult(true);
-      calculateDestinationResult();
+      calculateDestinationResult(updatedDestinations);
     }
   };
 
-  const calculateDestinationResult = () => {
-    const maxDestination = Object.keys(destinations).reduce((a, b) =>
-      destinations[a] > destinations[b] ? a : b
+  const calculateDestinationResult = (results) => {
+    const maxDestination = Object.keys(results).reduce((a, b) =>
+      results[a] >= results[b] ? a : b
     );
     setDestinationResult(maxDestination);
     onShowConfetti(true);
@@ -125,7 +129,13 @@ const QuizCard = ({ onShowConfetti }) => {
           </div>
           <div>
            
-            {destinationResult && <LocationCard location={destinationResult} />}
+            {recommendedDestination && (
+              <LocationCard
+                destination={recommendedDestination}
+                isFavorite={false}
+                onFavorite={() => {}}
+              />
+            )}
             </div>
         </>
       ) : (
@@ -148,6 +158,10 @@ const QuizCard = ({ onShowConfetti }) => {
       )}
     </div>
   );
+};
+
+QuizCard.propTypes = {
+  onShowConfetti: PropTypes.func.isRequired,
 };
 
 export default QuizCard;

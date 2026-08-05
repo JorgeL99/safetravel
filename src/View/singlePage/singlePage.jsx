@@ -1,21 +1,21 @@
 import "./singlePage.css";
-import Slider from "../../Components/Slider/Slider";
+import Slider from "../../Components/slider/Slider";
 import { singlePostData, userData } from "../../lib/dummydata";
 import Navbar from "../../Components/Navbar/Navbar";
 
 
-import pinImage from "../../Assets/pin.png";
-import utilityImage from "../../Assets/utility.png";
-import petImage from "../../Assets/pet.png";
-import feeImage from "../../Assets/fee.png";
-// import sizeImage from "../../Assets/size.png";
-// import bedImage from "../../Assets/bed.png";
-// import bathImage from "../../Assets/bath.png";
-// import schoolImage from "../../Assets/school.png";
-// import busStopImage from "../../Assets/busStop.png";
-// import restaurantImage from "../../Assets/restaurant.png";
-// import chatImage from "../../Assets/chat.png";
-// import saveImage from "../../Assets/save.png";
+import pinImage from "../../assets/pin.png";
+import utilityImage from "../../assets/utility.png";
+import petImage from "../../assets/pet.png";
+import feeImage from "../../assets/fee.png";
+import sizeImage from "../../assets/size.png";
+import bedImage from "../../assets/bed.png";
+import bathImage from "../../assets/bath.png";
+import schoolImage from "../../assets/school.png";
+import busImage from "../../assets/bus.png";
+import restaurantImage from "../../assets/restaurant.png";
+import chatImage from "../../assets/chat.png";
+import saveImage from "../../assets/save.png";
 
 function SinglePage() {
   return (
@@ -74,36 +74,36 @@ function SinglePage() {
           <p className="title">Sizes</p>
           <div className="sizes">
             <div className="size">
-              <img src="/size.png" alt="" />
+              <img src={sizeImage} alt="" />
               <span>80 sqft</span>
             </div>
             <div className="size">
-              <img src="/bed.png" alt="" />
+              <img src={bedImage} alt="" />
               <span>2 beds</span>
             </div>
             <div className="size">
-              <img src="/bath.png" alt="" />
+              <img src={bathImage} alt="" />
               <span>1 bathroom</span>
             </div>
           </div>
           <p className="title">Nearby Places</p>
           <div className="listHorizontal">
             <div className="feature">
-              <img src="/school.png" alt="" />
+              <img src={schoolImage} alt="" />
               <div className="featureText">
                 <span>School</span>
                 <p>250m away</p>
               </div>
             </div>
             <div className="feature">
-              <img src="/pet.png" alt="" />
+              <img src={busImage} alt="" />
               <div className="featureText">
                 <span>Bus Stop</span>
                 <p>100m away</p>
               </div>
             </div>
             <div className="feature">
-              <img src="/fee.png" alt="" />
+              <img src={restaurantImage} alt="" />
               <div className="featureText">
                 <span>Restaurant</span>
                 <p>200m away</p>
@@ -112,15 +112,15 @@ function SinglePage() {
           </div>
           <p className="title">Location</p>
           <div className="mapContainer">
-            <div items={[singlePostData]} />
+            <p>Ubicación referencial: {singlePostData.city}</p>
           </div>
           <div className="buttons">
             <button>
-              <img src="/chat.png" alt="" />
+              <img src={chatImage} alt="" />
               Send a Message
             </button>
             <button>
-              <img src="/save.png" alt="" />
+              <img src={saveImage} alt="" />
               Save the Place
             </button>
           </div>

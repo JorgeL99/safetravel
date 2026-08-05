@@ -5,7 +5,8 @@
   gap: 20px;
 }
 .slider .fullSlider {
-  position: absolute;
+  position: fixed;
+  z-index: 1000;
   width: 100vw;
   height: 100vh;
   top: 0;
@@ -20,6 +21,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
 }
 .slider .fullSlider .arrow img {
   width: 50px;
@@ -45,6 +49,8 @@
   font-weight: bold;
   padding: 50px;
   cursor: pointer;
+  background: transparent;
+  border: 0;
 }
 .slider img {
   width: 100%;

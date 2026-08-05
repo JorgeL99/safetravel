@@ -145,15 +145,15 @@
 }
 @keyframes changeBackground {
   0% {
-    background-image: url("../../Assets/portada1.webp"); /* Cambiar a la primera imagen */
+    background-image: url("../../assets/portada1.webp"); /* Cambiar a la primera imagen */
   }
   33.33% {
-    background-image: url("../../Assets/portada4.webp"); /* Cambiar a la segunda imagen */
+    background-image: url("../../assets/portada4.webp"); /* Cambiar a la segunda imagen */
   }
   66.67% {
-    background-image: url("../../Assets/paracasport.webp"); /* Cambiar a la tercera imagen */
+    background-image: url("../../assets/paracasport.webp"); /* Cambiar a la tercera imagen */
   }
   100% {
-    background-image: url("../../Assets/imageee.webp"); /* Volver a la primera imagen */
+    background-image: url("../../assets/imageee.webp"); /* Volver a la primera imagen */
   }
 }/*# sourceMappingURL=home.css.map */

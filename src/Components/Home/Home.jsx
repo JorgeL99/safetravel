@@ -1,59 +1,57 @@
-import React, {useEffect} from 'react'
-import './home.css'
-import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types';
+import { FiMapPin, FiSearch, FiSliders } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
+import './home.css';
 
-import Aos from 'aos'
-import 'aos/dist/aos.css'
-
-const Home = () => {
-
-  useEffect(()=>{
-    Aos.init({duration:2000})
-  },[])
-
-  return (
-    <section className='home'>
-      <div className="secContainer container">
-        
-        <div className="homeText">
-
-          <h1 data-aos="fade-up" className="title">
-          Planifique su viaje con SafeTravel
-          </h1>
-
-          <p data-aos="fade-up" data-aos-duration="2500" className="subTitle">
-          ¡Viaja a tu ciudad favorita de manera respetuosa con el medio ambiente!
-          </p>
-          <button data-aos="fade-up" data-aos-duration="3000" className='btn'>
-            <Link to="/Quiz">Explora Ahora</Link>
-          </button>
-        </div>
-
-        <div className="homeCard grid">
-
-          <div data-aos="fade-right" data-aos-duration="2000" className="locationDiv">
-            <label htmlFor="location">Destino</label>
-            <input type="text" placeholder='¿Pa donde mi king?'/>
-          </div>
-
-          <div data-aos="fade-right" data-aos-duration="2500" className="distDiv">
-            <label htmlFor="distance">Localidad Actual</label>
-            <input type="text" placeholder='Ica'/>
-          </div>
-
-          <div  data-aos="fade-right" data-aos-duration="3000" className="priceDiv">
-            <label htmlFor="price">Monto</label>
-            <input type="text" placeholder='$120'/>
-          </div>
-          <button data-aos="fade-left" data-aos-duration="3000" className='btn'>
-            Buscar
-          </button>
-
-
-        </div>
+const Home = ({ filters, onFilterChange, onSearch }) => (
+  <section className="home" id="inicio">
+    <div className="homeOverlay" />
+    <div className="heroContent container">
+      <span className="eyebrow">Explora la región Ica</span>
+      <h1>Tu próxima historia empieza en el sur del Perú.</h1>
+      <p>Encuentra experiencias seguras, auténticas y pensadas para tu presupuesto.</p>
+      <div className="heroActions">
+        <Link to="/quiz" className="primaryAction">Encontrar mi destino</Link>
+        <a href="#destinos" className="secondaryAction">Ver experiencias</a>
       </div>
-    </section>
-  )
-}
+    </div>
+
+    <form className="travelSearch container" onSubmit={onSearch}>
+      <div className="searchField">
+        <FiSearch aria-hidden="true" />
+        <label htmlFor="query">¿Qué deseas conocer?</label>
+        <input id="query" name="query" value={filters.query} onChange={onFilterChange} placeholder="Ej. naturaleza o Huacachina" />
+      </div>
+      <div className="searchField">
+        <FiMapPin aria-hidden="true" />
+        <label htmlFor="province">Provincia</label>
+        <select id="province" name="province" value={filters.province} onChange={onFilterChange}>
+          <option value="Todos">Todas</option>
+          <option value="Ica">Ica</option>
+          <option value="Pisco">Pisco</option>
+          <option value="Nazca">Nazca</option>
+          <option value="Chincha">Chincha</option>
+        </select>
+      </div>
+      <div className="searchField">
+        <FiSliders aria-hidden="true" />
+        <label htmlFor="budget">Presupuesto máximo</label>
+        <select id="budget" name="budget" value={filters.budget} onChange={onFilterChange}>
+          <option value="200">Hasta S/ 200</option>
+          <option value="100">Hasta S/ 100</option>
+          <option value="60">Hasta S/ 60</option>
+          <option value="40">Hasta S/ 40</option>
+        </select>
+      </div>
+      <button type="submit" className="searchButton">Buscar experiencias</button>
+    </form>
+  </section>
+);
+
+Home.propTypes = {
+  filters: PropTypes.shape({ query: PropTypes.string, province: PropTypes.string, budget: PropTypes.string }).isRequired,
+  onFilterChange: PropTypes.func.isRequired,
+  onSearch: PropTypes.func.isRequired,
+};
 
 export default Home;

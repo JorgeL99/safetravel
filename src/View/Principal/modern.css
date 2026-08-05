@@ -1,0 +1,143 @@
+:root {
+  --brand: #0aa6a6;
+  --brand-dark: #087c80;
+  --ink: #102d35;
+  --muted: #60777d;
+  --surface: #f5f8f7;
+  --accent: #f29b51;
+  --radius: 22px;
+}
+
+html { scroll-behavior: smooth; }
+body { background: #fff; color: var(--ink); }
+button, input, select { font: inherit; }
+.container { max-width: 1180px; width: calc(100% - 40px) !important; margin-inline: auto !important; padding-inline: 0 !important; }
+.eyebrow { display: inline-block; color: #8ef0e4; font-size: .78rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+.eyebrow.dark { color: var(--brand-dark); }
+
+.modernHeader { position: fixed; inset: 0 0 auto; z-index: 100; transition: .25s ease; }
+.modernHeader.scrolled { background: rgba(255,255,255,.96); box-shadow: 0 8px 30px rgba(16,45,53,.1); backdrop-filter: blur(14px); }
+.modernNav { height: 78px; display: flex; align-items: center; justify-content: space-between; }
+.brand { color: #fff; display: flex; align-items: center; gap: 9px; font-size: 1.25rem; font-weight: 700; }
+.brand svg { color: #61ded4; font-size: 1.8rem; }
+.brand strong { color: #61ded4; }
+.scrolled .brand { color: var(--ink); }
+.navContent { display: flex; align-items: center; gap: 28px; }
+.navContent a { color: #fff; font-size: .9rem; font-weight: 600; }
+.scrolled .navContent a { color: var(--ink); }
+.navContent a:hover { color: #61ded4; }
+.quizLink { border: 1px solid rgba(255,255,255,.5); border-radius: 999px; padding: 10px 18px; }
+.scrolled .quizLink { border-color: #d7e5e3; }
+.favoritesLink { position: relative; display: flex; font-size: 1.25rem !important; }
+.favoritesLink span { position: absolute; top: -9px; right: -10px; min-width: 18px; height: 18px; border-radius: 50%; background: var(--accent); color: #fff; display: grid; place-items: center; font-size: .65rem; }
+.menuToggle { display: none; background: transparent; color: #fff; border: 0; font-size: 1.6rem; }
+.scrolled .menuToggle { color: var(--ink); }
+
+.home { min-height: 700px; height: auto; position: relative; padding: 150px 0 150px; background-position: center; isolation: isolate; }
+.homeOverlay { position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(4,30,37,.88) 0%, rgba(4,30,37,.62) 48%, rgba(4,30,37,.18) 100%); }
+.heroContent { color: #fff; }
+.heroContent h1 { max-width: 720px; margin: 16px 0 18px; font-size: clamp(2.6rem, 6vw, 5rem); line-height: 1.02; letter-spacing: -.055em; }
+.heroContent > p { max-width: 570px; color: rgba(255,255,255,.8); font-size: 1.08rem; line-height: 1.7; }
+.heroActions { display: flex; gap: 12px; margin-top: 30px; }
+.primaryAction, .secondaryAction { display: inline-flex; justify-content: center; align-items: center; min-height: 50px; padding: 0 22px; border-radius: 999px; font-weight: 700; }
+.primaryAction { background: var(--brand); color: #fff; box-shadow: 0 12px 25px rgba(10,166,166,.28); }
+.primaryAction:hover { background: var(--brand-dark); transform: translateY(-2px); }
+.secondaryAction { border: 1px solid rgba(255,255,255,.5); color: #fff; }
+
+.travelSearch { position: absolute; z-index: 2; left: 50%; bottom: -62px; transform: translateX(-50%); display: grid; grid-template-columns: 1.3fr .9fr .9fr auto; gap: 12px; padding: 18px !important; border-radius: var(--radius); background: #fff; box-shadow: 0 20px 60px rgba(16,45,53,.2); }
+.searchField { position: relative; display: grid; grid-template-columns: 24px 1fr; column-gap: 8px; padding: 8px 14px; border-right: 1px solid #e5eceb; }
+.searchField svg { grid-row: 1 / 3; color: var(--brand); margin-top: 12px; font-size: 1.1rem; }
+.searchField label { color: var(--ink); font-size: .72rem; font-weight: 800; }
+.searchField input, .searchField select { width: 100%; padding: 5px 0; color: var(--muted); background: transparent; border: 0; outline: 0; }
+.searchButton { padding: 0 25px; border: 0; border-radius: 15px; background: var(--ink); color: #fff; font-weight: 700; cursor: pointer; }
+.searchButton:hover { background: var(--brand-dark); }
+
+.destinationsSection { padding-top: 145px; }
+.sectionHeading { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 34px; }
+.sectionHeading h2, .detailContent h2 { margin: 8px 0; font-size: clamp(2rem, 4vw, 3.1rem); letter-spacing: -.04em; }
+.sectionHeading p { color: var(--muted); }
+.categoryFilters { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; }
+.categoryFilters button { padding: 9px 15px; color: var(--muted); background: var(--surface); border: 1px solid transparent; border-radius: 999px; cursor: pointer; }
+.categoryFilters button.active { color: #fff; background: var(--ink); }
+.destinationGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.destinationCard { overflow: hidden; background: #fff; border: 1px solid #e7eeee; border-radius: var(--radius); box-shadow: 0 12px 35px rgba(19,53,61,.07); transition: .25s ease; }
+.destinationCard:hover { transform: translateY(-7px); box-shadow: 0 20px 45px rgba(19,53,61,.13); }
+.destinationImage { position: relative; height: 230px; overflow: hidden; }
+.destinationImage img { height: 100%; object-fit: cover; transition: .4s ease; }
+.destinationCard:hover .destinationImage img { transform: scale(1.04); }
+.categoryBadge { position: absolute; left: 14px; top: 14px; padding: 7px 11px; border-radius: 999px; background: rgba(255,255,255,.9); color: var(--ink); font-size: .72rem; font-weight: 800; }
+.favoriteButton { position: absolute; top: 12px; right: 12px; width: 38px; height: 38px; display: grid; place-items: center; border: 0; border-radius: 50%; color: var(--ink); background: rgba(255,255,255,.9); cursor: pointer; }
+.favoriteButton.isFavorite { color: #fff; background: #e85d68; }
+.favoriteButton.isFavorite svg { fill: currentColor; }
+.destinationBody { padding: 20px; }
+.cardLocation { display: flex; align-items: center; gap: 5px; color: var(--brand-dark); font-size: .78rem; font-weight: 700; }
+.destinationBody h3 { margin: 6px 0 8px; font-size: 1.35rem; }
+.destinationBody > p { min-height: 63px; color: var(--muted); font-size: .88rem; line-height: 1.55; }
+.cardMeta { display: flex; gap: 18px; padding: 16px 0; color: var(--muted); font-size: .8rem; border-bottom: 1px solid #edf1f0; }
+.cardMeta span, .detailMeta span { display: flex; align-items: center; gap: 5px; }
+.cardMeta svg { color: var(--accent); }
+.cardFooter { display: flex; align-items: end; justify-content: space-between; padding-top: 16px; }
+.cardFooter div { display: grid; }
+.cardFooter small { color: var(--muted); }
+.cardFooter strong { font-size: 1.2rem; }
+.cardFooter a { display: flex; align-items: center; gap: 5px; color: var(--brand-dark); font-size: .85rem; font-weight: 800; }
+.emptyState { padding: 60px; border-radius: var(--radius); background: var(--surface); text-align: center; }
+
+.detailPage { padding-top: 0; }
+.detailHero { min-height: 560px; display: flex; align-items: end; color: #fff; background-position: center; background-size: cover; }
+.detailHeroContent { padding-bottom: 70px !important; }
+.backLink { display: inline-flex; gap: 6px; align-items: center; margin-bottom: 45px; color: #fff; }
+.detailHero h1 { margin: 12px 0; font-size: clamp(3rem, 7vw, 5.5rem); letter-spacing: -.055em; }
+.detailHero p { max-width: 650px; color: rgba(255,255,255,.82); font-size: 1.05rem; }
+.detailMeta { display: flex; gap: 20px; margin-top: 22px; }
+.detailContent { display: grid; grid-template-columns: 1.5fr .7fr; align-items: start; gap: 70px; }
+.detailContent > div > p { color: var(--muted); line-height: 1.8; }
+.detailContent h3 { margin-top: 30px; }
+.highlightList { display: grid; gap: 13px; margin-top: 15px; }
+.highlightList li { display: flex; align-items: center; gap: 9px; }
+.highlightList svg { color: var(--brand); }
+.bookingCard { position: sticky; top: 110px; display: grid; padding: 28px; border-radius: var(--radius); background: var(--surface); box-shadow: 0 16px 40px rgba(16,45,53,.09); }
+.bookingCard > span, .bookingCard p, .bookingCard small { color: var(--muted); }
+.bookingCard strong { margin: 5px 0; font-size: 2.5rem; }
+.bookingCard .primaryAction { margin: 20px 0 15px; }
+
+.modernFooter { margin-top: 60px; padding: 70px 0 24px; color: rgba(255,255,255,.72); background: #0b2931; }
+.footerGrid { display: grid; grid-template-columns: 1.5fr repeat(3, 1fr); gap: 45px; }
+.footerGrid > div { display: flex; align-items: flex-start; flex-direction: column; gap: 11px; }
+.footerGrid h3 { color: #fff; margin-bottom: 8px; font-size: 1rem; }
+.footerGrid a, .footerGrid span { display: flex; align-items: center; gap: 7px; color: rgba(255,255,255,.7); font-size: .85rem; }
+.footerGrid a:hover { color: #61ded4; }
+.footerBrand p { max-width: 330px; line-height: 1.7; }
+.footerBottom { display: flex; justify-content: space-between; margin-top: 50px !important; padding-top: 22px !important; border-top: 1px solid rgba(255,255,255,.1); font-size: .78rem; }
+
+@media (max-width: 900px) {
+  .menuToggle { display: block; }
+  .navContent { position: absolute; top: 68px; left: 20px; right: 20px; display: none; align-items: stretch; flex-direction: column; gap: 4px; padding: 18px; border-radius: 18px; background: #fff; box-shadow: 0 16px 40px rgba(16,45,53,.18); }
+  .navContent.open { display: flex; }
+  .navContent a, .scrolled .navContent a { color: var(--ink); padding: 10px; }
+  .travelSearch { grid-template-columns: 1fr 1fr; }
+  .searchButton { min-height: 52px; }
+  .destinationGrid { grid-template-columns: repeat(2, 1fr); }
+  .sectionHeading { align-items: flex-start; flex-direction: column; }
+  .categoryFilters { justify-content: flex-start; }
+}
+
+@media (max-width: 620px) {
+  .container { width: calc(100% - 28px) !important; }
+  .home { min-height: 790px; padding-top: 130px; }
+  .homeOverlay { background: rgba(4,30,37,.72); }
+  .heroContent h1 { font-size: 2.8rem; }
+  .heroActions { align-items: stretch; flex-direction: column; }
+  .travelSearch { bottom: -210px; grid-template-columns: 1fr; }
+  .searchField { border-right: 0; border-bottom: 1px solid #e5eceb; }
+  .destinationsSection { padding-top: 280px; }
+  .destinationGrid, .detailContent { grid-template-columns: 1fr; }
+  .destinationImage { height: 245px; }
+  .detailHero { min-height: 600px; }
+  .detailMeta { align-items: flex-start; flex-direction: column; gap: 9px; }
+  .detailContent { gap: 35px; }
+  .bookingCard { position: static; }
+  .footerGrid { grid-template-columns: 1fr 1fr; }
+  .footerBrand { grid-column: 1 / -1; }
+  .footerBottom { align-items: flex-start; flex-direction: column; gap: 6px; }
+}

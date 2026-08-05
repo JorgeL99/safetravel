@@ -1,12 +1,12 @@
-import React, {useEffect} from 'react'
+import {useEffect} from 'react'
 import './blog.css'
 
 import { BsArrowRightShort } from "react-icons/bs";
 
-import img from '../../Assets/gringos.webp'
-import img2 from '../../Assets/embarcacion.webp'
-import img3 from '../../Assets/catador.webp'
-import img4 from '../../Assets/casahaci.webp'
+import img from '../../assets/gringos.webp'
+import img2 from '../../assets/embarcacion.webp'
+import img3 from '../../assets/catador.webp'
+import img4 from '../../assets/casahaci.webp'
 
 import Aos from 'aos'
 import 'aos/dist/aos.css'
@@ -64,7 +64,7 @@ const Blog = () => {
           {
                 Posts.map(({id,postImage,title,desc})=>{
                   return(
-                  <div data-aos="fade-up" data-aos-duration="2000" className="singlePost grid">
+                  <div key={id} data-aos="fade-up" data-aos-duration="2000" className="singlePost grid">
                   <div className="imgDiv">
                     <img src={postImage} alt={title} />
                   </div>
@@ -75,8 +75,8 @@ const Blog = () => {
                     </h3>
                     <p data-aos="fade-up" data-aos-duration="4000" >{desc}</p>
                   </div>
-                  <a href="#" className="flex" data-aos="fade-up" data-aos-duration="4500">
-                    Read More
+                  <a href="#consejos" className="flex" data-aos="fade-up" data-aos-duration="4500">
+                    Consejos para viajar
                     <BsArrowRightShort className="icon"/>
                   </a>
               </div>
