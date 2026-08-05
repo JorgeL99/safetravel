@@ -6,6 +6,7 @@ import { destinations } from '../../data/destinations';
 import { useFavorites } from '../../hooks/useFavorites';
 import { usePlanner } from '../../hooks/usePlanner';
 import { useTripPreferences } from '../../hooks/useTripPreferences';
+import { calculateTripBudget } from '../../lib/travel-utils';
 import '../Principal/principal.css';
 import '../Principal/modern.css';
 
@@ -14,8 +15,7 @@ const PlannerPage = () => {
   const { itinerary, toggleItinerary, moveItem, clearItinerary } = usePlanner();
   const { preferences, updatePreference } = useTripPreferences();
   const planned = itinerary.map((id) => destinations.find((item) => item.id === id)).filter(Boolean);
-  const subtotal = planned.reduce((sum, item) => sum + item.price, 0);
-  const total = subtotal * preferences.travelers;
+  const { subtotal, total } = calculateTripBudget(destinations, itinerary, preferences.travelers);
 
   return <>
     <Navbar favoriteCount={favorites.length} plannerCount={itinerary.length} />

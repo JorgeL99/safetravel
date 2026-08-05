@@ -5,6 +5,7 @@ import LocationCard from "../Popular/LocationCard.jsx";
 import { destinations as destinationCatalog } from "../../data/destinations";
 import { useFavorites } from "../../hooks/useFavorites";
 import { usePlanner } from "../../hooks/usePlanner";
+import { calculateQuizResult } from "../../lib/travel-utils";
 
 const QuizCard = ({ onShowConfetti }) => {
   const questions = [
@@ -69,9 +70,7 @@ const QuizCard = ({ onShowConfetti }) => {
   const { favorites, toggleFavorite } = useFavorites();
   const { itinerary, toggleItinerary } = usePlanner();
   const recommendedDestination = destinationCatalog.find(({ province }) => province === destinationResult);
-  const rankedResults = Object.entries(destinations).sort(([, scoreA], [, scoreB]) => scoreB - scoreA);
-  const compatibility = Math.round(((rankedResults[0]?.[1] ?? 0) / questions.length) * 100);
-  const secondChoice = rankedResults.find(([province]) => province !== destinationResult)?.[0];
+  const { compatibility, secondChoice } = calculateQuizResult(destinations, questions.length);
 
   const handleStartQuiz = () => {
     setQuizStarted(true);
@@ -93,10 +92,7 @@ const QuizCard = ({ onShowConfetti }) => {
   };
 
   const calculateDestinationResult = (results) => {
-    const maxDestination = Object.keys(results).reduce((a, b) =>
-      results[a] >= results[b] ? a : b
-    );
-    setDestinationResult(maxDestination);
+    setDestinationResult(calculateQuizResult(results, questions.length).destination);
     onShowConfetti(true);
   };
 

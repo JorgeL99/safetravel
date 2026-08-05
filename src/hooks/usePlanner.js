@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { moveId, toggleId } from '../lib/travel-utils';
 
 const STORAGE_KEY = 'safetravel-itinerary';
 
@@ -10,17 +11,9 @@ export function usePlanner() {
 
   useEffect(() => localStorage.setItem(STORAGE_KEY, JSON.stringify(itinerary)), [itinerary]);
 
-  const toggleItinerary = (id) => setItinerary((current) => current.includes(id)
-    ? current.filter((itemId) => itemId !== id)
-    : [...current, id]);
+  const toggleItinerary = (id) => setItinerary((current) => toggleId(current, id));
 
-  const moveItem = (index, direction) => setItinerary((current) => {
-    const target = index + direction;
-    if (target < 0 || target >= current.length) return current;
-    const ordered = [...current];
-    [ordered[index], ordered[target]] = [ordered[target], ordered[index]];
-    return ordered;
-  });
+  const moveItem = (index, direction) => setItinerary((current) => moveId(current, index, direction));
 
   const clearItinerary = () => setItinerary([]);
 

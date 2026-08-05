@@ -11,6 +11,7 @@ import Blog from '../../Components/Blog/Blog';
 import { categories, destinations } from '../../data/destinations';
 import { useFavorites } from '../../hooks/useFavorites';
 import { usePlanner } from '../../hooks/usePlanner';
+import { filterDestinations } from '../../lib/travel-utils';
 
 const initialFilters = { query: '', province: 'Todos', budget: '200' };
 
@@ -20,16 +21,7 @@ const Principal = () => {
   const { favorites, toggleFavorite } = useFavorites();
   const { itinerary, toggleItinerary } = usePlanner();
 
-  const filteredDestinations = useMemo(() => {
-    const query = filters.query.trim().toLocaleLowerCase('es');
-    return destinations.filter((destination) => {
-      const searchable = `${destination.name} ${destination.province} ${destination.category} ${destination.summary}`.toLocaleLowerCase('es');
-      return (!query || searchable.includes(query))
-        && (filters.province === 'Todos' || destination.province === filters.province)
-        && destination.price <= Number(filters.budget)
-        && (activeCategory === 'Todos' || destination.category === activeCategory);
-    });
-  }, [filters, activeCategory]);
+  const filteredDestinations = useMemo(() => filterDestinations(destinations, filters, activeCategory), [filters, activeCategory]);
 
   const handleFilterChange = ({ target: { name, value } }) => {
     setFilters((current) => ({ ...current, [name]: value }));

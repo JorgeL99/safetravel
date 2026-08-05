@@ -26,6 +26,8 @@ export const destinations = [
     whatToBring: ['Bloqueador solar', 'Agua', 'Lentes de sol', 'Calzado cerrado'],
     safety: 'Contrata tubulares formales y sigue siempre las indicaciones del conductor.',
     accessibility: 'El malecón es accesible; las dunas tienen movilidad limitada.',
+    sourceName: 'PROMPERÚ · Destino Ica',
+    sourceUrl: 'https://meetings.peru.travel/es/destinos/ica',
   },
   {
     id: 2,
@@ -47,6 +49,8 @@ export const destinations = [
     whatToBring: ['Cortaviento', 'Bloqueador solar', 'Agua', 'Binoculares'],
     safety: 'Respeta los senderos señalizados y no te acerques a los bordes de los acantilados.',
     accessibility: 'Algunos miradores cuentan con acceso vehicular y superficies firmes.',
+    sourceName: 'SERNANP · Reserva Nacional de Paracas',
+    sourceUrl: 'https://visitaareasnaturales.sernanp.gob.pe/anps/reserva-nacional-de-paracas/',
   },
   {
     id: 3,
@@ -68,6 +72,8 @@ export const destinations = [
     whatToBring: ['Documento de identidad', 'Agua', 'Gorra', 'Comida ligera'],
     safety: 'Utiliza operadores autorizados y confirma las condiciones del vuelo.',
     accessibility: 'El aeródromo dispone de asistencia; consulta al operador antes de reservar.',
+    sourceName: 'UNESCO · Líneas y Geoglifos de Nasca y Palpa',
+    sourceUrl: 'https://whc.unesco.org/en/list/700',
   },
   {
     id: 4,
@@ -89,6 +95,8 @@ export const destinations = [
     whatToBring: ['Calzado cómodo', 'Agua', 'Protección solar'],
     safety: 'Recorre los túneles únicamente con guía y respeta las zonas restringidas.',
     accessibility: 'La casona tiene sectores accesibles y otros con escalones históricos.',
+    sourceName: 'MINCETUR · Inventario de Recursos Turísticos',
+    sourceUrl: 'https://consultasenlinea.mincetur.gob.pe/fichaInventario/index.aspx?cod_Ficha=242',
   },
   {
     id: 5,
@@ -110,6 +118,8 @@ export const destinations = [
     whatToBring: ['Documento de identidad', 'Agua', 'Sombrero'],
     safety: 'Consume responsablemente y utiliza transporte formal después de las catas.',
     accessibility: 'Varía por bodega; conviene consultar antes de la visita.',
+    sourceName: 'PROMPERÚ · Destino Ica',
+    sourceUrl: 'https://meetings.peru.travel/es/destinos/ica',
   },
   {
     id: 6,
@@ -131,6 +141,8 @@ export const destinations = [
     whatToBring: ['Cortaviento', 'Bloqueador solar', 'Gorra ajustada', 'Protector para cámara'],
     safety: 'Usa chaleco salvavidas y elige embarcaciones autorizadas.',
     accessibility: 'El embarque puede requerir asistencia; coordina con el operador.',
+    sourceName: 'SERNANP · Reserva Nacional de Paracas',
+    sourceUrl: 'https://visitaareasnaturales.sernanp.gob.pe/anps/reserva-nacional-de-paracas/',
   },
 ];
 

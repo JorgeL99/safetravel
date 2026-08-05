@@ -5,6 +5,7 @@ import SinglePage from './View/singlePage/singlePage';
 import DestinationPage from './View/Destination/DestinationPage';
 import FavoritesPage from './View/Favorites/FavoritesPage';
 import PlannerPage from './View/Planner/PlannerPage';
+import NotFoundPage from './View/NotFound/NotFoundPage';
 
 const AppRoutes = () => {
   return (
@@ -16,7 +17,7 @@ const AppRoutes = () => {
       <Route path='/destinos/:slug' element={<DestinationPage/>} />
       <Route path='/favoritos' element={<FavoritesPage/>} />
       <Route path='/itinerario' element={<PlannerPage/>} />
-      <Route path='*' element={<Principal/>} />
+      <Route path='*' element={<NotFoundPage/>} />
       
     </Routes>
     </>

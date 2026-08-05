@@ -141,9 +141,16 @@ button, input, select { font: inherit; }
 .packingCard ul { display: flex; flex-wrap: wrap; gap: 12px 20px; }
 .packingCard li { display: flex; align-items: center; gap: 6px; font-size: .85rem; }
 .packingCard svg { color: #61ded4; }
+.sourceNote { margin-top: 16px; color: var(--muted); font-size: .8rem; }
+.sourceNote a { color: var(--brand-dark); font-weight: 800; text-decoration: underline; }
 .mapSection { display: grid; grid-template-columns: .7fr 1.3fr; align-items: center; gap: 55px; }
 .mapSection h2 { margin: 9px 0; font-size: clamp(2rem,4vw,3rem); }
 .mapSection p { color: var(--muted); line-height: 1.7; }
+.notFoundPage { min-height: 75vh; display: flex; align-items: center; justify-content: center; flex-direction: column; padding-top: 130px; text-align: center; }
+.notFoundPage > svg { margin-bottom: 16px; color: var(--brand); font-size: 5rem; }
+.notFoundPage h1 { max-width: 760px; margin: 10px 0; font-size: clamp(2.8rem,7vw,5.5rem); line-height: 1; letter-spacing: -.055em; }
+.notFoundPage p { max-width: 590px; margin-bottom: 25px; color: var(--muted); line-height: 1.7; }
+.notFoundPage .primaryAction { gap: 7px; }
 
 @media print {
   .modernHeader, .modernFooter, .plannerControls, .clearButton { display: none !important; }

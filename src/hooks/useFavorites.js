@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { toggleId } from '../lib/travel-utils';
 
 const STORAGE_KEY = 'safetravel-favorites';
 
@@ -15,11 +16,7 @@ export function useFavorites() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(favorites));
   }, [favorites]);
 
-  const toggleFavorite = (id) => {
-    setFavorites((current) => current.includes(id)
-      ? current.filter((favoriteId) => favoriteId !== id)
-      : [...current, id]);
-  };
+  const toggleFavorite = (id) => setFavorites((current) => toggleId(current, id));
 
   return { favorites, toggleFavorite };
 }
