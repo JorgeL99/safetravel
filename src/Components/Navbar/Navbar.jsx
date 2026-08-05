@@ -22,7 +22,7 @@ const Navbar = ({ favoriteCount = 0, plannerCount = 0 }) => {
   return (
     <header className={`modernHeader ${isScrolled || needsSolidHeader ? 'scrolled' : ''}`}>
       <nav className="modernNav container" aria-label="Navegación principal">
-        <Link to="/" className="brand"><img src="/safetravel-icon.svg" alt="" /><span>Safe<strong>Travel</strong></span></Link>
+        <Link to="/" className="brand"><img src={`${import.meta.env.BASE_URL}safetravel-icon.svg`} alt="" /><span>Safe<strong>Travel</strong></span></Link>
         <button type="button" className="menuToggle" onClick={() => setIsOpen(!isOpen)} aria-expanded={isOpen} aria-label="Abrir menú">
           {isOpen ? <FiX /> : <FiMenu />}
         </button>
