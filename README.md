@@ -190,22 +190,7 @@ No deben ingresarse documentos, teléfonos, datos bancarios ni información sens
 - Usar un backend si se requieren usuarios, sincronización y moderación comunitaria.
 - Ampliar cobertura únicamente con información revisada y nuevas reglas comprobables.
 
-## 13. Publicación en Netlify
 
-El archivo `netlify.toml` configura `npm run build`, publica `dist`, conserva las rutas de React Router y agrega cabeceras de seguridad.
-
-Flujo recomendado:
-
-1. Subir el repositorio a GitHub.
-2. En Netlify seleccionar **Add new project → Import an existing project**.
-3. Autorizar GitHub y elegir el repositorio.
-4. Confirmar `npm run build` como comando y `dist` como directorio publicado.
-5. Seleccionar **Deploy**. Los siguientes `push` desplegarán automáticamente.
-
-Como alternativa manual, ejecutar `npm run build` y publicar la carpeta `dist`; ese método no ejecuta el proceso de construcción en Netlify.
-
-No deben guardarse claves privadas en variables `VITE_*`, porque Vite las incorpora al JavaScript visible para el navegador.
-
-## 14. Naturaleza académica
+## 13. Naturaleza académica
 
 SafeTravel demuestra adquisición y representación de conocimiento, inferencia ponderada, explicación de decisiones, persistencia del prototipo, diseño centrado en el usuario y verificación automatizada. No constituye un sistema de reservas ni reemplaza información oficial actualizada.
