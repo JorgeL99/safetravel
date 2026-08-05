@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { analyzeItinerary, buildItinerarySchedule, calculateDistanceKm, calculateQuizResult, calculateTripBudget, filterDestinations, moveId, optimizeItineraryRoute, toggleId } from './travel-utils';
+import { addScheduleDates, analyzeItinerary, buildItinerarySchedule, calculateDetailedTripBudget, calculateDistanceKm, calculateQuizResult, calculateTripBudget, filterDestinations, getAvailableTripDays, moveId, optimizeItineraryRoute, toggleId } from './travel-utils';
 
 const catalog = [
   { id: 1, name: 'Huacachina', province: 'Ica', category: 'Aventura', summary: 'Dunas', price: 45 },
@@ -46,6 +46,12 @@ describe('itinerary intelligence', () => {
     ]);
     expect(route.map(({ id }) => id)).toEqual([1, 3, 2]);
   });
+  it('asigna fechas de calendario sin depender de la zona horaria', () => {
+    const dated = addScheduleDates([{ id: 1, startDay: 1, endDay: 2 }], '2026-08-05');
+    expect(dated[0].startDateLabel).toMatch(/^5 ago/);
+    expect(dated[0].endDateLabel).toMatch(/^6 ago/);
+    expect(getAvailableTripDays('2026-08-05', '2026-08-08')).toBe(4);
+  });
 });
 
 describe('calculateQuizResult', () => {
@@ -65,5 +71,10 @@ describe('collections and planning', () => {
   });
   it('calcula subtotal y total por viajeros', () => {
     expect(calculateTripBudget(catalog, [1, 2], 3)).toEqual({ subtotal: 110, total: 330 });
+  });
+  it('desglosa actividades, alojamiento y traslados', () => {
+    expect(calculateDetailedTripBudget(catalog, [1, 2], { travelers: 2, lodgingPerNight: 120, transportPerPerson: 80 }, 3)).toEqual({
+      activitiesPerPerson: 110, activities: 220, nights: 2, lodging: 240, transport: 160, total: 620,
+    });
   });
 });

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 const STORAGE_KEY = 'safetravel-trip-preferences';
-const defaults = { startDate: '', travelers: 1, notes: '' };
+const defaults = { startDate: '', endDate: '', travelers: 1, lodgingPerNight: 0, transportPerPerson: 0, notes: '' };
 
 export function useTripPreferences() {
   const [preferences, setPreferences] = useState(() => {
@@ -12,7 +12,8 @@ export function useTripPreferences() {
   useEffect(() => localStorage.setItem(STORAGE_KEY, JSON.stringify(preferences)), [preferences]);
 
   const updatePreference = ({ target: { name, value } }) => {
-    setPreferences((current) => ({ ...current, [name]: name === 'travelers' ? Number(value) : value }));
+    const numericFields = ['travelers', 'lodgingPerNight', 'transportPerPerson'];
+    setPreferences((current) => ({ ...current, [name]: numericFields.includes(name) ? Number(value) : value }));
   };
 
   return { preferences, updatePreference };

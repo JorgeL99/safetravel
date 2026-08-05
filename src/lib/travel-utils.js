@@ -51,6 +51,37 @@ export function calculateTripBudget(catalog, itinerary, travelers = 1) {
   return { subtotal, total: subtotal * Math.max(1, Number(travelers) || 1) };
 }
 
+export function calculateDetailedTripBudget(catalog, itinerary, preferences, totalDays = 0) {
+  const travelers = Math.max(1, Number(preferences.travelers) || 1);
+  const activitiesPerPerson = itinerary.reduce((sum, id) => sum + (catalog.find((item) => item.id === id)?.price ?? 0), 0);
+  const activities = activitiesPerPerson * travelers;
+  const nights = Math.max(0, totalDays - 1);
+  const lodging = nights * Math.max(0, Number(preferences.lodgingPerNight) || 0);
+  const transport = travelers * Math.max(0, Number(preferences.transportPerPerson) || 0);
+  return { activitiesPerPerson, activities, nights, lodging, transport, total: activities + lodging + transport };
+}
+
+export function getAvailableTripDays(startDate, endDate) {
+  if (!startDate || !endDate) return null;
+  const start = new Date(`${startDate}T12:00:00`);
+  const end = new Date(`${endDate}T12:00:00`);
+  const days = Math.floor((end - start) / 86400000) + 1;
+  return Number.isFinite(days) ? days : null;
+}
+
+export function addScheduleDates(schedule, startDate) {
+  if (!startDate) return schedule;
+  const start = new Date(`${startDate}T12:00:00`);
+  if (Number.isNaN(start.getTime())) return schedule;
+  const format = new Intl.DateTimeFormat('es-PE', { day: 'numeric', month: 'short' });
+  const atDay = (day) => {
+    const date = new Date(start);
+    date.setDate(start.getDate() + day - 1);
+    return format.format(date);
+  };
+  return schedule.map((item) => ({ ...item, startDateLabel: atDay(item.startDay), endDateLabel: atDay(item.endDay) }));
+}
+
 export function getDurationDays(duration = '') {
   const match = String(duration).match(/(\d+)\s*d[ií]a/i);
   return match ? Number(match[1]) : 1;

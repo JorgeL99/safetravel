@@ -154,10 +154,23 @@ button, input, select { font: inherit; }
 .scheduleSummary strong { font-size: 1.05rem; }
 .scheduleSummary small { grid-column: 2 / -1; color: rgba(255,255,255,.7); }
 .plannerList .dayNumber { width: auto; min-width: 38px; padding-inline: 8px; border-radius: 999px; font-size: .72rem; }
-.tripPreferences { display: grid; grid-template-columns: .8fr .6fr 1.6fr; gap: 12px; margin-bottom: 22px; padding: 18px; border-radius: 18px; background: var(--surface); }
+.tripPreferences { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 16px; padding: 18px; border-radius: 18px; background: var(--surface); }
 .tripPreferences label { display: flex; flex-direction: column; gap: 6px; color: var(--ink); font-size: .76rem; font-weight: 800; }
+.tripPreferences label > small { color: var(--muted); font-size: .62rem; font-weight: 500; }
 .tripPreferences input, .tripPreferences textarea { width: 100%; padding: 11px 12px; color: var(--ink); background: #fff; border: 1px solid #dbe7e5; border-radius: 10px; outline: 0; resize: vertical; }
 .tripPreferences input:focus, .tripPreferences textarea:focus { border-color: var(--brand); box-shadow: 0 0 0 3px rgba(10,166,166,.12); }
+.tripPreferences .notesField { grid-column: 1 / -1; }
+.dateFeasibility { display: flex; align-items: flex-start; gap: 11px; margin-bottom: 16px; padding: 14px 16px; border: 1px solid; border-radius: 15px; }
+.dateFeasibility > svg { flex: 0 0 auto; margin-top: 2px; font-size: 1.15rem; }
+.dateFeasibility strong { font-size: .82rem; }
+.dateFeasibility p { margin-top: 3px; font-size: .72rem; line-height: 1.4; }
+.dateFeasibility.isFeasible { color: #17644e; border-color: #bfe1d3; background: #edf9f4; }
+.dateFeasibility.isConflict { color: #842f2f; border-color: #efc2c2; background: #fff0f0; }
+.budgetBreakdown { display: grid; gap: 9px; margin: 16px 0; padding: 14px 0; border-block: 1px solid rgba(255,255,255,.14); }
+.budgetBreakdown > div { display: flex; justify-content: space-between; gap: 12px; font-size: .74rem; }
+.budgetBreakdown dt { color: rgba(255,255,255,.65); }
+.budgetBreakdown dd { margin: 0; font-weight: 800; }
+.budgetCard > small { display: flex; align-items: center; gap: 5px; }
 .practicalSection { padding-top: 20px; }
 .practicalGrid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
 .practicalGrid article { min-height: 190px; padding: 24px; border-radius: 18px; background: var(--surface); }
@@ -186,6 +199,8 @@ button, input, select { font: inherit; }
   .plannerLayout { grid-template-columns: 1fr; }
   .budgetCard { color: #000; background: #fff; border: 2px solid #102d35; }
   .budgetCard > span, .budgetCard p, .budgetCard > small { color: #333; }
+  .budgetBreakdown { border-color: #ddd; }
+  .budgetBreakdown dt { color: #444; }
 }
 
 /* Unificación visual de las secciones originales */
