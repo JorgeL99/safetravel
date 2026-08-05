@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import LocationCard from './LocationCard';
 import './popular.css';
 
-const Popular = ({ destinations, categories, activeCategory, onCategoryChange, favorites, onFavorite }) => (
+const Popular = ({ destinations, categories, activeCategory, onCategoryChange, favorites, onFavorite, itinerary, onPlan }) => (
   <section className="destinationsSection section container" id="destinos">
     <div className="sectionHeading">
       <div>
@@ -22,7 +22,7 @@ const Popular = ({ destinations, categories, activeCategory, onCategoryChange, f
     {destinations.length > 0 ? (
       <div className="destinationGrid">
         {destinations.map((destination) => (
-          <LocationCard key={destination.id} destination={destination} isFavorite={favorites.includes(destination.id)} onFavorite={onFavorite} />
+          <LocationCard key={destination.id} destination={destination} isFavorite={favorites.includes(destination.id)} onFavorite={onFavorite} isPlanned={itinerary.includes(destination.id)} onPlan={onPlan} />
         ))}
       </div>
     ) : (
@@ -38,6 +38,8 @@ Popular.propTypes = {
   onCategoryChange: PropTypes.func.isRequired,
   favorites: PropTypes.arrayOf(PropTypes.number).isRequired,
   onFavorite: PropTypes.func.isRequired,
+  itinerary: PropTypes.arrayOf(PropTypes.number).isRequired,
+  onPlan: PropTypes.func.isRequired,
 };
 
 export default Popular;

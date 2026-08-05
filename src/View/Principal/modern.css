@@ -100,6 +100,44 @@ button, input, select { font: inherit; }
 .bookingCard > span, .bookingCard p, .bookingCard small { color: var(--muted); }
 .bookingCard strong { margin: 5px 0; font-size: 2.5rem; }
 .bookingCard .primaryAction { margin: 20px 0 15px; }
+.inlinePlan, .planAction { width: 100%; display: flex; align-items: center; justify-content: center; gap: 7px; margin-top: 14px; padding: 11px 14px; color: var(--brand-dark); background: #eff8f7; border: 1px solid #d6e9e6; border-radius: 12px; font-weight: 700; cursor: pointer; }
+.inlinePlan.active, .planAction:hover { color: #fff; background: var(--brand-dark); }
+.collectionPage { min-height: 70vh; padding-top: 145px; }
+.collectionPage > h1 { margin: 8px 0; font-size: clamp(2.7rem, 6vw, 4.8rem); letter-spacing: -.055em; }
+.collectionPage > p { margin-bottom: 40px; color: var(--muted); }
+.collectionItem { display: flex; flex-direction: column; }
+.collectionItem .destinationCard { flex: 1; }
+.emptyState.large { min-height: 380px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 12px; }
+.emptyState.large > svg { color: var(--brand); font-size: 3rem; }
+.emptyState.large .primaryAction { margin-top: 10px; }
+.plannerLayout { display: grid; grid-template-columns: 1.5fr .7fr; gap: 30px; align-items: start; }
+.plannerList { display: grid; gap: 14px; }
+.plannerList li { display: grid; grid-template-columns: 42px 120px 1fr auto; align-items: center; gap: 18px; padding: 16px; border: 1px solid #e4ecea; border-radius: 18px; background: #fff; box-shadow: 0 9px 28px rgba(16,45,53,.06); }
+.plannerList img { width: 120px; height: 90px; border-radius: 12px; object-fit: cover; }
+.dayNumber { width: 36px; height: 36px; display: grid; place-items: center; border-radius: 50%; color: #fff; background: var(--brand); font-weight: 800; }
+.plannerList small { color: var(--muted); }
+.plannerList h2 { margin: 3px 0; font-size: 1.15rem; }
+.plannerControls { display: flex; gap: 5px; }
+.plannerControls button { width: 34px; height: 34px; display: grid; place-items: center; border: 0; border-radius: 9px; color: var(--ink); background: var(--surface); cursor: pointer; }
+.plannerControls button:disabled { opacity: .3; cursor: not-allowed; }
+.budgetCard { position: sticky; top: 105px; display: grid; padding: 28px; border-radius: var(--radius); background: var(--ink); color: #fff; }
+.budgetCard > span, .budgetCard p { color: rgba(255,255,255,.65); }
+.budgetCard > strong { margin: 5px 0; font-size: 3rem; }
+.budgetCard .primaryAction { margin-top: 20px; border: 0; cursor: pointer; }
+.clearButton { margin-top: 10px; padding: 10px; color: rgba(255,255,255,.7); background: transparent; border: 0; cursor: pointer; }
+
+/* Unificación visual de las secciones originales */
+.offer, .about, .blog { scroll-margin-top: 90px; }
+.offer .singleOffer, .blog .singlePost { border-radius: var(--radius) !important; box-shadow: 0 12px 35px rgba(19,53,61,.08) !important; overflow: hidden; }
+.offer .singleOffer .destImage { height: 230px; }
+.offer .singleOffer .offerBody { padding: 20px; }
+.offer .singleOffer .btn { width: max-content; color: #fff; text-decoration: none; }
+.about .secContainer > .title { font-size: clamp(2rem,4vw,3rem); color: var(--ink); }
+.about .singleItem { padding: 25px; border-radius: var(--radius); background: var(--surface); }
+.about .secContainer .videoCard { border-radius: var(--radius); overflow: hidden; }
+.blog .mainContainer .singlePost { padding-bottom: 20px; background: #fff; }
+.blog .postDetails, .blog .singlePost > a { margin-inline: 20px; }
+.compatibility strong { color: var(--brand-dark); font-size: 1.2rem; }
 
 .modernFooter { margin-top: 60px; padding: 70px 0 24px; color: rgba(255,255,255,.72); background: #0b2931; }
 .footerGrid { display: grid; grid-template-columns: 1.5fr repeat(3, 1fr); gap: 45px; }
@@ -137,6 +175,11 @@ button, input, select { font: inherit; }
   .detailMeta { align-items: flex-start; flex-direction: column; gap: 9px; }
   .detailContent { gap: 35px; }
   .bookingCard { position: static; }
+  .plannerLayout { grid-template-columns: 1fr; }
+  .budgetCard { position: static; }
+  .plannerList li { grid-template-columns: 36px 82px 1fr; gap: 10px; }
+  .plannerList img { width: 82px; height: 76px; }
+  .plannerControls { grid-column: 2 / -1; justify-content: flex-end; }
   .footerGrid { grid-template-columns: 1fr 1fr; }
   .footerBrand { grid-column: 1 / -1; }
   .footerBottom { align-items: flex-start; flex-direction: column; gap: 6px; }

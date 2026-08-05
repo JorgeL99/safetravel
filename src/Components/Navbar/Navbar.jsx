@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { FiHeart, FiMenu, FiX } from 'react-icons/fi';
+import { FiHeart, FiMap, FiMenu, FiX } from 'react-icons/fi';
 import { GiPlanetConquest } from 'react-icons/gi';
 import { Link, useLocation } from 'react-router-dom';
 import './navbar.css';
 
-const Navbar = ({ favoriteCount = 0 }) => {
+const Navbar = ({ favoriteCount = 0, plannerCount = 0 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
@@ -32,13 +32,14 @@ const Navbar = ({ favoriteCount = 0 }) => {
           <a href="/#experiencias">Experiencias</a>
           <a href="/#consejos">Consejos</a>
           <Link to="/quiz" className="quizLink">Recomendador</Link>
-          <a href="/#destinos" className="favoritesLink" aria-label={`${favoriteCount} favoritos`}><FiHeart /><span>{favoriteCount}</span></a>
+          <Link to="/favoritos" className="favoritesLink" aria-label={`${favoriteCount} favoritos`}><FiHeart /><span>{favoriteCount}</span></Link>
+          <Link to="/itinerario" className="favoritesLink" aria-label={`${plannerCount} actividades en el itinerario`}><FiMap /><span>{plannerCount}</span></Link>
         </div>
       </nav>
     </header>
   );
 };
 
-Navbar.propTypes = { favoriteCount: PropTypes.number };
+Navbar.propTypes = { favoriteCount: PropTypes.number, plannerCount: PropTypes.number };
 
 export default Navbar;

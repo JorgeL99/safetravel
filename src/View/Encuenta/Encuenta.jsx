@@ -3,9 +3,13 @@ import "./encuenta.css";
 import Navbar from "../../Components/Navbar/Navbar";
 import QuizCard from "../../Components/QuizCard/QuizCard";
 import Confetti from "react-confetti";
+import { useFavorites } from "../../hooks/useFavorites";
+import { usePlanner } from "../../hooks/usePlanner";
 
 const Encuenta = () => {
   const [showConfetti, setShowConfetti] = useState(false);
+  const { favorites } = useFavorites();
+  const { itinerary } = usePlanner();
 
   const handleShowConfetti = (show) => {
     setShowConfetti(show);
@@ -17,7 +21,7 @@ const Encuenta = () => {
         <Confetti width={window.innerWidth} height={window.innerHeight} />
       )}
 
-      <Navbar />
+      <Navbar favoriteCount={favorites.length} plannerCount={itinerary.length} />
       <ul className="fondillo">
         <li></li>
         <li></li>

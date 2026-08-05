@@ -22,13 +22,13 @@ const About = () => {
   return (
     <section className='about section' id="consejos">
       <div className="secContainer">
-        <h1 className="title">
+        <h2 className="title">
           ¡TIPS VIAJEROS!
-        </h1>
+        </h2>
 
         <div className="mainContent container grid">
           <div data-aos="fade-up" data-aos-duration="2000" className="singleItem">
-            <img src={img2} alt="Image Name" />
+            <img src={img2} alt="Protección y cuidado de la salud durante un viaje" />
             <h3>Cuidado de la salud</h3>
             <p>
             Una de las precauciones a tener en cuenta es el uso de bloqueador solar, gorros o sombrilla para las altas horas del día. <br></br>
@@ -36,7 +36,7 @@ const About = () => {
             </p>
           </div>
           <div data-aos="fade-up" data-aos-duration="2500" className="singleItem">
-            <img src={img3} alt="Image Name" />
+            <img src={img3} alt="Planificación anticipada de un viaje" />
             <h3>Programa con anticipación</h3>
             <p>
             Es muy importante que te programes con anticipación ante cualquier viaje que puedas hacer. <br></br> Asegurarte de adquirir cualquier 
@@ -44,7 +44,7 @@ const About = () => {
             </p>
           </div>
           <div data-aos="fade-up" data-aos-duration="3000" className="singleItem">
-            <img src={img} alt="Image Name" />
+            <img src={img} alt="Recomendaciones para la seguridad personal" />
             <h3>Seguridad personal</h3>
             <p>
             Si vas a llevar consigo pertenencias importantes como pasaportes, tarjetas de crédito y dinero en efectivo, se recomienda llevar lo necesario e indispensable como tambien evitar su exposición en lugares públicos y concurridos.

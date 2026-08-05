@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import "./quizcard.css";
 import LocationCard from "../Popular/LocationCard.jsx";
 import { destinations as destinationCatalog } from "../../data/destinations";
+import { useFavorites } from "../../hooks/useFavorites";
+import { usePlanner } from "../../hooks/usePlanner";
 
 const QuizCard = ({ onShowConfetti }) => {
   const questions = [
@@ -64,7 +66,12 @@ const QuizCard = ({ onShowConfetti }) => {
   });
   const [showResult, setShowResult] = useState(false);
   const [destinationResult, setDestinationResult] = useState("");
+  const { favorites, toggleFavorite } = useFavorites();
+  const { itinerary, toggleItinerary } = usePlanner();
   const recommendedDestination = destinationCatalog.find(({ province }) => province === destinationResult);
+  const rankedResults = Object.entries(destinations).sort(([, scoreA], [, scoreB]) => scoreB - scoreA);
+  const compatibility = Math.round(((rankedResults[0]?.[1] ?? 0) / questions.length) * 100);
+  const secondChoice = rankedResults.find(([province]) => province !== destinationResult)?.[0];
 
   const handleStartQuiz = () => {
     setQuizStarted(true);
@@ -122,7 +129,9 @@ const QuizCard = ({ onShowConfetti }) => {
         <>
           <div className="result">
             <h2>Tu destino turístico ideal en Perú es: {destinationResult}</h2>
-            <p>¡Gracias por completar el quiz!</p>
+            <p className="compatibility"><strong>{compatibility}% de compatibilidad</strong></p>
+            <p>Te lo recomendamos porque tus respuestas muestran afinidad con las experiencias, presupuesto y estilo de viaje de {destinationResult}.</p>
+            {secondChoice && <small>Tu segunda alternativa sugerida es {secondChoice}.</small>}
           </div>
           <div className="ctn-inicio">
             <button className="btn-prueba" onClick={handleRestartQuiz}>Reiniciar</button>
@@ -132,8 +141,10 @@ const QuizCard = ({ onShowConfetti }) => {
             {recommendedDestination && (
               <LocationCard
                 destination={recommendedDestination}
-                isFavorite={false}
-                onFavorite={() => {}}
+                isFavorite={favorites.includes(recommendedDestination.id)}
+                onFavorite={toggleFavorite}
+                isPlanned={itinerary.includes(recommendedDestination.id)}
+                onPlan={toggleItinerary}
               />
             )}
             </div>

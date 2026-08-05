@@ -10,6 +10,7 @@ import Footer from '../../Components/Footer/Footer';
 import Blog from '../../Components/Blog/Blog';
 import { categories, destinations } from '../../data/destinations';
 import { useFavorites } from '../../hooks/useFavorites';
+import { usePlanner } from '../../hooks/usePlanner';
 
 const initialFilters = { query: '', province: 'Todos', budget: '200' };
 
@@ -17,6 +18,7 @@ const Principal = () => {
   const [filters, setFilters] = useState(initialFilters);
   const [activeCategory, setActiveCategory] = useState('Todos');
   const { favorites, toggleFavorite } = useFavorites();
+  const { itinerary, toggleItinerary } = usePlanner();
 
   const filteredDestinations = useMemo(() => {
     const query = filters.query.trim().toLocaleLowerCase('es');
@@ -40,7 +42,7 @@ const Principal = () => {
 
   return (
     <>
-      <Navbar favoriteCount={favorites.length} />
+      <Navbar favoriteCount={favorites.length} plannerCount={itinerary.length} />
       <main>
         <Home filters={filters} onFilterChange={handleFilterChange} onSearch={handleSearch} />
         <Popular
@@ -50,6 +52,8 @@ const Principal = () => {
           onCategoryChange={setActiveCategory}
           favorites={favorites}
           onFavorite={toggleFavorite}
+          itinerary={itinerary}
+          onPlan={toggleItinerary}
         />
         <Offers />
         <About />

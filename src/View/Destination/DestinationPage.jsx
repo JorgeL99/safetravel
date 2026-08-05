@@ -3,17 +3,21 @@ import { FiArrowLeft, FiCheckCircle, FiClock, FiMapPin, FiStar } from 'react-ico
 import Navbar from '../../Components/Navbar/Navbar';
 import Footer from '../../Components/Footer/Footer';
 import { findDestination } from '../../data/destinations';
+import { useFavorites } from '../../hooks/useFavorites';
+import { usePlanner } from '../../hooks/usePlanner';
 import '../Principal/principal.css';
 import '../Principal/modern.css';
 
 const DestinationPage = () => {
   const { slug } = useParams();
   const destination = findDestination(slug);
+  const { favorites, toggleFavorite } = useFavorites();
+  const { itinerary, toggleItinerary } = usePlanner();
   if (!destination) return <Navigate to="/" replace />;
 
   return (
     <>
-      <Navbar />
+      <Navbar favoriteCount={favorites.length} plannerCount={itinerary.length} />
       <main className="detailPage">
         <div className="detailHero" style={{ backgroundImage: `linear-gradient(90deg, rgba(4,24,31,.88), rgba(4,24,31,.18)), url(${destination.image})` }}>
           <div className="container detailHeroContent">
@@ -36,6 +40,8 @@ const DestinationPage = () => {
             <span>Precio referencial desde</span><strong>S/ {destination.price}</strong>
             <p>Por persona · sujeto a disponibilidad</p>
             <Link to="/quiz" className="primaryAction">Ver si es para mí</Link>
+            <button type="button" className="planAction" onClick={() => toggleFavorite(destination.id)}>{favorites.includes(destination.id) ? 'Quitar de favoritos' : 'Guardar en favoritos'}</button>
+            <button type="button" className="planAction" onClick={() => toggleItinerary(destination.id)}>{itinerary.includes(destination.id) ? 'Quitar del itinerario' : 'Agregar al itinerario'}</button>
             <small>SafeTravel no procesa pagos en esta versión.</small>
           </aside>
         </section>

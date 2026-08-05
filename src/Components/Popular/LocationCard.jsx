@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
-import { FiArrowUpRight, FiClock, FiHeart, FiMapPin, FiStar } from 'react-icons/fi';
+import { FiArrowUpRight, FiClock, FiHeart, FiMap, FiMapPin, FiStar } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import './locationcard.css';
 
-const LocationCard = ({ destination, isFavorite, onFavorite }) => (
+const LocationCard = ({ destination, isFavorite, onFavorite, isPlanned = false, onPlan }) => (
   <article className="destinationCard">
     <div className="destinationImage">
       <img src={destination.image} alt={destination.name} loading="lazy" />
@@ -29,6 +29,7 @@ const LocationCard = ({ destination, isFavorite, onFavorite }) => (
         <div><small>Desde</small><strong>S/ {destination.price}</strong></div>
         <Link to={`/destinos/${destination.slug}`}>Ver detalle <FiArrowUpRight /></Link>
       </div>
+      {onPlan && <button type="button" className={`inlinePlan ${isPlanned ? 'active' : ''}`} onClick={() => onPlan(destination.id)}><FiMap /> {isPlanned ? 'En mi itinerario' : 'Agregar al itinerario'}</button>}
     </div>
   </article>
 );
@@ -41,6 +42,8 @@ LocationCard.propTypes = {
   }).isRequired,
   isFavorite: PropTypes.bool.isRequired,
   onFavorite: PropTypes.func.isRequired,
+  isPlanned: PropTypes.bool,
+  onPlan: PropTypes.func,
 };
 
 export default LocationCard;
