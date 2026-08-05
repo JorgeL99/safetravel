@@ -9,6 +9,7 @@ const Navbar = ({ favoriteCount = 0, plannerCount = 0 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+  const needsSolidHeader = location.pathname !== '/';
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 20);
@@ -20,7 +21,7 @@ const Navbar = ({ favoriteCount = 0, plannerCount = 0 }) => {
   useEffect(() => setIsOpen(false), [location.pathname]);
 
   return (
-    <header className={`modernHeader ${isScrolled ? 'scrolled' : ''}`}>
+    <header className={`modernHeader ${isScrolled || needsSolidHeader ? 'scrolled' : ''}`}>
       <nav className="modernNav container" aria-label="Navegación principal">
         <Link to="/" className="brand"><GiPlanetConquest /><span>Safe<strong>Travel</strong></span></Link>
         <button type="button" className="menuToggle" onClick={() => setIsOpen(!isOpen)} aria-expanded={isOpen} aria-label="Abrir menú">

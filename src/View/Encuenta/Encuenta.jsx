@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./encuenta.css";
 import Navbar from "../../Components/Navbar/Navbar";
 import QuizCard from "../../Components/QuizCard/QuizCard";
@@ -15,10 +15,16 @@ const Encuenta = () => {
     setShowConfetti(show);
   };
 
+  useEffect(() => {
+    if (!showConfetti) return undefined;
+    const timer = window.setTimeout(() => setShowConfetti(false), 5500);
+    return () => window.clearTimeout(timer);
+  }, [showConfetti]);
+
   return (
     <>
       {showConfetti && (
-        <Confetti width={window.innerWidth} height={window.innerHeight} />
+        <Confetti width={window.innerWidth} height={window.innerHeight} numberOfPieces={180} recycle={false} gravity={0.16} />
       )}
 
       <Navbar favoriteCount={favorites.length} plannerCount={itinerary.length} />

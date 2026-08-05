@@ -350,6 +350,27 @@
 .card .ctn-button .btn-prueba:active { transform: translateY(2px) scale(0.99); }
 .card .result { margin: 20px 0; padding-inline: 15px; text-align: center; }
 .card .destinationCard { width: min(390px, 100%); margin: 0 auto; text-align: left; }
+.card.resultCard {
+  width: min(680px, calc(100% - 40px));
+  min-height: auto;
+  margin-top: 8px;
+  margin-bottom: 32px;
+  padding: 20px 28px 24px;
+  gap: 10px;
+  align-content: start;
+}
+.resultCard .result { margin: 0; }
+.resultCard .result h2 { font-size: clamp(1.35rem, 2.4vw, 1.8rem); line-height: 1.2; }
+.resultCard .result p { max-width: 590px; margin: 6px auto; font-size: .9rem; line-height: 1.45; }
+.resultCard .ctn-inicio .btn-prueba { padding: 10px 25px; }
+.resultCard .destinationCard { width: min(330px, 100%); }
+.resultCard .destinationImage { height: 140px; }
+.resultCard .destinationBody { padding: 13px; }
+.resultCard .destinationBody h3 { font-size: 1.2rem; }
+.resultCard .destinationBody > p { min-height: 0; display: -webkit-box; overflow: hidden; font-size: .8rem; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+.resultCard .cardMeta { padding: 8px 0; }
+.resultCard .cardFooter { padding-top: 8px; }
+.resultCard .inlinePlan { margin-top: 10px; padding: 9px 12px; }
 
 @media (max-width: 700px) {
   .card {
@@ -361,6 +382,8 @@
   }
   .card .ctn-button { grid-template-columns: 1fr; }
   .card .ctn-button .btn-prueba { min-height: 72px; padding: 15px 18px; font-size: 13px; }
+  .card.resultCard { width: calc(100% - 24px); margin-top: 90px; padding: 20px 14px 24px; }
+  .resultCard .destinationCard { width: 100%; }
 }
 
 @media (prefers-reduced-motion: reduce) {

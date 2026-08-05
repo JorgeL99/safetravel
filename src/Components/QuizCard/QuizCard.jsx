@@ -106,7 +106,7 @@ const QuizCard = ({ onShowConfetti }) => {
   };
 
   return (
-    <div className="card">
+    <div className={`card ${showResult ? 'resultCard' : ''}`}>
       {quizStarted && !showResult && (
         <div className="progress-bar">
           <div className="progress" style={{ width: `${((currentQuestion + 1) / questions.length) * 100}%` }}></div>

@@ -51,6 +51,15 @@
   }
   .result { margin: 20px 0; padding-inline: 15px; text-align: center; }
   .destinationCard { width: min(390px, 100%); margin: 0 auto; text-align: left; }
+  &.resultCard {
+    width: min(680px, calc(100% - 40px));
+    min-height: auto;
+    margin-top: 8px;
+    margin-bottom: 32px;
+    padding: 20px 28px 24px;
+    gap: 10px;
+    align-content: start;
+  }
 }
 
 @media (max-width: 700px) {

@@ -33,13 +33,13 @@
   top: 0;
   left: 0;
   margin: 0;
-  padding: 100px 0 40px;
+  padding: 90px 0 40px;
   background: #a1c3c5;
   overflow-x: hidden;
   overflow-y: auto;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 }
 .fondillo li {
   position: absolute;
@@ -49,6 +49,16 @@
   height: 20px;
   background: rgba(255, 255, 255, 0.322);
   animation: animate 19s linear infinite;
+  z-index: 0;
+  max-width: 82px;
+  max-height: 82px;
+  opacity: 0.55;
+  border-radius: 18px;
+  pointer-events: none;
+}
+
+.fondillo .card {
+  z-index: 1;
 }
 
 .fondillo li:nth-child(0) {
