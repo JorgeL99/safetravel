@@ -22,15 +22,15 @@ const Navbar = ({ favoriteCount = 0, plannerCount = 0 }) => {
   return (
     <header className={`modernHeader ${isScrolled || needsSolidHeader ? 'scrolled' : ''}`}>
       <nav className="modernNav container" aria-label="Navegación principal">
-        <Link to="/" className="brand"><img src={`${import.meta.env.BASE_URL}safetravel-icon.svg`} alt="" /><span>Safe<strong>Travel</strong></span></Link>
+        <Link to="/#inicio" className="brand"><img src={`${import.meta.env.BASE_URL}safetravel-icon.svg`} alt="" /><span>Safe<strong>Travel</strong></span></Link>
         <button type="button" className="menuToggle" onClick={() => setIsOpen(!isOpen)} aria-expanded={isOpen} aria-label="Abrir menú">
           {isOpen ? <FiX /> : <FiMenu />}
         </button>
         <div className={`navContent ${isOpen ? 'open' : ''}`}>
-          <a href="/#inicio">Inicio</a>
-          <a href="/#destinos">Destinos</a>
-          <a href="/#experiencias">Experiencias</a>
-          <a href="/#consejos">Consejos</a>
+          <Link to="/#inicio">Inicio</Link>
+          <Link to="/#destinos">Destinos</Link>
+          <Link to="/#experiencias">Experiencias</Link>
+          <Link to="/#consejos">Consejos</Link>
           <Link to="/quiz" className="quizLink">Recomendador</Link>
           <Link to="/favoritos" className="favoritesLink" aria-label={`${favoriteCount} favoritos`}><FiHeart /><span>{favoriteCount}</span></Link>
           <Link to="/itinerario" className="favoritesLink" aria-label={`${plannerCount} actividades en el itinerario`}><FiMap /><span>{plannerCount}</span></Link>

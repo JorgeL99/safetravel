@@ -29,7 +29,7 @@ const Offers = () => {
   useEffect(() => { Aos.init({ duration: 700, once: true }); }, []);
   const moveCarousel = (direction) => carouselRef.current?.scrollBy({ left: direction * Math.min(380, carouselRef.current.clientWidth * .85), behavior: 'smooth' });
   return (
-    <section className="offer container section" id="experiencias">
+    <section className="offer container section" id="ofertas">
       <div className="secContainer">
         <div className="secIntro" data-aos="fade-up">
           <span className="eyebrow dark">Experiencias seleccionadas</span>

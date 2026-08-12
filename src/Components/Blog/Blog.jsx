@@ -75,7 +75,7 @@ const Blog = () => {
   const posts = [...communityPosts, ...initialPosts];
   const carouselPosts = [...posts, ...posts];
   return (
-    <section className="blog container section" id="comunidad">
+    <section className="blog container section" id="experiencias">
       <div className="secContainer">
         <div className="secIntro"><span className="eyebrow dark">Comunidad viajera</span><h2 className="secTitle">Comparte tu experiencia y deja tu huella</h2><p>Cuenta qué aprendiste y ayuda a otros viajeros a tomar mejores decisiones.</p></div>
         <div className="communityLayout">

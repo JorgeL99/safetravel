@@ -1,11 +1,49 @@
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { FiMapPin, FiSearch, FiSliders } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import './home.css';
 import { provinces } from '../../data/destinations';
+import portadaCosta from '../../assets/portada1.webp';
+import portadaCultura from '../../assets/portada4.webp';
+import portadaAventura from '../../assets/imageee.webp';
+import portadaPuno from '../../assets/hero/hero-puno-uros.webp';
+import portadaAncash from '../../assets/hero/hero-ancash-nevado.webp';
+import portadaCusco from '../../assets/hero/hero-cusco-machu-picchu.webp';
+import portadaLima from '../../assets/hero/hero-lima-cathedral.webp';
+import portadaSelva from '../../assets/hero/hero-selva-alta.webp';
 
-const Home = ({ filters, onFilterChange, onSearch }) => (
-  <section className="home" id="inicio">
+const heroSlides = [
+  { src: portadaCosta, alt: 'Costa peruana', position: 'center 52%' },
+  { src: portadaCusco, alt: 'Machu Picchu y una llama en Cusco', position: 'center 55%' },
+  { src: portadaAncash, alt: 'Nevado de los Andes en Áncash', position: 'center 48%' },
+  { src: portadaPuno, alt: 'Artesanía tradicional de los Uros en Puno', position: '38% 58%' },
+  { src: portadaLima, alt: 'Catedral de Lima', position: 'center 58%' },
+  { src: portadaSelva, alt: 'Valle verde de la selva alta peruana', position: 'center 55%' },
+  { src: portadaCultura, alt: 'Experiencia cultural en el Perú', position: 'center 52%' },
+  { src: portadaAventura, alt: 'Aventura turística en el Perú', position: 'center 55%' },
+];
+
+const Home = ({ filters, onFilterChange, onSearch }) => {
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
+    const interval = window.setInterval(() => setActiveSlide((current) => (current + 1) % heroSlides.length), 6500);
+    return () => window.clearInterval(interval);
+  }, []);
+
+  return <section className="home" id="inicio">
+    <div className="heroSlides" aria-hidden="true">
+      {heroSlides.map(({ src, alt, position }, index) => <img
+        key={src}
+        src={src}
+        alt={alt}
+        className={index === activeSlide ? 'active' : ''}
+        style={{ objectPosition: position }}
+        loading={index === 0 ? 'eager' : 'lazy'}
+      />)}
+    </div>
     <div className="homeOverlay" />
     <div className="heroContent container">
       <span className="eyebrow">Explora Costa, Sierra y Selva</span>
@@ -13,7 +51,7 @@ const Home = ({ filters, onFilterChange, onSearch }) => (
       <p>Descubre experiencias seguras y auténticas recomendadas según tu forma de viajar.</p>
       <div className="heroActions">
         <Link to="/quiz" className="primaryAction">Encontrar mi destino</Link>
-        <a href="#destinos" className="secondaryAction">Ver experiencias</a>
+        <Link to="/#experiencias" className="secondaryAction">Ver experiencias</Link>
       </div>
     </div>
 
@@ -42,8 +80,8 @@ const Home = ({ filters, onFilterChange, onSearch }) => (
       </div>
       <button type="submit" className="searchButton">Buscar experiencias</button>
     </form>
-  </section>
-);
+  </section>;
+};
 
 Home.propTypes = {
   filters: PropTypes.shape({ query: PropTypes.string, province: PropTypes.string, budget: PropTypes.string }).isRequired,
