@@ -17,7 +17,7 @@ test('filtra el catálogo nacional por región', async ({ page }) => {
 });
 
 test('completa el sistema experto y muestra una explicación', async ({ page }) => {
-  await page.goto('/quiz');
+  await page.goto('/#/quiz');
   await page.getByRole('button', { name: 'Iniciar' }).click();
   const answers = [
     'Costa: mar, desierto y valles', 'Arqueología e historia', 'Cálido y seco',
@@ -36,7 +36,7 @@ test('completa el sistema experto y muestra una explicación', async ({ page }) 
 
 test('calcula conexiones y presupuesto del itinerario', async ({ page }) => {
   await page.addInitScript(() => localStorage.setItem('safetravel-itinerary', JSON.stringify([7, 8, 11])));
-  await page.goto('/itinerario');
+  await page.goto('/#/itinerario');
   await expect(page.getByText('Orden inteligente')).toBeVisible();
   await expect(page.getByText(/km aprox\./).first()).toBeVisible();
   await page.getByLabel('Alojamiento por noche').fill('120');
